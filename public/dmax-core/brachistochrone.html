@@ -1,0 +1,54 @@
+<p>Open the console to see the result!</p>
+<div>
+    <select name="problems" id="problem-select">
+        <option value="dmax_problem_light.nl">dmax_problem_light.nl</option>
+        <option value="dmax_problem_middle.nl">dmax_problem_middle.nl</option>
+        <option value="dmax_problem_hard.nl">dmax_problem_hard.nl</option>
+        <option value="dmax_problem.nl">dmax_problem.nl</option>
+    </select>
+    <input type="number" value="4" min="1" max="64" id="threadnum">
+    <br>
+    <button type="button" onclick="call_wasm_main()">call_wasm_main()</button>
+</div>
+<div>
+    <textarea id="output" rows="8"></textarea>
+</div>
+
+<script type="text/javascript" src="brachistochrone.js"></script>
+<script type="text/javascript">
+    Module['print'] = (function() {
+        var element = document.getElementById('output');
+        if (element) element.value = ''; // clear browser cache
+        return function(text) {
+        if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+        // These replacements are necessary if you render to raw HTML
+        //text = text.replace(/&/g, "&amp;");
+        //text = text.replace(/</g, "&lt;");
+        //text = text.replace(/>/g, "&gt;");
+        //text = text.replace('\n', '<br>', 'g');
+        console.log(text);
+        if (element) {
+            element.value += text + "\n";
+            element.scrollTop = element.scrollHeight; // focus on bottom
+        }
+        };
+    })();
+
+    /* to set Module["print"] to out, redifine here 
+     * out is related with stdout on C/C++
+     */
+    out = Module["print"] || defaultPrint;
+
+    let js_wrapped_main = Module.cwrap("main", "number");
+    let js_wrapped_wasm_main = Module.cwrap("wasm_main", "number", ["string", "number"]);
+
+    function call_wasm_main() {
+        let arg_threadnum = document.getElementById('threadnum').value;
+        let arg_problem = document.getElementById('problem-select').value;
+        console.log('problem: ' + arg_problem)
+        console.log('number of threads: ' + arg_threadnum)
+        console.log("The result wasm_main() is: ", js_wrapped_wasm_main(arg_problem, arg_threadnum));
+    }
+</script>
+
+

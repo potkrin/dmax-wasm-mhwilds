@@ -1,0 +1,55 @@
+name: Deploy dmax-wasm Next.js Application
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging Environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            eval `ssh-agent`
+            ssh-add ~/.ssh/id_remote
+            cd /home/potkrin/dmax-wasm-staging
+
+            # Fetch code from origin develop branch
+            git switch develop
+            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git fetch origin develop && git reset --hard origin/develop
+
+            # nvm 環境の初期化
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+            # Node.jsの特定のバージョンを使用
+            nvm use v20.10.0
+
+            # Install dependencies
+            npm install
+
+            # Build Next.js application
+            NODE_ENV=production npm run build
+
+            # Check if the pm2 process exists and restart or start accordingly
+            if pm2 show dmax-wasm-staging > /dev/null; then
+                echo "pm2 process exists, restarting..."
+                pm2 restart dmax-wasm-staging
+            else
+                echo "pm2 process does not exist, starting..."
+                pm2 start ecosystem.config.js
+            fi
+
+            # Ensure pm2 starts on reboot
+            pm2 save
+            pm2 startup
+            echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S env PATH=$PATH:/home/potkrin/.nvm/versions/node/v20.10.0/bin /home/potkrin/.nvm/versions/node/v20.10.0/lib/node_modules/pm2/bin/pm2 startup systemd -u potkrin --hp /home/potkrin
