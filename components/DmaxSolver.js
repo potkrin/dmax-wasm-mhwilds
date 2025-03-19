@@ -366,7 +366,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
     }
 
     // ローカルサーバーの endpoint (dmax-core)
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/dmax-problem/`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/dmax-problem-mhwilds/`;
 
     // // ローカルサーバーの endpoint (cms)
     // const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/en/cms/dmaxapi/`;
