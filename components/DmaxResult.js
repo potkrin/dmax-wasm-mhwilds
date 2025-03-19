@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid, Card, Box, Typography, Divider, useMediaQuery } from "@mui/material";
 
-import { armors, decos } from "../data/EquipData";
+import { decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
 import { staticSkillData } from "../data/StaticData";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 import InsightsIcon from "@mui/icons-material/Insights";
@@ -128,8 +128,16 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       dictEquipAll[eq.name] = eq;
     }
 
-    for (let deco of decos) {
+    for (let deco of decoArmorList) {
       dictEquipAll[deco.name] = deco;
+    }
+
+    for (let deco of decoWeaponList) {
+      dictEquipAll[deco.name] = deco;
+    }
+
+    for (let weapon of weaponList) {
+      dictEquipAll[weapon.name] = weapon;
     }
 
     // 出力結果の装備(防具･護石･装飾品)とその数を保持する辞書
@@ -250,17 +258,17 @@ export function outputToResult(output, processingUserInputData, processingUserAr
 
     // localstorage に結果の履歴を保存
     const historyItem = {
-      "timeStamp": timeStamp,
-      "result": result,
-      "processingUserInputData": processingUserInputData,
-      "maxDamage": dict_other_result["最大ダメージ"],
-      "element":
+      timeStamp: timeStamp,
+      result: result,
+      processingUserInputData: processingUserInputData,
+      maxDamage: dict_other_result["最大ダメージ"],
+      element:
         processingUserInputData["武器"]["属性"] === "無属性"
           ? "無"
           : processingUserInputData["武器"]["属性"],
-      "heroic": processingUserInputData["食事"]["火事場"],
-      "physicalHitzone": processingUserInputData["モンスター"]["物理肉質"],
-      "elementalHitzone": processingUserInputData["モンスター"]["属性肉質"],
+      heroic: processingUserInputData["食事"]["火事場"],
+      physicalHitzone: processingUserInputData["モンスター"]["物理肉質"],
+      elementalHitzone: processingUserInputData["モンスター"]["属性肉質"],
     };
 
     const resultHistory = localStorage.getItem("resultHistory");
@@ -352,8 +360,8 @@ export const DmaxResult = React.memo(
                 display: "none", // Webkitブラウザ用のスクロールバーを非表示にする
               },
               // MSIEやEdge用の設定
-              "msOverflowStyle": "none", // IE 10+ スクロールバーを非表示
-              "scrollbarWidth": "none", // Firefox スクロールバーを非表示
+              msOverflowStyle: "none", // IE 10+ スクロールバーを非表示
+              scrollbarWidth: "none", // Firefox スクロールバーを非表示
             }}
           >
             <NewlineText text={dmaxResult} />

@@ -15,10 +15,6 @@ import {
 
 import { theme, breakpoints } from "../src/theme";
 
-// import { armors, decos } from "../data/EquipData";
-// import { staticSkillData } from "../data/StaticData";
-// import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-
 import HistoryIcon from "@mui/icons-material/History";
 import PropTypes from "prop-types";
 import CopyToClipboardButton from "./CopyToClipboardButton";
@@ -208,8 +204,8 @@ export const DmaxHistory = React.memo(({ allDmaxOutput }) => {
               display: "none", // Webkitブラウザ用のスクロールバーを非表示にする
             },
             // MSIEやEdge用の設定
-            "msOverflowStyle": "none", // IE 10+ スクロールバーを非表示
-            "scrollbarWidth": "none", // Firefox スクロールバーを非表示
+            msOverflowStyle: "none", // IE 10+ スクロールバーを非表示
+            scrollbarWidth: "none", // Firefox スクロールバーを非表示
           }}
         >
           {historyList.map((option, index) => (

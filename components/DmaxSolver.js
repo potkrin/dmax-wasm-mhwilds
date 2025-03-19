@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { DmaxOutput } from "./DmaxOutput";
 import { DmaxGraph } from "./DmaxGraph";
 import { DmaxResult } from "./DmaxResult";
-import { armors, decos } from "../data/EquipData";
+import { armors, decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
 import { staticData } from "../data/StaticData";
 import { DmaxHistory } from "./DmaxHistory";
 import { applyWaterBlight } from "./HelperFunction";
@@ -157,7 +157,7 @@ function call_worker_wasm_main(
         console.error("RangeError: Out of memory occured on webworker - throw new Error");
 
         if (!limitMemory) {
-          const oomInfo = { "oom": true, "time": new Date().toISOString() };
+          const oomInfo = { oom: true, time: new Date().toISOString() };
           localStorage.setItem("OutOfMemoryOn4GB", JSON.stringify(oomInfo));
           setMemoryLimit("1GB");
           localStorage.setItem("wasmWorkerStatus", "memory limit 1GB");
@@ -423,10 +423,12 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         "X-CSRFToken": csrfToken,
       },
       body: JSON.stringify({
-        "userInputData": tempUserInputData,
-        "armors": userArmors,
-        "decos": decos,
-        "staticData": staticData,
+        userInputData: tempUserInputData,
+        armors: userArmors,
+        decoArmorList: decoArmorList,
+        decoWeaponList: decoWeaponList,
+        weaponList: weaponList,
+        staticData: staticData,
       }),
     })
       .then((response) => {
