@@ -16,18 +16,16 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Paper from "@mui/material/Paper";
 import { Skill } from "./Skill";
-import { NonDamageSkill } from "./NonDamageSkill";
 import { MonsterSetting } from "./MonsterSetting";
 import { WeaponSetting } from "./WeaponSetting";
 import { HunterSetting } from "./HunterSetting";
 import { DangoSetting } from "./DangoSetting";
+import { FoodSkillSetting } from "./FoodSkillSetting";
 import { MelodySetting } from "./MelodySetting";
-import { RampageDecoSetting } from "./RampageDecoSetting";
 import { DmaxSolver } from "./DmaxSolver";
 import { ValidateData } from "./ValidateData";
 
 // icons
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
@@ -283,8 +281,8 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           </Typography>
 
           <Grid container rowSpacing={2} columnSpacing={2} paddingX={3}>
-            <DangoSetting
-              userInputDataDango={userInputData["食事"]}
+            <FoodSkillSetting
+              userInputDataFoodSkill={userInputData["食事"]}
               updateUserInputData={updateUserInputData}
             />
           </Grid>
@@ -306,24 +304,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
               updateUserInputData={updateUserInputData}
             />
           </Grid>
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            align="left"
-            marginTop={4}
-            marginBottom={1}
-            marginLeft={1}
-            sx={commonStyles.customHeader}
-          >
-            百竜装飾品
-          </Typography>
 
-          <Grid container rowSpacing={2} columnSpacing={2} paddingX={3}>
-            <RampageDecoSetting
-              userInputDataRampageDeco={userInputData["百竜装飾品"]}
-              updateUserInputData={updateUserInputData}
-            />
-          </Grid>
           {/* スライダーありのスキル */}
           <Typography
             variant="subtitle2"

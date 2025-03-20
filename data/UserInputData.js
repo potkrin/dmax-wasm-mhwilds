@@ -36,9 +36,10 @@ export const userInputData = {
   },
 
   "食事": {
-    "火事場": "火事場なし",
-    "射撃術": "射撃術Lv4",
-    "短期催眠": "短期催眠Lv3",
+    "お食事火事場術": false,
+    "お食事水心術": false,
+    "お食事ムラ気術": false,
+    "食事タイプ": "なし",
   },
 
   "旋律": {
@@ -46,16 +47,6 @@ export const userInputData = {
     "気炎の旋律": false,
     "属性旋律": false,
     "会心旋律": false,
-  },
-
-  "百竜装飾品": {
-    "弱点特効【属性】": false,
-    "種・系特効": false,
-    "やられ特効": false,
-    "鋼龍の魂": false,
-    "劫血活性Lv1": false,
-    "劫血活性Lv2": false,
-    "天彗龍の魂": false,
   },
 
   "その他": {

@@ -108,12 +108,6 @@ export function outputToResult(output, processingUserInputData, processingUserAr
         dict_other_result["疾替えの書"] = swap_scroll_result;
       }
 
-      // 百竜装飾品
-      if (line.startsWith("rd[")) {
-        const rampage_deco_result = line.slice(3, line.indexOf("]"));
-        dict_other_result["百竜装飾品"] = rampage_deco_result;
-      }
-
       // 会心率
       if (line.startsWith("afr")) {
         const affinity_rate_result = parseFloat(line.slice(3, line.indexOf("(")));
@@ -175,7 +169,7 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       };
     }
 
-    // 最大ダメージ, 疾替えの書, 百竜装飾品, 会心率などの出力
+    // 最大ダメージ, 会心率などの出力
     for (const key in dict_other_result) {
       result += key + ": " + dict_other_result[key] + "\n";
     }
