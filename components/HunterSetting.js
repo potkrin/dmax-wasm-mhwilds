@@ -18,9 +18,10 @@ import { isEqual } from "lodash";
 export const HunterSetting = React.memo(
   ({ userInputDataHunter, updateUserInputData }) => {
     const handleChangeUserInputData = (key, event, value) => {
-      if (key === "ヒトダマドリ") {
-        value = parseInt(event.target.value);
-      } else if (key === "種ホムラ" || key === "疾替えの書") {
+      // TODO: リファクタリング案
+      // - value から type を判定して条件分岐するようにする
+      // - handle 関数を分ける
+      if (key === "怪力の種枠" || key === "鬼人薬枠" || key === "装衣") {
         value = event.target.value;
       } else {
         value = event.target.checked;

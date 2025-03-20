@@ -403,12 +403,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       if (userQuriousArmorData !== null) userArmors.push(...userQuriousArmorData);
     }
 
-    // 肉質を水やられ状態に変換したデータを送信
     const tempUserInputData = JSON.parse(JSON.stringify(userInputData));
-    tempUserInputData["モンスター"]["物理肉質"] = applyWaterBlight(
-      userInputData["モンスター"]["物理肉質"],
-      userInputData["モンスター"]["水やられ"]
-    );
 
     // CSRFトークンを取得
     const csrfToken = getCsrfToken();

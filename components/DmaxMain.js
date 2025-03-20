@@ -19,9 +19,7 @@ import { Skill } from "./Skill";
 import { MonsterSetting } from "./MonsterSetting";
 import { WeaponSetting } from "./WeaponSetting";
 import { HunterSetting } from "./HunterSetting";
-import { DangoSetting } from "./DangoSetting";
 import { FoodSkillSetting } from "./FoodSkillSetting";
-import { MelodySetting } from "./MelodySetting";
 import { DmaxSolver } from "./DmaxSolver";
 import { ValidateData } from "./ValidateData";
 
@@ -268,6 +266,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
               updateUserInputData={updateUserInputData}
             />
           </Grid>
+
           <Typography
             variant="subtitle2"
             gutterBottom
@@ -279,28 +278,9 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           >
             食事
           </Typography>
-
           <Grid container rowSpacing={2} columnSpacing={2} paddingX={3}>
             <FoodSkillSetting
               userInputDataFoodSkill={userInputData["食事"]}
-              updateUserInputData={updateUserInputData}
-            />
-          </Grid>
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            align="left"
-            marginTop={4}
-            marginBottom={1}
-            marginLeft={1}
-            sx={commonStyles.customHeader}
-          >
-            旋律
-          </Typography>
-
-          <Grid container rowSpacing={2} columnSpacing={2} paddingX={3}>
-            <MelodySetting
-              userInputDataMelody={userInputData["旋律"]}
               updateUserInputData={updateUserInputData}
             />
           </Grid>
