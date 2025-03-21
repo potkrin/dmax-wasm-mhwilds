@@ -131,8 +131,10 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
 
   // ユーザが入力するたびに入力データを localstorage に書き込み
   useEffect(() => {
+    console.log("[dbg] userInputData has been updated");
     if (isEqual(userInputData, defaultUserInputData)) return;
     localStorage.setItem("userInputData", JSON.stringify(userInputData));
+    console.log("[dbg] userInputData has been written to localstorage");
   }, [userInputData]);
 
   // SpeedDial 用

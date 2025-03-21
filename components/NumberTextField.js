@@ -3,12 +3,14 @@ import { TextField } from "@mui/material";
 
 // 注意: NumberTextField の呼び出し元で parseInt すること
 export function NumberTextField(props) {
-  const { min, max, value, matches, decimalPoint, ...rest } = props; // min, max, value を分離
+  const { min, max, value, matches, decimalPoint, negativeInteger, ...rest } = props; // min, max, value を分離
 
   const handleChange = (event) => {
     let newValue = 0;
     if (decimalPoint) {
       newValue = event.target.value.replace(/[^0-9.]/g, ""); // 数字と小数点以外を削除
+    } else if (negativeInteger) {
+      newValue = event.target.value.replace(/[^0-9-]/g, ""); // 数字とマイナス以外を削除
     } else {
       newValue = parseInt(event.target.value.replace(/\D/g, "")); // 数字以外を削除
       newValue = isNaN(newValue) ? 0 : newValue; // 数字以外の場合は0にする

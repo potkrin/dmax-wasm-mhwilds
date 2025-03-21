@@ -9,6 +9,7 @@ export const userInputData = {
   },
 
   "武器": {
+    "選択武器": {"type":"weapon","name":"ホープボウⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[0,0,0],"skills":{},"element":0,"raw":90,"elementType":"none","affinity":0},
     "攻撃力": 200,
     "会心率": 0,
     "属性値": 0,

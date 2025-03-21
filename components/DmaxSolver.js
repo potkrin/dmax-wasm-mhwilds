@@ -17,6 +17,7 @@ import { armors, decoArmorList, decoWeaponList, weaponList } from "../data/Equip
 import { staticData } from "../data/StaticData";
 import { DmaxHistory } from "./DmaxHistory";
 import { applyWaterBlight } from "./HelperFunction";
+import { useArtianContext } from "./ArtianContext";
 import { useCharmAndQuriousArmorContext } from "./CharmAndQuriousArmorContext";
 import { useTheme } from "@mui/material/styles";
 import { HideOnScroll } from "./App";
@@ -340,14 +341,14 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
   // DmaxOutput のリアルタイム中間出力をリセットする state
   const [resetMiddleOutputInfo, setResetMiddleOutputInfo] = useState(false);
 
-  const { serverCharmData, serverQuriousArmorData } = useCharmAndQuriousArmorContext();
+  const { serverArtianData } = useArtianContext();
 
   // DmaxSolverコンポーネントへの参照を作成 (自動スクロールに利用)
   const dmaxSolverRef = useRef(null);
 
   const [memoryLimit, setMemoryLimit] = useState("?GB");
   const { appBarRef } = useHideOnScroll();
-  const { useServerData } = useCharmAndQuriousArmorContext();
+  const { useServerData } = useArtianContext();
   const appBarHeight = appBarRef.current ? appBarRef.current.clientHeight : 0;
 
   // 最適化の開始
@@ -379,28 +380,19 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
 
     if (!excludeCharm) {
       // ユーザの護石を全防具データに追加
-      let userCharmData = null;
+      // let userCharmData = null;
+      let userArtianData = null;
       if (useServerData) {
         // サーバー上の護石データを取得
-        userCharmData = JSON.parse(JSON.stringify(serverCharmData));
+        // userCharmData = JSON.parse(JSON.stringify(serverCharmData));
+        userArtianData = JSON.parse(JSON.stringify(serverArtianData));
       } else {
         // localsotrage から護石データを取得
-        userCharmData = JSON.parse(localStorage.getItem("userCharmData"));
+        // userCharmData = JSON.parse(localStorage.getItem("userCharmData"));
+        userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
       }
-      if (userCharmData !== null) userArmors.push(...userCharmData);
-    }
-
-    if (!excludeQuriousArmor) {
-      // ユーザの傀異錬成防具を全防具データに追加
-      let userQuriousArmorData = null;
-      if (useServerData) {
-        // サーバー上の傀異錬成防具データを取得
-        userQuriousArmorData = JSON.parse(JSON.stringify(serverQuriousArmorData));
-      } else {
-        // localsotrage から傀異錬成防具データを取得
-        userQuriousArmorData = JSON.parse(localStorage.getItem("userQuriousArmorData"));
-      }
-      if (userQuriousArmorData !== null) userArmors.push(...userQuriousArmorData);
+      // if (userCharmData !== null) userArmors.push(...userCharmData);
+      // if (userArtianData !== null) userArmors.push(...userArtianData);
     }
 
     const tempUserInputData = JSON.parse(JSON.stringify(userInputData));
@@ -409,6 +401,18 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
     const csrfToken = getCsrfToken();
 
     setApiError(false);
+
+    // ダメージ検証用のデータを出力
+    const problemAPIBody = JSON.stringify({
+      userInputData: tempUserInputData,
+      armors: userArmors,
+      decoArmorList: decoArmorList,
+      decoWeaponList: decoWeaponList,
+      // weaponList: weaponList,
+      staticData: staticData,
+    });
+
+    console.log("[damage verification result]: api body\n" + problemAPIBody);
 
     fetch(apiUrl, {
       method: "POST",
@@ -422,7 +426,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         armors: userArmors,
         decoArmorList: decoArmorList,
         decoWeaponList: decoWeaponList,
-        weaponList: weaponList,
+        // weaponList: weaponList,
         staticData: staticData,
       }),
     })
@@ -653,8 +657,6 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       </>
     ),
     [
-      serverCharmData,
-      serverQuriousArmorData,
       useServerData,
       excludeCharm,
       setExcludeCharm,

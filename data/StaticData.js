@@ -13,6 +13,15 @@ export const staticData = {
       "龍": "龍",
     },
 
+    "elementKV": {
+      "無属性": "none",
+      "火": "fire",
+      "水": "water",
+      "雷": "thunder",
+      "氷": "ice",
+      "龍": "dragon",
+    },
+
     "スロット": {
       "なし": [],
       "1": [1],

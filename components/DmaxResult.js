@@ -39,6 +39,22 @@ export function outputToResult(output, processingUserInputData, processingUserAr
   let result = "";
   let timeStamp = "";
   if (output.includes("SCIP Status") && output.includes("nlobjvar")) {
+    // ダメージ検証のために出力を追加
+    let damageVerificationLines = output.split("\n");
+    let damageVerificationResult = "";
+    for (let line of damageVerificationLines) {
+      if (
+        line.startsWith("x[") ||
+        line.startsWith("q[") ||
+        line.startsWith("afr") ||
+        line.startsWith("nlobjvar")
+      ) {
+        damageVerificationResult += line + "\n";
+      }
+    }
+    console.log("[damage verification result]:\n" + damageVerificationResult);
+    // ダメージ検証のために出力を追加 ここまで
+
     let lines = output.split("\n");
 
     const list_q_result = [];
@@ -134,6 +150,13 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       dictEquipAll[weapon.name] = weapon;
     }
 
+    const userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
+    if (userArtianData) {
+      for (let artian of userArtianData) {
+        dictEquipAll[artian.name] = artian;
+      }
+    }
+
     // 出力結果の装備(防具･護石･装飾品)とその数を保持する辞書
     const dictResultEquipment = {};
 
@@ -160,7 +183,8 @@ export function outputToResult(output, processingUserInputData, processingUserAr
         qEquipInfo = dictEquipAll[qEquipName];
       }
 
-      const slotLevel = qEquipInfo.type === "deco" ? qEquipInfo.size : -1;
+      const slotLevel =
+        qEquipInfo.type === "decoArmor" || qEquipInfo.type === "decoWeapon" ? qEquipInfo.size : -1;
 
       dictResultEquipment[qEquipName] = {
         count: Math.round(parseFloat(qEquipCount)),
@@ -177,7 +201,7 @@ export function outputToResult(output, processingUserInputData, processingUserAr
     // 部位の出力
     result += "\n[装備構成]\n";
     const eqtypeDict = {
-      weapon: "武器スロット",
+      weapon: "武器",
       head: "頭",
       torso: "胴",
       arms: "腕",
@@ -186,26 +210,36 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       charm: "護石",
     };
     for (const eqtype in eqtypeDict) {
-      if (eqtype === "weapon") {
-        result += eqtypeDict[eqtype] + ": " + processingUserInputData["武器"]["スロット"] + "\n";
-        continue;
-      }
-
       for (const req in dictResultEquipment) {
+        const slot_str = dictResultEquipment[req].eqDict.slots?.join("-");
         if (eqtype === dictResultEquipment[req].eqDict.type) {
-          result += eqtypeDict[eqtype] + ": " + req + "\n";
+          result += eqtypeDict[eqtype] + ": " + req + " (" + slot_str + ")" + "\n";
         }
       }
     }
 
-    result += "\n[装飾品]\n";
+    result += "\n[装飾品 武器]\n";
     // 装飾品の出力 (スロレベル順)
     const slotLevels = [4, 3, 2, 1];
     for (const level of slotLevels) {
       for (const req in dictResultEquipment) {
-        if (dictResultEquipment[req].deco_slotlevel === -1) {
-          continue;
+        if (dictResultEquipment[req].deco_slotlevel === -1) continue;
+
+        if (dictResultEquipment[req].eqDict.type !== "decoWeapon") continue;
+
+        if (level === dictResultEquipment[req].decoSlotLevel) {
+          result += req + ": " + dictResultEquipment[req].count + "\n";
         }
+      }
+    }
+
+    result += "\n[装飾品 防具]\n";
+    // 装飾品の出力 (スロレベル順)
+    for (const level of slotLevels) {
+      for (const req in dictResultEquipment) {
+        if (dictResultEquipment[req].deco_slotlevel === -1) continue;
+
+        if (dictResultEquipment[req].eqDict.type !== "decoArmor") continue;
 
         if (level === dictResultEquipment[req].decoSlotLevel) {
           result += req + ": " + dictResultEquipment[req].count + "\n";
