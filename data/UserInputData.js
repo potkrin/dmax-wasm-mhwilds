@@ -39,8 +39,8 @@ export const userInputData = {
   "その他": {
     "キュリア": 2,
     "血氣覚醒": 2,
-    "狂竜症【蝕】感染時割合": 25,
     "全属性耐性値": 150,
+    "狂竜症克服率": 100,
   },
   "スキル": generateSkillInputData(),
 };

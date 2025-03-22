@@ -307,24 +307,6 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
 
           <Grid container marginBottom={2}>
             {Object.keys(staticSkillData)
-              .filter((key) => staticSkillData[key].type === "FixedLevelDamage")
-              .map((key) => (
-                <Skill
-                  key={key}
-                  staticSkillData={staticSkillData[key]}
-                  setUserInputData={setUserInputData}
-                  userInputDataSkill={userInputData["スキル"][key]}
-                  userInputDataOther={
-                    key === "龍気変換" ||
-                    key === "狂竜症【蝕】" ||
-                    key === "伏魔響命" ||
-                    key === "血氣覚醒"
-                      ? userInputData["その他"]
-                      : null
-                  }
-                />
-              ))}
-            {Object.keys(staticSkillData)
               .filter((key) => staticSkillData[key].type === "Damage")
               .map((key) => (
                 <Skill
@@ -333,6 +315,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                   setUserInputData={setUserInputData}
                   userInputDataSkill={userInputData["スキル"][key]}
                   userInputDataOther={
+                    key === "黒蝕竜の力" ||
                     key === "龍気変換" ||
                     key === "狂竜症【蝕】" ||
                     key === "伏魔響命" ||
