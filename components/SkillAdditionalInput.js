@@ -33,7 +33,8 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
       (key === "全属性耐性値" ||
         key === "狂竜症" ||
         key === "狂竜症克服率" ||
-        key === "傷あり率") &&
+        key === "傷あり率" ||
+        key === "撃ち切るビン数") &&
       !value
     ) {
       // TextField から呼び出された場合
@@ -100,6 +101,19 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
             fullWidth
           />
         </Grid>
+        <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <NumberTextField
+            label="撃ち切るビン数"
+            size="small"
+            value={userInputDataOther["撃ち切るビン数"]}
+            onChange={(e, v) => handleChangeOther("撃ち切るビン数", e, v)}
+            min={0}
+            max={100}
+            sx={{ minWidth: "100px" }}
+            fullWidth
+          />
+        </Grid>
+
         <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">キュリア</InputLabel>

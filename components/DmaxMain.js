@@ -317,6 +317,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                   userInputDataOther={
                     key === "黒蝕竜の力" ||
                     key === "弱点特効" ||
+                    key === "フォースショット" ||
                     key === "龍気変換" ||
                     key === "狂竜症【蝕】" ||
                     key === "伏魔響命" ||

@@ -42,6 +42,7 @@ export const userInputData = {
     "全属性耐性値": 150,
     "狂竜症克服率": 100,
     "傷あり率": 20,
+    "撃ち切るビン数": 10,
   },
   "スキル": generateSkillInputData(),
 };

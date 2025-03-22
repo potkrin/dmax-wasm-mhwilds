@@ -58,7 +58,8 @@ export const Skill = React.memo(
         (key === "全属性耐性値" ||
           key === "狂竜症" ||
           key === "狂竜症克服率" ||
-          key === "弱点特効") &&
+          key === "傷あり率" ||
+          key === "撃ち切るビン数") &&
         !value
       ) {
         // TextField から呼び出された場合
@@ -516,6 +517,17 @@ export const Skill = React.memo(
                   sx={{ minWidth: "100px" }}
                   fullWidth
                 />
+              ) : staticSkillData.name === "フォースショット" ? (
+                <NumberTextField
+                  label="撃ち切るビン数"
+                  size="small"
+                  value={userInputDataOther["撃ち切るビン数"]}
+                  onChange={(e, v) => handleChangeOther("撃ち切るビン数", e, v)}
+                  min={0}
+                  max={10}
+                  sx={{ minWidth: "100px" }}
+                  fullWidth
+                />
               ) : staticSkillData.name === "伏魔響命" ? (
                 <FormControl sx={{ minWidth: "100px" }} fullWidth>
                   <InputLabel id="demo-simple-select-label">キュリア</InputLabel>
@@ -602,6 +614,12 @@ export const Skill = React.memo(
       return (
         base &&
         prevProps.userInputDataOther["傷あり率"] === nextProps.userInputDataOther["傷あり率"]
+      );
+    } else if (skillName === "フォースショット") {
+      return (
+        base &&
+        prevProps.userInputDataOther["撃ち切るビン数"] ===
+          nextProps.userInputDataOther["撃ち切るビン数"]
       );
     } else if (skillName === "伏魔響命") {
       return (
