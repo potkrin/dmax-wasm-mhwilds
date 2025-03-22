@@ -90,20 +90,24 @@ export const WeaponSetting = React.memo(
 
     const [weaponSuggestions, setWeaponSuggestions] = useState([]);
 
-    // Autoselect のテキストボックスに入力されている値 (onFocus でリセットするために定義)
-    const [currentWeapon, setCurrentWeapon] = useState();
-
-    // マウント後にローカルストレージから currentWeapon を取得
-    useEffect(() => {
-      const localStorageUserInputData = JSON.parse(localStorage.getItem("userInputData"));
-      if (localStorageUserInputData && has(localStorageUserInputData, "武器")) {
-        const localStorageWeapon = localStorageUserInputData["武器"];
-        setCurrentWeapon(localStorageWeapon["選択武器"]?.name || "");
-      }
-    }, []);
+    const currentWeapon = userInputDataWeapon["選択武器"].name || "ホープボウⅠ";
 
     const handleWeaponSelect = (event, newValue) => {
-      setCurrentWeapon(newValue);
+      // find weapon info from weaponList
+      let userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
+      if (!userArtianData) userArtianData = [];
+      const weaponListWithArtian = [...userArtianData, ...weaponList];
+
+      const selectedWeaponInfo = weaponListWithArtian.find((weapon) => {
+        if (newValue.includes("アーティア")) {
+          return weapon.name === newValue;
+        } else {
+          return weapon.name === newValue.split(" (")[0];
+        }
+      });
+
+      // set weapon info to state: userInputData
+      updateUserInputData("武器", { ...userInputDataWeapon, "選択武器": selectedWeaponInfo });
     };
 
     useEffect(() => {
@@ -127,7 +131,6 @@ export const WeaponSetting = React.memo(
     return (
       <>
         <Grid item xs={12} sm={8} md={4}>
-          <div>{currentWeapon}</div>
           <Autocomplete
             options={weaponSuggestions}
             onChange={handleWeaponSelect}
@@ -199,7 +202,7 @@ export const WeaponSetting = React.memo(
           }
         })}
 
-        {/* <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div> */}
+        <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div>
       </>
     );
   },
