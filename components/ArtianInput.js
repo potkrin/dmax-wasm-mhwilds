@@ -11,17 +11,22 @@ import {
   FormControl,
   InputLabel,
   Select,
+  useMediaQuery,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import AddIcon from "@mui/icons-material/Add";
 
 import { SkillCard } from "./SkillCard";
 import { staticSkillData, staticData } from "../data/StaticData";
-
 import { NumberTextField } from "./NumberTextField";
 
 import { commonStyles } from "./DmaxMain";
 import SlotLevels from "./SlotLevels";
+import { breakpoints } from "../src/theme";
+
+export function GridItemInput(props) {
+  return <Grid item xs={6} {...props} />;
+}
 
 /**
  * バグ: 選択済みのスキルをもう一度選択したとき追加できない
@@ -42,7 +47,7 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
     setCurrentSkill(newValue);
     if (newValue === null) return;
 
-    if (selectedSkills.length < 2 && !selectedSkills.some((skill) => skill.name === newValue)) {
+    if (selectedSkills.length < 3 && !selectedSkills.some((skill) => skill.name === newValue)) {
       setSelectedSkills((prev) => [...prev, { name: newValue, level: 1 }]);
     }
   };
@@ -105,12 +110,6 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
 
   // 登録ボタンを追加
   const registerArtian = () => {
-    // 空の護石を登録しない
-    let hasSlot = false;
-    for (const slot of slots) if (slot !== 0) hasSlot = true;
-
-    if (selectedSkills.length === 0 && !hasSlot) return;
-
     let revisedAffinity = isNaN(affinity) ? 0 : parseInt(affinity);
     if (revisedAffinity > 100) revisedAffinity = 100;
     if (revisedAffinity < -100) revisedAffinity = -100;
@@ -192,6 +191,8 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
     }
   }, [isVisible]);
 
+  const matches = useMediaQuery("(max-width: " + breakpoints.values.sm + "px)"); // 'sm' は600pxに設定されていることが多い
+
   return (
     <>
       <Box ref={ref}>
@@ -212,155 +213,170 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
             護石入力
           </Typography>
 
-          <NumberTextField
-            value={raw}
-            size="small"
-            id="outlined-basic"
-            label={"攻撃力"}
-            variant="outlined"
-            onChange={(e, v) => handleChangeRaw("raw", e, v)}
-            min={0}
-            max={1000}
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <NumberTextField
-            value={element}
-            size="small"
-            id="outlined-basic"
-            label={"属性値"}
-            variant="outlined"
-            onChange={(e, v) => handleChangeElement("element", e, v)}
-            min={0}
-            max={1000}
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <NumberTextField
-            value={affinity}
-            size="small"
-            id="outlined-basic"
-            label={"会心率"}
-            variant="outlined"
-            onChange={(e, v) => handleChangeAffinity("affinity", e, v)}
-            min={-100}
-            max={100}
-            negativeInteger={true}
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">{"属性"}</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              size="small"
-              value={elementType}
-              label={"属性"}
-              onChange={(e, v) => handleChangeElementType("属性", e, v)}
-              style={{ textAlign: "left" }}
-              // // MUI の Select コンポーネントはドロップダウンボックスを開いたときにページ全体用のスクロールバーが表示になり
-              // // 全体スクロールがロックされる。このときビューポートの横幅が変わるため、右端を起点に固定している Fab ボタンが
-              // // 左右にズレてしまう
-
-              // // 以下の追加処理によってドロップダウンボックスの開閉時に Fab ボタンが左右にずれる問題を解決できる
-              // // しかし setFabRight によりボタンの開閉が遅くなるので、現状はコメントアウトし、スクロールバーの非表示で対処
-              // // usememo などによりレンダリングを高速化出来た場合には、この処理を有効にしてみる
-              // onOpen={() => {
-              //   document.body.style.overflow = "hidden";
-              //   document.body.style.paddingRight = `${scrollbarWidth}px`;
-              //   setFabRight(fabRight + scrollbarWidth);
-              // }}
-              // onClose={() => {
-              //   document.body.style.overflow = "";
-              //   document.body.style.paddingRight = "0px";
-              //   setFabRight(fabRight - scrollbarWidth);
-              // }}
-              // MenuProps={{
-              //   disableScrollLock: true,
-              // }}
-            >
-              {Object.keys(staticData["武器"]["属性"])
-                .sort((a, b) => {
-                  if (a === "なし" || a === "無属性") return -1; // "なし"は常に先頭に
-                  if (b === "なし" || b === "無属性") return 1; // "なし"以外は常に"なし"の後ろ
-                  return a.localeCompare(b); // それ以外はアルファベット順
-                })
-                .map((key) => (
-                  <MenuItem key={key} value={key}>
-                    {key}
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl>
-
-          <Autocomplete
-            options={suggestions}
-            onChange={handleSkillSelect}
-            renderInput={(params) => <TextField {...params} label="スキル" variant="outlined" />}
-            sx={{ marginBottom: 2 }}
-            size="small"
-            value={currentSkill}
-            onFocus={() => {
-              // 同じスキルを選択肢した場合に追加できない問題を回避するために, 選択肢をリセットする
-              // [[Autocomplete] onChange not fired for same item consecutively #29159](https://github.com/mui/material-ui/issues/29159)
-              setCurrentSkill("");
-            }}
-          />
-          <div style={{ minHeight: `${containerHeight}px` }}>
-            {" "}
-            {/* 動的に設定された高さ */}
-            {selectedSkills.map((skill, index) => (
-              <SkillCard
-                key={index}
-                skill={skill}
-                setSelectedSkills={setSelectedSkills}
-                onRemove={() => handleSkillRemove(index)}
-                allowRemove={true}
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <GridItemInput item>
+              <NumberTextField
+                value={raw}
+                size="small"
+                id="outlined-basic"
+                label={"攻撃力"}
+                variant="outlined"
+                onChange={(e, v) => handleChangeRaw("raw", e, v)}
+                min={0}
+                max={1000}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
-            ))}
-          </div>
-          <Grid container sx={{ marginTop: 4 }}>
-            <Grid item xs={9}>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <SlotLevels slotLevel={firstSlotLevel} setSlotLevel={setFirstSlotLevel} />
+            </GridItemInput>
+
+            <GridItemInput item>
+              <NumberTextField
+                value={affinity}
+                size="small"
+                id="outlined-basic"
+                label={"会心率"}
+                variant="outlined"
+                onChange={(e, v) => handleChangeAffinity("affinity", e, v)}
+                min={-100}
+                max={100}
+                negativeInteger={true}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </GridItemInput>
+
+            <GridItemInput item>
+              <NumberTextField
+                value={element}
+                size="small"
+                id="outlined-basic"
+                label={"属性値"}
+                variant="outlined"
+                onChange={(e, v) => handleChangeElement("element", e, v)}
+                min={0}
+                max={1000}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </GridItemInput>
+
+            <GridItemInput item>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">{"属性"}</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  size="small"
+                  value={elementType}
+                  label={"属性"}
+                  onChange={(e, v) => handleChangeElementType("属性", e, v)}
+                  style={{ textAlign: "left" }}
+                  // // MUI の Select コンポーネントはドロップダウンボックスを開いたときにページ全体用のスクロールバーが表示になり
+                  // // 全体スクロールがロックされる。このときビューポートの横幅が変わるため、右端を起点に固定している Fab ボタンが
+                  // // 左右にズレてしまう
+
+                  // // 以下の追加処理によってドロップダウンボックスの開閉時に Fab ボタンが左右にずれる問題を解決できる
+                  // // しかし setFabRight によりボタンの開閉が遅くなるので、現状はコメントアウトし、スクロールバーの非表示で対処
+                  // // usememo などによりレンダリングを高速化出来た場合には、この処理を有効にしてみる
+                  // onOpen={() => {
+                  //   document.body.style.overflow = "hidden";
+                  //   document.body.style.paddingRight = `${scrollbarWidth}px`;
+                  //   setFabRight(fabRight + scrollbarWidth);
+                  // }}
+                  // onClose={() => {
+                  //   document.body.style.overflow = "";
+                  //   document.body.style.paddingRight = "0px";
+                  //   setFabRight(fabRight - scrollbarWidth);
+                  // }}
+                  // MenuProps={{
+                  //   disableScrollLock: true,
+                  // }}
+                >
+                  {Object.keys(staticData["武器"]["属性"])
+                    .sort((a, b) => {
+                      if (a === "なし" || a === "無属性") return -1; // "なし"は常に先頭に
+                      if (b === "なし" || b === "無属性") return 1; // "なし"以外は常に"なし"の後ろ
+                      return a.localeCompare(b); // それ以外はアルファベット順
+                    })
+                    .map((key) => (
+                      <MenuItem key={key} value={key}>
+                        {key}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+            </GridItemInput>
+
+            <Grid item xs={12}>
+              <Autocomplete
+                options={suggestions}
+                onChange={handleSkillSelect}
+                renderInput={(params) => (
+                  <TextField {...params} label="スキル" variant="outlined" />
+                )}
+                sx={{ marginBottom: 2 }}
+                size="small"
+                value={currentSkill}
+                onFocus={() => {
+                  // 同じスキルを選択肢した場合に追加できない問題を回避するために, 選択肢をリセットする
+                  // [[Autocomplete] onChange not fired for same item consecutively #29159](https://github.com/mui/material-ui/issues/29159)
+                  setCurrentSkill("");
+                }}
+              />
+              <div style={{ minHeight: `${containerHeight}px` }}>
+                {" "}
+                {/* 動的に設定された高さ */}
+                {selectedSkills.map((skill, index) => (
+                  <SkillCard
+                    key={index}
+                    skill={skill}
+                    setSelectedSkills={setSelectedSkills}
+                    onRemove={() => handleSkillRemove(index)}
+                    allowRemove={true}
+                  />
+                ))}
+              </div>
+              <Grid container sx={{ marginTop: 4 }}>
+                <Grid item xs={9}>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                      <SlotLevels slotLevel={firstSlotLevel} setSlotLevel={setFirstSlotLevel} />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <SlotLevels slotLevel={secondSlotLevel} setSlotLevel={setSecondSlotLevel} />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <SlotLevels slotLevel={thirdSlotLevel} setSlotLevel={setThirdSlotLevel} />
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <SlotLevels slotLevel={secondSlotLevel} setSlotLevel={setSecondSlotLevel} />
-                </Grid>
-                <Grid item xs={12}>
-                  <SlotLevels slotLevel={thirdSlotLevel} setSlotLevel={setThirdSlotLevel} />
+
+                {/* ボタンを右下に寄せる */}
+                <Grid item xs={3} container justifyContent="flex-end">
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={registerArtian}
+                      startIcon={<AddIcon />}
+                      size={matches ? "small" : "medium"}
+                    >
+                      追加
+                    </Button>
+                  </Box>
                 </Grid>
               </Grid>
-            </Grid>
-
-            {/* ボタンを右下に寄せる */}
-            <Grid item xs={3} container justifyContent="flex-end">
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "flex-end",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={registerArtian}
-                  startIcon={<AddIcon />}
-                >
-                  追加
-                </Button>
-              </Box>
             </Grid>
           </Grid>
         </Card>
