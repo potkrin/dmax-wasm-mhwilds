@@ -16,15 +16,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-// 列要素対応表
-//        0,1,                 2,3,4,5,6
-// 火事場力,3,              渾身,2,3,1,1
-// 超会心  ,2,              体術,3,3,1,1
-// 体術    ,3,通常弾・連射矢強化,2,3,1,1
-
 export function ArtianManager() {
   // 護石データを一元管理するデータ
-  // このデータを起点に localstorage への保存, csv からの読み込み, csv への書き出し, テーブルへの表示 の処理を行う
+  // このデータを起点に localstorage への保存, json からの読み込み, json への書き出し, テーブルへの表示 の処理を行う
   const [userArtianData, setUserArtianData] = useState([]);
 
   // useEffectを使用して、コンポーネントがマウントされた後にlocalStorageからデータを読み込む
@@ -36,82 +30,34 @@ export function ArtianManager() {
     }
   }, []);
 
-  // userArtianData が変更されたら localstorage に保存する
+  // userArtianData が変更されたら localStorage に保存する
   useEffect(() => {
     if (userArtianData.length === 0) return;
     localStorage.setItem("userArtianData", JSON.stringify(userArtianData));
     console.log("userArtianData has been changed, and saved to localstorage");
   }, [userArtianData]);
 
-  // ユーザが入力した csv データ
-  const [csvData, setCsvData] = useState("");
-  const handleCsvDataChange = (event) => {
-    setCsvData(event.target.value);
+  // ユーザが入力した JSON データ
+  const [jsonData, setJsonData] = useState("");
+  const handleJsonDataChange = (event) => {
+    setJsonData(event.target.value);
   };
 
-  // csv データを処理して, ユーザの護石データを localstorage に登録する関数
-  const readFromCsvData = (mode) => {
-    const csvRows = csvData.split("\n").filter((row) => row.trim().replace(/　/g, "") !== "");
-    const csvArray = csvRows.map((row) => row.split(","));
-
-    const artianData = [];
+  // JSON データを処理して、ユーザの護石データを localStorage に登録する関数
+  const readFromJsonData = (mode) => {
     try {
-      // csv データの列数が 7 でない列を集めておく
-      const errorRows = [];
-      for (const [index, row] of csvArray.entries()) {
-        if (row.length !== 7) {
-          errorRows.push({ lineNumber: index + 1, row: row });
-          continue;
-        }
-
-        const tempArtian = {
-          "rare": 0,
-          "type": "artian",
-          "deffence": 0,
-          "fire": "0",
-          "water": "0",
-          "ice": "0",
-          "thunder": "0",
-          "dragon": "0",
-          "skills": {},
-          "slots": [parseInt(row[4]), parseInt(row[5]), parseInt(row[6])],
-          // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-          "name":
-            "護石【" +
-            row[0] +
-            row[1] +
-            "，" +
-            row[2] +
-            row[3] +
-            "】" +
-            row[4] +
-            "-" +
-            row[5] +
-            "-" +
-            row[6],
-        };
-
-        if (row[0] !== "") tempArtian.skills[row[0]] = parseInt(row[1]);
-        if (row[2] !== "") tempArtian.skills[row[2]] = parseInt(row[3]);
-        artianData.push(tempArtian);
+      const parsedData = JSON.parse(jsonData);
+      if (!Array.isArray(parsedData)) {
+        throw new Error("入力された JSON は配列ではありません。");
       }
+      // 各オブジェクトのチェック（必要に応じて）を行うことも可能です
 
-      // csv データの列数が 7 でない列があった場合はエラーを出力
-      if (errorRows.length > 0) {
-        let errorMessage = "CSV データの列数が不正です。\n";
-        for (const errorRow of errorRows) {
-          errorMessage += `${errorRow["lineNumber"]}: ${errorRow["row"]}\n`;
-        }
-        throw new Error(errorMessage);
-      }
-
-      // エラーがなければ更新
       if (mode === "overwrite") {
         // 上書きモード
-        setUserArtianData(artianData);
+        setUserArtianData(parsedData);
       } else {
         // 追加モード
-        setUserArtianData([...userArtianData, ...artianData]);
+        setUserArtianData([...userArtianData, ...parsedData]);
       }
     } catch (err) {
       setError(err.message);
@@ -125,39 +71,15 @@ export function ArtianManager() {
   };
 
   const handleConfirmOverwrite = () => {
-    readFromCsvData("overwrite");
+    readFromJsonData("overwrite");
     setOpenConfirmDialog(false);
   };
 
-  const writeToCsvData = () => {
-    let csv = "";
-    for (const artian of userArtianData) {
-      // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-      const skillList = Object.entries(artian.skills);
-      let firstSkillName = "";
-      let firstSkillLevel = "0";
-      let secondSkillName = "";
-      let secondSkillLevel = "0";
-      if (skillList.length > 0) {
-        firstSkillName = skillList[0][0];
-        firstSkillLevel = skillList[0][1];
-      }
-
-      if (skillList.length > 1) {
-        secondSkillName = skillList[1][0];
-        secondSkillLevel = skillList[1][1];
-      }
-      const slots = artian.slots;
-      csv += `${firstSkillName},${firstSkillLevel},${secondSkillName},${secondSkillLevel},${slots[0]},${slots[1]},${slots[2]}\n`;
-    }
-    setCsvData(csv);
+  // 現在の userArtianData を JSON 文字列に変換して出力する関数
+  const writeToJsonData = () => {
+    const json = JSON.stringify(userArtianData, null, 0);
+    setJsonData(json);
   };
-
-  // // テーブルで複数選択された護石を userArtianData から削除 (引数は削除対象インデックス)
-  // const deleteUserArtians = (deleteTargetIndexes) => {
-  //   const newArtianData = userArtianData.filter((_, index) => !deleteTargetIndexes.includes(index));
-  //   setUserArtianData(newArtianData);
-  // };
 
   // エラー出力用 Snackbar 管理
   const [error, setError] = useState(null);
@@ -187,17 +109,17 @@ export function ArtianManager() {
     setOpenConfirmDialog(false);
   };
 
-  // テーブルで複数選択された護石を userArtianData から削除 (引数は削除対象インデックス)
+  // テーブルで複数選択された護石を userArtianData から削除
   const deleteUserArtians = (deleteTargetIndexes) => {
     const newArtianData = userArtianData.filter((_, index) => !deleteTargetIndexes.includes(index));
     setUserArtianData(newArtianData);
   };
 
-  // CSVテキストボックスのコピーボタン用
+  // JSONテキストボックスのコピーボタン用
   const [textToCopy, setTextToCopy] = useState("");
   useEffect(() => {
-    setTextToCopy(csvData);
-  }, [csvData]);
+    setTextToCopy(jsonData);
+  }, [jsonData]);
 
   return (
     <>
@@ -225,11 +147,10 @@ export function ArtianManager() {
         handleConfirmDelete={handleConfirmDelete}
         handleConfirmOverwrite={handleConfirmOverwrite}
         dialogMode={dialogMode}
-        dataType={"護石"}
+        dataType={"武器"}
       />
 
       <Grid container spacing={3}>
-        {/* データ表示 */}
         {/* データ入力欄 */}
         <Grid item xs={12} md={6}>
           <ArtianInput userArtianData={userArtianData} setUserArtianData={setUserArtianData} />
@@ -260,7 +181,7 @@ export function ArtianManager() {
                     marginBottom={2}
                     sx={commonStyles.customHeaderNoMargin}
                   >
-                    CSV 入出力
+                    JSON 入出力
                   </Typography>
                 </Grid>
                 <Grid item xs={1}>
@@ -270,13 +191,13 @@ export function ArtianManager() {
 
               <Box sx={{ height: "100%" }}>
                 <TextField
-                  label="CSV"
+                  label="JSON"
                   multiline
                   variant="outlined"
                   minRows={8}
                   maxRows={8}
-                  value={csvData}
-                  onChange={handleCsvDataChange}
+                  value={jsonData}
+                  onChange={handleJsonDataChange}
                   InputProps={{
                     onClick: (event) => {
                       event.target.select();
@@ -293,7 +214,7 @@ export function ArtianManager() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={writeToCsvData}
+                    onClick={writeToJsonData}
                     disabled={userArtianData.length === 0}
                     startIcon={<KeyboardDoubleArrowUpIcon />}
                   >
@@ -304,7 +225,7 @@ export function ArtianManager() {
                       <Button
                         variant="contained"
                         color="primary"
-                        disabled={csvData === ""}
+                        disabled={jsonData === ""}
                         onClick={handleOpenOverwriteConfirmDialog}
                         sx={{ mr: 1 }}
                         startIcon={<KeyboardDoubleArrowDownIcon />}
@@ -314,8 +235,8 @@ export function ArtianManager() {
                       <Button
                         variant="contained"
                         color="primary"
-                        disabled={csvData === ""}
-                        onClick={() => readFromCsvData("append")}
+                        disabled={jsonData === ""}
+                        onClick={() => readFromJsonData("append")}
                         startIcon={<AddIcon />}
                       >
                         追加

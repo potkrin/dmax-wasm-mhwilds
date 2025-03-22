@@ -32,15 +32,15 @@ function ConfirmDialog({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseConfirmDialog} color="primary">
-          いいえ
-        </Button>
         <Button
           onClick={dialogMode === "delete" ? handleConfirmDelete : handleConfirmOverwrite}
           color="primary"
           autoFocus
         >
           はい
+        </Button>
+        <Button onClick={handleCloseConfirmDialog} color="primary">
+          いいえ
         </Button>
       </DialogActions>
     </Dialog>
