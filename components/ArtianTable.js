@@ -33,22 +33,22 @@ export function ArtianTable({
       {
         accessorKey: "raw",
         header: "攻撃力",
-        size: 150,
+        size: 100,
       },
       {
         accessorKey: "affinity",
         header: "会心率",
-        size: 150,
+        size: 100,
       },
       {
         accessorKey: "element",
         header: "属性",
-        size: 200,
+        size: 100,
       },
       {
         accessorKey: "slots",
         header: "スロット",
-        size: 200,
+        size: 100,
       },
     ],
     []
