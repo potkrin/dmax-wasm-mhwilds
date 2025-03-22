@@ -177,7 +177,7 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
         iconPosition={iconPosition}
       />
       <Tab
-        label="アーティア武器"
+        label="アーティア"
         sx={{ ...customSX }}
         {...a11yProps(1)}
         icon={
@@ -195,27 +195,9 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
         iconPosition={iconPosition}
       />
       <Tab
-        label="傀異錬成"
-        sx={{ ...customSX }}
-        {...a11yProps(2)}
-        icon={
-          <ArmorIcon
-            sx={{
-              [`@media (max-width: ${breakpoints.values.sm}px)`]: {
-                marginBottom: "8px",
-              },
-              [`@media (min-width: ${breakpoints.values.sm + 1}px)`]: {
-                marginRight: "0px",
-              },
-            }}
-          />
-        }
-        iconPosition={iconPosition}
-      />
-      <Tab
         label="使い方"
         sx={{ ...customSX }}
-        {...a11yProps(3)}
+        {...a11yProps(2)}
         icon={<HelpIcon />}
         iconPosition={iconPosition}
       />
@@ -794,9 +776,6 @@ function App() {
                     <ArtianTab />
                   </TabPanel>
                   <TabPanel value={value} index={2} dir={theme.direction} allowUnmount={false}>
-                    <QuriousArmorTab />
-                  </TabPanel>
-                  <TabPanel value={value} index={3} dir={theme.direction} allowUnmount={false}>
                     <Usage />
                   </TabPanel>
                 </Container>
