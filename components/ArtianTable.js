@@ -50,6 +50,11 @@ export function ArtianTable({
         header: "スロット",
         size: 100,
       },
+      {
+        accessorKey: "skills",
+        header: "スキル",
+        size: 250,
+      },
     ],
     []
   );
@@ -62,11 +67,13 @@ export function ArtianTable({
   // userArtianData が変更されたらテーブル表示用データを更新
   useEffect(() => {
     const newTableData = [];
+
     for (const artian of userArtianData) {
       const tempRow = {
         "raw": artian.raw,
         "affinity": artian.affinity + "%",
         "slots": artian.slots.join("-"),
+        "skills": "",
       };
 
       if (artian.elementType !== "none") {
@@ -74,6 +81,11 @@ export function ArtianTable({
           staticData["武器"]["elementKVEN2JP"][artian.elementType] + " " + artian.element;
       } else {
         tempRow["element"] = "";
+      }
+
+      const skillList = Object.entries(artian.skills);
+      for (const [skillName, skillLevel] of skillList) {
+        tempRow["skills"] += skillName + "Lv" + skillLevel + " ";
       }
 
       newTableData.unshift(tempRow);
