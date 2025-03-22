@@ -199,7 +199,7 @@ export const WeaponSetting = React.memo(
           }
         })}
 
-        <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div>
+        {/* <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div> */}
       </>
     );
   },
