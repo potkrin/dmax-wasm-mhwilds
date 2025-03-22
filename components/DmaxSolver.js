@@ -637,9 +637,9 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
               variant={"extended"}
               sx={{
                 position: "fixed",
-                bottom: "96px",
+                bottom: "76px",
                 // right: "48px",
-                right: "24px",
+                right: "12px",
                 animation: "fadeIn 0.5s ease-in-out",
               }}
               color="primary"
