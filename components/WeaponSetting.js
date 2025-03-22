@@ -90,7 +90,7 @@ export const WeaponSetting = React.memo(
 
     const [weaponSuggestions, setWeaponSuggestions] = useState([]);
 
-    const currentWeapon = userInputDataWeapon["選択武器"].name || "ホープボウⅠ";
+    const currentWeapon = userInputDataWeapon["選択武器"]?.name || "ホープボウⅠ";
 
     const handleWeaponSelect = (event, newValue) => {
       // find weapon info from weaponList
@@ -208,7 +208,7 @@ export const WeaponSetting = React.memo(
           }
         })}
 
-        <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div>
+        {/* <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div> */}
       </>
     );
   },
