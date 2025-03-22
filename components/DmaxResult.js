@@ -103,7 +103,7 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       if (line.startsWith("Solving Time")) {
         let solving_time = line.substring(line.indexOf(":") + 1, line.indexOf("."));
         solving_time = secondsToHumanReadable(parseInt(solving_time));
-        result += `合計処理時間: ${solving_time}\n\n\n`;
+        result += `合計処理時間: ${solving_time}\n\n`;
       }
 
       // 最終結果の出力を処理
@@ -115,19 +115,14 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       // 最大ダメージ
       if (line.startsWith("objective value:")) {
         const max_damage_result = line.slice(line.indexOf(":") + 1, line.indexOf("("));
-        dict_other_result["最大ダメージ"] = parseFloat(max_damage_result).toFixed(3).toString();
-      }
-
-      // 疾替えの書
-      if (line.startsWith("ss[")) {
-        const swap_scroll_result = line.slice(3, line.indexOf("]"));
-        dict_other_result["疾替えの書"] = swap_scroll_result;
+        dict_other_result["最大ダメージ"] =
+          parseFloat(max_damage_result).toFixed(3).toString() + " (期待値)";
       }
 
       // 会心率
       if (line.startsWith("afr")) {
         const affinity_rate_result = parseFloat(line.slice(3, line.indexOf("(")));
-        dict_other_result["会心率"] = affinity_rate_result.toString() + "%";
+        dict_other_result["会心率"] = affinity_rate_result.toString() + "% (期待値)";
       }
     });
 
@@ -197,6 +192,16 @@ export function outputToResult(output, processingUserInputData, processingUserAr
     for (const key in dict_other_result) {
       result += key + ": " + dict_other_result[key] + "\n";
     }
+
+    // 条件設定の出力
+    result += "\n[条件設定]\n";
+    result += "物理肉質: " + processingUserInputData["モンスター"]["物理肉質"] + " ";
+    result += "属性肉質: " + processingUserInputData["モンスター"]["属性肉質"] + " ";
+    result += "怒り補正: " + processingUserInputData["モンスター"]["怒り補正"] + "\n";
+    result += "武器: " + processingUserInputData["武器"]["選択武器"]["name"] + " ";
+    result += "溜め: " + processingUserInputData["武器"]["溜め段階"] + " ";
+    result += "モーション: " + processingUserInputData["武器"]["モーション"] + " ";
+    result += "ビン: " + processingUserInputData["武器"]["ビン補正"] + "\n";
 
     // 部位の出力
     result += "\n[装備構成]\n";
