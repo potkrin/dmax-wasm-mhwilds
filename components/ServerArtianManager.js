@@ -23,14 +23,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-// 列要素対応表
-//        0,1,                 2,3,4,5,6
-// 火事場力,3,              渾身,2,3,1,1
-// 超会心  ,2,              体術,3,3,1,1
-// 体術    ,3,通常弾・連射矢強化,2,3,1,1
-
 export function ServerArtianManager() {
-  // メモリ層で護石データを一元管理するstate (ストレージ層は localstorage or サーバ上のDB)
+  // メモリ層で護石データを一元管理するstate (ストレージ層はサーバ上のDB)
   const [userArtianData, setUserArtianData] = useState([]);
   const [nextUserArtianData, setNextUserArtianData] = useState([]);
   const [userArtianMetaData, setUserArtianMetaData] = useState(null);
@@ -40,6 +34,9 @@ export function ServerArtianManager() {
   const { isLoggedIn, setIsLoggedIn, isDialogOpen, handleCloseDialog, checkLoginStatus } =
     useLoginContext();
 
+  const { error, setError, open, setOpen, handleClose } = useSnackbar();
+
+  // サーバーから護石データを取得する処理
   const fetchUserArtianData = () => {
     console.log("ServerArtianManager: fetch artiandata from server");
 
@@ -65,7 +62,7 @@ export function ServerArtianManager() {
           setIsLoggedIn(true);
           // ログイン中なので artiandata を取得する
           fetchWithRetry(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=artian`,
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=artianweapon`,
             {
               method: "GET",
               credentials: "include", // クッキーベースの認証に必要
@@ -123,75 +120,24 @@ export function ServerArtianManager() {
     return () => clearInterval(intervalId);
   }, []);
 
-  // ユーザが入力した csv データ
-  const [csvData, setCsvData] = useState("");
-  const handleCsvDataChange = (event) => {
-    setCsvData(event.target.value);
+  // JSON 入出力用の state とハンドラ
+  const [jsonData, setJsonData] = useState("");
+  const handleJsonDataChange = (event) => {
+    console.log("[handleJsonDataChange] event.target.value: " + event.target.value);
+    setJsonData(event.target.value);
   };
 
-  // csv データを処理して, ユーザの護石データを localstorage に登録する関数
-  const readFromCsvData = (mode) => {
-    const csvRows = csvData.split("\n").filter((row) => row.trim().replace(/　/g, "") !== "");
-    const csvArray = csvRows.map((row) => row.split(","));
-
-    const artianData = [];
+  // JSON データをパースして、護石データを更新する関数
+  const readFromJsonData = (mode) => {
     try {
-      // csv データの列数が 7 でない列を集めておく
-      const errorRows = [];
-      for (const [index, row] of csvArray.entries()) {
-        if (row.length !== 7) {
-          errorRows.push({ lineNumber: index + 1, row: row });
-          continue;
-        }
-
-        const tempArtian = {
-          "rare": 0,
-          "type": "artian",
-          "deffence": 0,
-          "fire": "0",
-          "water": "0",
-          "ice": "0",
-          "thunder": "0",
-          "dragon": "0",
-          "skills": {},
-          "slots": [parseInt(row[4]), parseInt(row[5]), parseInt(row[6])],
-          // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-          "name":
-            "護石【" +
-            row[0] +
-            row[1] +
-            "，" +
-            row[2] +
-            row[3] +
-            "】" +
-            row[4] +
-            "-" +
-            row[5] +
-            "-" +
-            row[6],
-        };
-
-        if (row[0] !== "") tempArtian.skills[row[0]] = parseInt(row[1]);
-        if (row[2] !== "") tempArtian.skills[row[2]] = parseInt(row[3]);
-        artianData.push(tempArtian);
+      const parsedData = JSON.parse(jsonData);
+      if (!Array.isArray(parsedData)) {
+        throw new Error("入力された JSON は配列ではありません。");
       }
-
-      // csv データの列数が 7 でない列があった場合はエラーを出力
-      if (errorRows.length > 0) {
-        let errorMessage = "CSV データの列数が不正です。\n";
-        for (const errorRow of errorRows) {
-          errorMessage += `${errorRow["lineNumber"]}: ${errorRow["row"]}\n`;
-        }
-        throw new Error(errorMessage);
-      }
-
-      // エラーがなければ更新
       if (mode === "overwrite") {
-        // 上書きモード
-        setNextUserArtianData(artianData);
+        setNextUserArtianData(parsedData);
       } else {
-        // 追加モード
-        setNextUserArtianData([...userArtianData, ...artianData]);
+        setNextUserArtianData([...userArtianData, ...parsedData]);
       }
     } catch (err) {
       setError(err.message);
@@ -205,39 +151,15 @@ export function ServerArtianManager() {
   };
 
   const handleConfirmOverwrite = () => {
-    readFromCsvData("overwrite");
+    readFromJsonData("overwrite");
     setOpenConfirmDialog(false);
   };
 
-  const writeToCsvData = () => {
-    let csv = "";
-    for (const artian of userArtianData) {
-      // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-      const skillList = Object.entries(artian.skills);
-      let firstSkillName = "";
-      let firstSkillLevel = "0";
-      let secondSkillName = "";
-      let secondSkillLevel = "0";
-      if (skillList.length > 0) {
-        firstSkillName = skillList[0][0];
-        firstSkillLevel = skillList[0][1];
-      }
-
-      if (skillList.length > 1) {
-        secondSkillName = skillList[1][0];
-        secondSkillLevel = skillList[1][1];
-      }
-      const slots = artian.slots;
-      csv += `${firstSkillName},${firstSkillLevel},${secondSkillName},${secondSkillLevel},${slots[0]},${slots[1]},${slots[2]}\n`;
-    }
-    setCsvData(csv);
+  // 現在の護石データを JSON 文字列に変換して出力する関数
+  const writeToJsonData = () => {
+    const json = JSON.stringify(userArtianData, null, 0);
+    setJsonData(json);
   };
-
-  // // テーブルで複数選択された護石を userArtianData から削除 (引数は削除対象インデックス)
-  // const deleteUserArtians = (deleteTargetIndexes) => {
-  //   const newArtianData = userArtianData.filter((_, index) => !deleteTargetIndexes.includes(index));
-  //   setNextUserArtianData(newArtianData);
-  // };
 
   // nextUserArtianData が変更されたら POST API を呼び出して DB を更新
   useEffect(() => {
@@ -251,7 +173,7 @@ export function ServerArtianManager() {
     }
     console.log("nextUserArtianData has been changed. call POST API");
     fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=artian`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=artianweapon`,
       {
         method: "POST",
         credentials: "include", // クッキーベースの認証に必要
@@ -260,7 +182,7 @@ export function ServerArtianManager() {
           "X-CSRFToken": Cookies.get("csrftoken"), // CSRFトークンをヘッダーに含める
         },
         body: JSON.stringify({
-          equip_type: "artian",
+          equip_type: "artianweapon",
           equip_data: nextUserArtianData,
         }),
       },
@@ -287,70 +209,11 @@ export function ServerArtianManager() {
       });
   }, [nextUserArtianData]);
 
-  // ContextAPI からエラー出力用 Snackbar 管理用の関数を取得
-  const { error, setError, open, setOpen, handleClose } = useSnackbar();
-
   useEffect(() => {
     setServerArtianData(userArtianData);
   }, [userArtianData]);
 
-  // const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  // const handleCloseDialog = () => {
-  //   console.log("close dialog");
-  //   setIsDialogOpen(false);
-  // };
-
-  // // ログイン状態を確認して未ログインならログインダイアログを開く or ログイン画面へ自動遷移
-  // const checkLoginStatus = () => {
-  //   // ログイン状態を確認した後に artiandata の取得する処理を一連の Promise で定義 (分離すると非同期に処理されてしまうため)
-  //   fetchWithRetry(
-  //     "http://127.0.0.1:8000/dmax-api/v1/check-login/",
-  //     {
-  //       method: "GET",
-  //       credentials: "include", // クッキーベースの認証に必要
-  //     },
-  //     3,
-  //     5000
-  //   )
-  //     .then((response) => {
-  //       console.log(`Response Status Code: ${response.status}`); // ステータスコードを表示
-  //       if (response.status === 403) {
-  //         setIsLoggedIn(false);
-  //         // 未ログインなのでログインダイアログを開く
-  //         if (localStorage.getItem("loginAutoRedirect") === "true") {
-  //           window.location.href = "http://127.0.0.1:8000/accounts/login/";
-  //         } else {
-  //           setIsDialogOpen(true);
-  //         }
-  //       } else if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if ("is_logged_in" in data && data["is_logged_in"] === true) {
-  //         setIsLoggedIn(true);
-  //         // ログイン済みなのでログインダイアログ不要
-  //       } else {
-  //         setIsLoggedIn(false);
-  //         // 未ログインなのでログインダイアログを開く
-  //         if (localStorage.getItem("loginAutoRedirect") === "true") {
-  //           window.location.href = "http://127.0.0.1:8000/accounts/login/";
-  //         } else {
-  //           setIsDialogOpen(true);
-  //         }
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //       console.error("サーバーとの通信でエラーが発生しました\n" + error.stack);
-  //       setError("ログイン状態の確認に失敗しました");
-  //       setIsLoggedIn(false);
-  //       setOpen(true);
-  //       // 通信失敗時にログインダイアログを開くべきかわからない
-  //     });
-  // };
-
-  // viewport に入ったらダイアログを開く
+  // viewport に入ったらログイン状態を確認するための処理
   const gridRef = useRef(null);
 
   useEffect(() => {
@@ -371,13 +234,13 @@ export function ServerArtianManager() {
     };
   }, []);
 
-  // CSVテキストボックスのコピーボタン用
+  // JSON テキストボックスのコピーボタン用
   const [textToCopy, setTextToCopy] = useState("");
   useEffect(() => {
-    setTextToCopy(csvData);
-  }, [csvData]);
+    setTextToCopy(jsonData);
+  }, [jsonData]);
 
-  // 削除時に確認ダイアログを表示する
+  // 削除時に確認ダイアログを表示するための state
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [dialogMode, setDialogMode] = useState("delete");
   const [deleteIndexes, setDeleteIndexes] = useState([]);
@@ -432,7 +295,7 @@ export function ServerArtianManager() {
           handleConfirmDelete={handleConfirmDelete}
           handleConfirmOverwrite={handleConfirmOverwrite}
           dialogMode={dialogMode}
-          dataType={"護石"}
+          dataType={"武器"}
         />
 
         <Grid
@@ -444,8 +307,7 @@ export function ServerArtianManager() {
           }}
           ref={gridRef}
         >
-          {/* データ表示 */}
-          {/* データ入力欄 */}
+          {/* データ入力 */}
           <Grid item xs={12} md={6}>
             <ArtianInput
               userArtianData={userArtianData}
@@ -479,7 +341,7 @@ export function ServerArtianManager() {
                       marginBottom={2}
                       sx={commonStyles.customHeaderNoMargin}
                     >
-                      CSV 入出力
+                      JSON 入出力
                     </Typography>
                   </Grid>
                   <Grid item xs={1}>
@@ -487,24 +349,15 @@ export function ServerArtianManager() {
                   </Grid>
                 </Grid>
 
-                {/* <Typography
-                variant="subtitle2"
-                gutterBottom
-                align="left"
-                marginBottom={2}
-                sx={commonStyles.customHeaderNoMargin}
-              >
-                CSV 入出力
-              </Typography> */}
                 <Box sx={{ height: "100%" }}>
                   <TextField
-                    label="CSV"
+                    label="JSON"
                     multiline
                     variant="outlined"
                     minRows={8}
                     maxRows={8}
-                    value={csvData}
-                    onChange={handleCsvDataChange}
+                    value={jsonData}
+                    onChange={handleJsonDataChange}
                     InputProps={{
                       onClick: (event) => {
                         event.target.select();
@@ -521,7 +374,7 @@ export function ServerArtianManager() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={writeToCsvData}
+                      onClick={writeToJsonData}
                       disabled={userArtianData.length === 0}
                       startIcon={<KeyboardDoubleArrowUpIcon />}
                     >
@@ -532,7 +385,7 @@ export function ServerArtianManager() {
                         <Button
                           variant="contained"
                           color="primary"
-                          disabled={csvData === ""}
+                          disabled={jsonData === ""}
                           onClick={handleOpenOverwriteConfirmDialog}
                           sx={{ mr: 1 }}
                           startIcon={<KeyboardDoubleArrowDownIcon />}
@@ -542,8 +395,8 @@ export function ServerArtianManager() {
                         <Button
                           variant="contained"
                           color="primary"
-                          disabled={csvData === ""}
-                          onClick={() => readFromCsvData("append")}
+                          disabled={jsonData === ""}
+                          onClick={() => readFromJsonData("append")}
                           startIcon={<AddIcon />}
                         >
                           追加
@@ -582,6 +435,13 @@ export function ServerArtianManager() {
       setOpen,
       handleClose,
       setServerArtianData,
+      userArtianData,
+      nextUserArtianData,
+      jsonData,
+      openConfirmDialog,
+      dialogMode,
+      deleteIndexes,
+      textToCopy,
     ]
   );
 }
