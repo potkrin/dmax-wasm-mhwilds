@@ -149,7 +149,13 @@ export const WeaponSetting = React.memo(
         </Grid>
 
         {Object.keys(staticData["武器"]).map((key) => {
-          if (key === "属性" || key === "スロット" || key === "elementKV") return null;
+          if (
+            key === "属性" ||
+            key === "スロット" ||
+            key === "elementKV" ||
+            key === "elementKVEN2JP"
+          )
+            return null;
           else {
             return (
               <GridItemInput item key={key}>

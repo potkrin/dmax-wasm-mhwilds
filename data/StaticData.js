@@ -22,6 +22,15 @@ export const staticData = {
       "龍": "dragon",
     },
 
+    "elementKVEN2JP": {
+      "none": "無属性",
+      "fire": "火", 
+      "water": "水", 
+      "thunder": "雷", 
+      "ice": "氷", 
+      "dragon": "龍", 
+    },
+
     "スロット": {
       "なし": [],
       "1": [1],

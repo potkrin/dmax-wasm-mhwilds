@@ -12,6 +12,7 @@ import {
 import { MaterialReactTable } from "material-react-table";
 import ManualSyncButton from "./ManualSyncButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { staticData } from "../data/StaticData";
 
 import { theme, lightTheme, darkTheme, breakpoints } from "../src/theme";
 import {
@@ -30,14 +31,19 @@ export function ArtianTable({
   const columns = useMemo(
     () => [
       {
-        accessorKey: "firstSkill",
-        header: "第一スキル",
+        accessorKey: "raw",
+        header: "攻撃力",
         size: 150,
       },
       {
-        accessorKey: "secondSkill",
-        header: "第二スキル",
+        accessorKey: "affinity",
+        header: "会心率",
         size: 150,
+      },
+      {
+        accessorKey: "element",
+        header: "属性",
+        size: 200,
       },
       {
         accessorKey: "slots",
@@ -51,16 +57,25 @@ export function ArtianTable({
   // テーブル表示用データ
   const [tableData, setTableData] = useState([]);
 
+  console.log("userArtianData", userArtianData);
+
   // userArtianData が変更されたらテーブル表示用データを更新
   useEffect(() => {
     const newTableData = [];
     for (const artian of userArtianData) {
       const tempRow = {
+        "raw": artian.raw,
+        "affinity": artian.affinity + "%",
         "slots": artian.slots.join("-"),
       };
-      const skillList = Object.entries(artian.skills);
-      tempRow["firstSkill"] = skillList[0] ? skillList[0][0] + "Lv" + skillList[0][1] : "";
-      tempRow["secondSkill"] = skillList[1] ? skillList[1][0] + "Lv" + skillList[1][1] : "";
+
+      if (artian.elementType !== "none") {
+        tempRow["element"] =
+          staticData["武器"]["elementKVEN2JP"][artian.elementType] + " " + artian.element;
+      } else {
+        tempRow["element"] = "";
+      }
+
       newTableData.unshift(tempRow);
     }
     setTableData(newTableData);
