@@ -318,7 +318,12 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       console.log(
         "prevData = " + JSON.stringify(prevData) + " newData = " + JSON.stringify(newData)
       );
-      return [...prevData, newData];
+      // 高すぎる値と低すぎる値を除外
+      if (newData.lowerLimit < 0 || newData.upperLimit > 1000) {
+        return [...prevData];
+      } else {
+        return [...prevData, newData];
+      }
     });
   };
 
@@ -626,33 +631,61 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
           </Alert>
         </Snackbar>
 
-        {showFab && (
+        {showFab && matches && (
           <HideOnScroll direction="up">
             <Fab
-              variant={matches ? "circular" : "extended"}
+              variant={"extended"}
               sx={{
                 position: "fixed",
-                bottom: matches ? "84px" : "48px",
+                bottom: "96px",
                 // right: "48px",
-                right: matches ? "24px" : `${fabRight}px`,
+                right: "24px",
                 animation: "fadeIn 0.5s ease-in-out",
               }}
               color="primary"
+              size="medium"
               onClick={handleToggle}
             >
               {isOptimizing ? (
                 <>
                   <CancelIcon />
-                  {!matches && <Box sx={{ ml: 1 }}>中止</Box>}
+                  {<Box sx={{ ml: 1 }}>中止</Box>}
                 </>
               ) : (
                 <>
                   <TrendingUpIcon />
-                  {!matches && <Box sx={{ ml: 1 }}>最適化</Box>}
+                  {<Box sx={{ ml: 1 }}>最適化</Box>}
                 </>
               )}
             </Fab>
           </HideOnScroll>
+        )}
+        {showFab && !matches && (
+          <Fab
+            variant={"extended"}
+            sx={{
+              position: "fixed",
+              bottom: "48px",
+              // right: "48px",
+              right: `${fabRight}px`,
+              animation: "fadeIn 0.5s ease-in-out",
+            }}
+            color="primary"
+            size="large"
+            onClick={handleToggle}
+          >
+            {isOptimizing ? (
+              <>
+                <CancelIcon />
+                {<Box sx={{ ml: 1 }}>中止</Box>}
+              </>
+            ) : (
+              <>
+                <TrendingUpIcon />
+                {<Box sx={{ ml: 1 }}>最適化</Box>}
+              </>
+            )}
+          </Fab>
         )}
       </>
     ),
