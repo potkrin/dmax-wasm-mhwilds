@@ -41,6 +41,7 @@ export const userInputData = {
     "血氣覚醒": 2,
     "全属性耐性値": 150,
     "狂竜症克服率": 100,
+    "傷あり率": 20,
   },
   "スキル": generateSkillInputData(),
 };

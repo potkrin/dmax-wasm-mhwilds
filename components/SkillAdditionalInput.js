@@ -29,7 +29,13 @@ import { useTheme } from "@mui/material/styles";
 
 export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) => {
   const handleChangeOther = (key, event, value) => {
-    if ((key === "全属性耐性値" || key === "狂竜症" || key === "狂竜症克服率") && !value) {
+    if (
+      (key === "全属性耐性値" ||
+        key === "狂竜症" ||
+        key === "狂竜症克服率" ||
+        key === "傷あり率") &&
+      !value
+    ) {
       // TextField から呼び出された場合
       value = parseInt(event.target.value);
     } else {
@@ -76,6 +82,18 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
             size="small"
             value={userInputDataOther["狂竜症克服率"]}
             onChange={(e, v) => handleChangeOther("狂竜症克服率", e, v)}
+            min={0}
+            max={100}
+            sx={{ minWidth: "100px" }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <NumberTextField
+            label="傷あり率"
+            size="small"
+            value={userInputDataOther["傷あり率"]}
+            onChange={(e, v) => handleChangeOther("傷あり率", e, v)}
             min={0}
             max={100}
             sx={{ minWidth: "100px" }}
