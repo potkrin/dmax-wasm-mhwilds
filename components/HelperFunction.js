@@ -1,14 +1,10 @@
 // 複数のファイルで利用する関数を定義する
 
-export function applyWaterBlight(hitzone, waterBlightVal) {
-  console.log("hitzone:", hitzone, "waterblight:", waterBlightVal);
-  if (waterBlightVal === false) {
-    return hitzone;
-  }
+// カタカナをひらがなに変換する関数
+export const katakanaToHiragana = (str) => {
+  if (!str) return "";
 
-  if (hitzone <= 60) {
-    return Math.floor((60 - hitzone) * 0.37 + hitzone + 3);
-  } else {
-    return hitzone + 3;
-  }
-}
+  return str.replace(/[\u30A1-\u30F6]/g, (match) => {
+    return String.fromCharCode(match.charCodeAt(0) - 0x60);
+  });
+};

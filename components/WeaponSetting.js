@@ -26,6 +26,7 @@ import { fetchWithRetry } from "../lib/utils";
 import { useSnackbar } from "./SnackbarContext";
 import { useArtianContext } from "./ArtianContext";
 import { useLoginContext } from "./LoginContext";
+import { katakanaToHiragana } from "./HelperFunction";
 
 const numberFieldKeys = ["攻撃力", "会心率", "属性値"];
 
@@ -104,7 +105,7 @@ export const WeaponSetting = React.memo(
 
     const [weaponSuggestions, setWeaponSuggestions] = useState([]);
 
-    const currentWeapon = userInputDataWeapon["選択武器"]?.name || "ホープボウⅠ";
+    const currentWeapon = userInputDataWeapon["選択武器"]?.name || "";
 
     const handleWeaponSelect = (event, newValue) => {
       // find weapon info from weaponList
@@ -246,6 +247,11 @@ export const WeaponSetting = React.memo(
                 options={weaponSuggestions}
                 onOpen={fetchUserArtianData}
                 onChange={handleWeaponSelect}
+                filterOptions={(options, state) =>
+                  options.filter((option) =>
+                    katakanaToHiragana(option).includes(katakanaToHiragana(state.inputValue))
+                  )
+                }
                 renderInput={(params) => (
                   <TextField {...params} label="武器名" variant="outlined" />
                 )}
@@ -366,6 +372,7 @@ export const WeaponSetting = React.memo(
                           fontSize: "0.9rem",
                           fontWeight: "normal",
                           color: "gray",
+                          minWidth: "80px",
                         }}
                       >
                         武器名

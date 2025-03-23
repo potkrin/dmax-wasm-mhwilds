@@ -16,7 +16,6 @@ import { DmaxResult } from "./DmaxResult";
 import { armors, decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
 import { staticData } from "../data/StaticData";
 import { DmaxHistory } from "./DmaxHistory";
-import { applyWaterBlight } from "./HelperFunction";
 import { useArtianContext } from "./ArtianContext";
 import { useCharmAndQuriousArmorContext } from "./CharmAndQuriousArmorContext";
 import { useTheme } from "@mui/material/styles";
@@ -497,6 +496,10 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       updateDmaxOutput("[User Interrupt] optimization stopped");
       stopOptimization();
     } else {
+      if (!userInputData["武器"]["選択武器"]) {
+        setOpenErrorWeaponNotSelected(true);
+        return;
+      }
       startOptimization();
     }
 
@@ -523,6 +526,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
   const [apiError, setApiError] = useState(false);
   const [openStart, setOpenStart] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const [openErrorWeaponNotSelected, setOpenErrorWeaponNotSelected] = useState(false);
 
   const mounted = useRef(false);
 
@@ -544,6 +548,10 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
 
   const handleCloseError = () => {
     setOpenError(false);
+  };
+
+  const handleCloseErrorWeaponNotSelected = () => {
+    setOpenErrorWeaponNotSelected(false);
   };
 
   // Fab コンポーネントの表示状態を制御するための状態
@@ -618,6 +626,21 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
             <DmaxHistory allDmaxOutput={allDmaxOutput} />
           </Grid>
         </Card>
+
+        <Snackbar
+          open={openErrorWeaponNotSelected}
+          autoHideDuration={6000}
+          onClose={handleCloseErrorWeaponNotSelected}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert
+            onClose={handleCloseErrorWeaponNotSelected}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            武器を選択してください
+          </Alert>
+        </Snackbar>
 
         <Snackbar
           open={openError}
@@ -701,6 +724,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       showFab,
       snackbarMessage,
       openError,
+      openErrorWeaponNotSelected,
       allDmaxOutput,
       userInputData,
       fabRight,
