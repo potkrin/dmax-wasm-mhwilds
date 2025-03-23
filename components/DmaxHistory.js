@@ -73,9 +73,12 @@ export const DmaxHistory = React.memo(({ allDmaxOutput }) => {
     if (resultHistory) {
       let resultHistoryArray = JSON.parse(resultHistory);
       if (resultHistoryArray.length > 0) {
+        // md 以上の場合は最新の結果を削って履歴に登録する
         if (allDmaxOutput !== "" && !matches) {
           resultHistoryArray = resultHistoryArray.slice(1);
         }
+        // 最新の履歴を表示する
+        setValue(0);
         setHistoryLists(resultHistoryArray);
       }
     }
