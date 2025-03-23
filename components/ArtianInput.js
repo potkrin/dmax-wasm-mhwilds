@@ -118,18 +118,7 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
 
     const tempArtian = {
       "type": "weapon",
-      "name":
-        "アーティア (" +
-        raw +
-        ", " +
-        elementType +
-        ", " +
-        element +
-        ", " +
-        revisedAffinity +
-        "%, " +
-        slots.join("-") +
-        ")",
+      "name": "アーティア",
       "deffence": 0,
       "fire": 0,
       "water": 0,
@@ -143,6 +132,19 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
       "affinity": revisedAffinity,
       "elementType": staticData["武器"]["elementKV"][elementType],
     };
+
+    // make weapon name
+    let weaponName = "アーティア (";
+    weaponName += raw + ", ";
+    weaponName += revisedAffinity + "%, ";
+    weaponName += elementType + ", ";
+    weaponName += element + ", ";
+    weaponName += slots.join("-") + ", ";
+    for (const skill of selectedSkills) {
+      weaponName += skill.name + skill.level + ", ";
+    }
+    weaponName = weaponName.slice(0, -2) + ")";
+    tempArtian["name"] = weaponName;
 
     for (const skill of selectedSkills) {
       tempArtian.skills[skill.name] = skill.level;
