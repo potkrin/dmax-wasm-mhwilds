@@ -240,6 +240,7 @@ export const WeaponSetting = React.memo(
             <Grid item xs={12} sm={12} md={8} lg={8}>
               <Autocomplete
                 options={weaponSuggestions}
+                onOpen={fetchUserArtianData}
                 onChange={handleWeaponSelect}
                 renderInput={(params) => (
                   <TextField {...params} label="武器名" variant="outlined" />
