@@ -35,6 +35,7 @@ import { SkillAdditionalInput } from "./SkillAdditionalInput";
 
 import { breakpoints } from "@/src/theme";
 import isEqual from "lodash/isEqual";
+import { katakanaToHiragana } from "@/components/HelperFunction";
 
 export const commonStyles = {
   customHeader: {
@@ -147,39 +148,40 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
     if (newValue === null) return;
 
     if (!additionalSkills.some((skill) => skill.name === newValue)) {
-      setAdditionalSkills((prev) => [...prev, { name: newValue, level: 1 }]);
+      setAdditionalSkills((prev) => [...prev, { name: newValue, level: 0 }]);
+      // localstorage に追加されたスキルを保存
+      localStorage.setItem(
+        "additionalSkills",
+        JSON.stringify([...additionalSkills, { name: newValue, level: 0 }])
+      );
     }
   };
-
-  // additionalSkills が変更されたら userInputData に反映する
-  useEffect(() => {
-    for (const skill of additionalSkills) {
-      updateUserInputData("スキル", {
-        ...userInputData["スキル"],
-        [skill.name]: {
-          ...userInputData["スキル"][skill.name],
-          minLevel: skill.level,
-        },
-      });
-    }
-    localStorage.setItem("additionalSkills", JSON.stringify(additionalSkills));
-  }, [additionalSkills]);
 
   // Autoselect のテキストボックスに入力されている値 (onFocus でリセットするために定義)
   const [currentSkill, setCurrentSkill] = useState(null);
 
-  const handleSkillRemove = useCallback((indexToRemove) => {
-    const skillName = additionalSkills[indexToRemove].name;
-    updateUserInputData("スキル", {
-      ...userInputData["スキル"],
-      [skillName]: {
-        ...userInputData["スキル"][skillName],
-        minLevel: 0,
-      },
-    });
+  const handleSkillRemove = useCallback(
+    (indexToRemove) => {
+      const skillName = additionalSkills[indexToRemove].name;
+      updateUserInputData("スキル", {
+        ...userInputData["スキル"],
+        [skillName]: {
+          ...userInputData["スキル"][skillName],
+          minLevel: 0,
+          fixLevel: false,
+          activeRate: 100,
+        },
+      });
 
-    setAdditionalSkills((prev) => prev.filter((_, index) => index !== indexToRemove));
-  }, []);
+      setAdditionalSkills((prev) => prev.filter((_, index) => index !== indexToRemove));
+      // save to localstorage
+      localStorage.setItem(
+        "additionalSkills",
+        JSON.stringify(additionalSkills.filter((_, index) => index !== indexToRemove))
+      );
+    },
+    [additionalSkills, userInputData, updateUserInputData]
+  );
 
   return (
     <div className="DmaxMain">
@@ -343,45 +345,19 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                 marginLeft={1}
                 sx={commonStyles.customHeader}
               >
-                よく使うスキル
+                非ダメージスキル
               </Typography>
             </Grid>
-            {Object.keys(staticSkillData)
-              .filter((key) => staticSkillData[key].type === "FreqNonDamage")
-              .map((key) => (
-                <Skill
-                  key={key}
-                  staticSkillData={staticSkillData[key]}
-                  setUserInputData={setUserInputData}
-                  userInputDataSkill={userInputData["スキル"][key]}
-                  userInputDataOther={
-                    key === "龍気変換" ||
-                    key === "狂竜症【蝕】" ||
-                    key === "伏魔響命" ||
-                    key === "血氣覚醒"
-                      ? userInputData["その他"]
-                      : null
-                  }
-                />
-              ))}
-          </Grid>
 
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            align="left"
-            marginTop={4}
-            marginBottom={1}
-            marginLeft={1}
-            sx={commonStyles.customHeader}
-          >
-            その他スキル
-          </Typography>
-          <Grid container paddingX={1} paddingBottom={6}>
-            <Grid item xs={12} md={6} minHeight={"200px"}>
+            <Grid item xs={12} sm={8} md={4} marginX={3}>
               <Autocomplete
                 options={skillSuggestions}
                 onChange={handleSkillSelect}
+                filterOptions={(options, state) =>
+                  options.filter((option) =>
+                    katakanaToHiragana(option).includes(katakanaToHiragana(state.inputValue))
+                  )
+                }
                 renderInput={(params) => (
                   <TextField {...params} label="スキル名" variant="outlined" />
                 )}
@@ -394,17 +370,26 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                   setCurrentSkill("");
                 }}
               />
-
+            </Grid>
+            <Grid item xs={12}>
               {additionalSkills.map((skill, index) => (
-                <SkillCard
+                <Skill
                   key={index}
-                  skill={skill}
-                  setSelectedSkills={setAdditionalSkills}
-                  onRemove={() => handleSkillRemove(index)}
+                  staticSkillData={staticSkillData[skill.name]}
+                  setUserInputData={setUserInputData}
+                  userInputDataSkill={userInputData["スキル"][skill.name]}
+                  userInputDataOther={null}
                   allowRemove={true}
+                  onRemove={() => handleSkillRemove(index)}
                 />
               ))}
             </Grid>
+
+            <Box
+              sx={{
+                height: "360px",
+              }}
+            />
           </Grid>
         </Paper>
       </Box>

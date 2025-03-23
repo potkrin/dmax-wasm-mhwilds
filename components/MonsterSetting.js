@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { Grid, Link, Box } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
-import { staticData } from "../data/StaticData";
 import { NumberTextField } from "./NumberTextField";
-import { commonStyles, GridItemInput } from "./DmaxMain";
-import { applyWaterBlight } from "./HelperFunction";
+import { GridItemInput } from "./DmaxMain";
 import { isEqual } from "lodash";
 
 export const MonsterSetting = React.memo(
@@ -34,12 +32,7 @@ export const MonsterSetting = React.memo(
             value={userInputDataMonster["物理肉質"]}
             size="small"
             id="outlined-basic"
-            label={
-              "物理肉質" +
-              (userInputDataMonster["水やられ"]
-                ? " (" + applyWaterBlight(userInputDataMonster["物理肉質"], true) + ")"
-                : "")
-            }
+            label={"物理肉質"}
             variant="outlined"
             onChange={(e, v) => handleChangeUserInputData("物理肉質", e, v)}
             min={0}

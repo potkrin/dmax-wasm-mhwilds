@@ -15,6 +15,7 @@ import {
   Divider,
   Paper,
   Tooltip,
+  Button,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -22,6 +23,7 @@ import { NumberTextField } from "./NumberTextField";
 import { staticData } from "../data/StaticData";
 
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -30,7 +32,8 @@ import { theme, breakpoints } from "../src/theme";
 import { isEqual } from "lodash";
 
 export const Skill = React.memo(
-  ({ staticSkillData, setUserInputData, userInputDataSkill, userInputDataOther }) => {
+  ({ staticSkillData, setUserInputData, userInputDataSkill, userInputDataOther, onRemove }) => {
+    console.log("[dbg] Skill: staticSkillData= ", staticSkillData);
     const handleChangeSkillInfo = (key, event, value) => {
       console.log("[dbg] handleChangeSkillInfo: ", key, event, value);
       if (key === "activeRate" && !value) {
@@ -85,7 +88,7 @@ export const Skill = React.memo(
 
     return (
       <>
-        <Grid container mt={0.5} paddingX={!matches ? 1 : 0.5} paddingBottom={matches && 1}>
+        <Grid container mt={0.5} paddingX={!matches ? 1 : 0.5}>
           {/* レベル固定チェックボックス */}
           <Grid
             item
@@ -113,7 +116,6 @@ export const Skill = React.memo(
               </Tooltip>
             )}
           </Grid>
-
           {/* スキル名, スキルレベル, スライダー(md以上の画面のみ)*/}
           <Grid item xs={5} md={3.5} lg={3}>
             <Box display="flex" alignItems="center">
@@ -236,7 +238,6 @@ export const Skill = React.memo(
             */
             )}
           </Grid>
-
           {/* ダメージ発動率 (ダメージ寄与スキルのみ) */}
           {matches &&
             (staticSkillData.type === "Damage" || staticSkillData.type === "FixedLevelDamage" ? (
@@ -305,9 +306,8 @@ export const Skill = React.memo(
                 </Grid>
               </>
             ) : (
-              <Grid item xs={2} md={2}></Grid>
+              <></>
             ))}
-
           {/* レベル変更+/-ボタン (xs画面のみ) */}
           {matches && (
             <Grid
@@ -395,7 +395,15 @@ export const Skill = React.memo(
               </Grid>
             </Grid>
           )}
-
+          {matches && staticSkillData.type === "NonDamage" && (
+            <Grid item xs={2} md={2} sx={{ display: "flex", alignItems: "flex-start" }}>
+              {onRemove && (
+                <Button onClick={onRemove} sx={{ padding: 0 }}>
+                  <ClearIcon />
+                </Button>
+              )}
+            </Grid>
+          )}
           {/* md以上の画面のダメージ発動率 (ダメージ寄与スキルのみ) */}
           {!matches &&
             (staticSkillData.type === "Damage" || staticSkillData.type === "FixedLevelDamage" ? (
@@ -458,11 +466,23 @@ export const Skill = React.memo(
                 </Grid>
               </>
             ) : (
-              <>{/* <Grid item xs={v} md={2}></Grid> */}</>
+              <Grid
+                item
+                xs={4}
+                sm={3}
+                md={2}
+                sx={{ display: "flex", alignItems: "flex-start", justifyContent: "center" }}
+              >
+                {onRemove && (
+                  <Grid item xs={2}>
+                    <Button onClick={onRemove}>
+                      <ClearIcon />
+                    </Button>
+                  </Grid>
+                )}
+              </Grid>
             ))}
-
           {/* {matches && <Grid item xs={4}></Grid>} */}
-
           {/* 追加で入力項目が必要なスキルの処理 */}
           {!matches && (
             <Grid
@@ -570,13 +590,6 @@ export const Skill = React.memo(
               )}
             </Grid>
           )}
-
-          {/* <Grid item md={5.4}></Grid> */}
-
-          {/* <Grid item md={2}></Grid>
-        <Grid item md={10}>
-          <Divider />
-        </Grid> */}
         </Grid>
       </>
     );
@@ -589,8 +602,8 @@ export const Skill = React.memo(
     const skillName = prevProps.staticSkillData.name;
     const base =
       isEqual(prevProps.staticSkillData, nextProps.staticSkillData) &&
-      isEqual(prevProps.userInputDataSkill, nextProps.userInputDataSkill);
-
+      isEqual(prevProps.userInputDataSkill, nextProps.userInputDataSkill) &&
+      isEqual(prevProps.onRemove, nextProps.onRemove);
     // other を含むスキルは追加で userOtherInputData の変更をチェック
     if (skillName === "龍気変換") {
       return (
