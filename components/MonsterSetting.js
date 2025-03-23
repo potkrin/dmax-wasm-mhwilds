@@ -1,15 +1,6 @@
 import React, { useEffect } from "react";
-import {
-  Grid,
-  Checkbox,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  FormControlLabel,
-  FormGroup,
-  Typography,
-} from "@mui/material";
+import { Grid, Link, Box } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import { staticData } from "../data/StaticData";
 import { NumberTextField } from "./NumberTextField";
@@ -83,6 +74,55 @@ export const MonsterSetting = React.memo(
             fullWidth
           />
         </GridItemInput>
+        <Grid item xs={12} marginBottom={2}>
+          <Box
+            color="text.secondary"
+            sx={{
+              fontSize: "0.8rem",
+            }}
+          >
+            <span>肉質の確認は外部サイトを参考にしてください</span>
+          </Box>
+          <Box
+            color="text.secondary"
+            sx={{
+              display: "flex",
+              justifyContent: "start",
+              flexWrap: "wrap",
+              columnGap: 1,
+              alignItems: "center",
+              fontSize: "0.8rem",
+            }}
+          >
+            <Link
+              href="https://mhwilds.com/data/4211.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "0.7rem",
+              }}
+            >
+              <span>モンハンワイルズ攻略レシピ</span>
+              <OpenInNewIcon sx={{ maxHeight: "16px" }} />
+            </Link>
+            <Link
+              href="https://mhwilds.kiranico.com/ja/data/monsters"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <span>MHWilds | Kiranico</span>
+              <OpenInNewIcon sx={{ maxHeight: "16px" }} />
+            </Link>
+          </Box>
+        </Grid>
       </>
     );
   },
