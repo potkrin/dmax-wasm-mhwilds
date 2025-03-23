@@ -345,7 +345,7 @@ export const WeaponSetting = React.memo(
           </Grid>
         </Grid>
 
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={6}>
           <Grid
             container
             columnSpacing={2}
@@ -353,7 +353,7 @@ export const WeaponSetting = React.memo(
             marginTop={matches ? 2 : 0}
             justifyContent={"flex-end"}
           >
-            <Grid item xs={12} sm={6} md={12} marginBottom={2}>
+            <Grid item xs={12} sm={8} md={12} marginBottom={2}>
               <div style={{ width: "100%" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <tbody>
