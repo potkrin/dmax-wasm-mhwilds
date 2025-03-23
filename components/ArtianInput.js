@@ -210,7 +210,7 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
             marginBottom={2}
             sx={commonStyles.customHeaderNoMargin}
           >
-            護石入力
+            武器データ入力
           </Typography>
 
           <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
