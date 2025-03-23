@@ -90,11 +90,12 @@ export const WeaponSetting = React.memo(
               ([_, value]) => value === weapon.elementType
             )[0];
 
-            const weaponInfo =
-              weapon.name +
-              " (" +
-              weapon.raw +
-              (elementType !== "無属性" ? `/ ${elementType}${weapon.element})` : ")");
+            let weaponInfo = weapon.name + " (" + weapon.raw + ", " + weapon.affinity + "%)";
+
+            if (elementType !== "無属性") {
+              weaponInfo = weaponInfo.slice(0, -1);
+              weaponInfo += `, ${elementType}${weapon.element})`;
+            }
             return weaponInfo;
           }
         })
