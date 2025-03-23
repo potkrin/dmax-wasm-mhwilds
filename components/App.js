@@ -330,8 +330,10 @@ function App() {
 
     let initUseServerData = localStorage.getItem("useServerData");
     console.log("[dbgusd] initUseServerData: " + initUseServerData);
-    if (initUseServerData === "true") initUseServerData = true;
-    else initUseServerData = false;
+    if (initUseServerData === "true") {
+      checkLoginStatus();
+      initUseServerData = true;
+    } else initUseServerData = false;
     setUseServerData(initUseServerData);
 
     let initExcludeArtian = localStorage.getItem("excludeArtian");
