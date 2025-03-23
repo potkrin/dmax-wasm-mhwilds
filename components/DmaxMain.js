@@ -37,12 +37,14 @@ import { breakpoints } from "@/src/theme";
 import isEqual from "lodash/isEqual";
 import { katakanaToHiragana } from "@/components/HelperFunction";
 
+import { theme } from "@/src/theme";
+
 export const commonStyles = {
   customHeader: {
     padding: "0.25em 0.5em", // 上下 左右の余白
     // color: "#494949", // 文字色
     // background: "transparent", // 背景透明に
-    borderLeft: "solid 3px #8798ef", // 左線
+    borderLeft: "solid 3px " + theme.vars.palette.primary.main, // 左線
     // fontWeight: "bold", // 太字
     marginTop: "1em", // 上の余白
     display: "inline-block", // インライン要素に
@@ -52,7 +54,7 @@ export const commonStyles = {
     padding: "0.25em 0.5em", // 上下 左右の余白
     // color: "#494949", // 文字色
     // background: "transparent", // 背景透明に
-    borderLeft: "solid 3px #8798ef", // 左線
+    borderLeft: "solid 3px " + theme.vars.palette.primary.main, // 左線
     // fontWeight: "bold", // 太字
     display: "inline-block", // インライン要素に
     // borderBottom: "solid 1px #7db4e6", // 下線
@@ -61,7 +63,7 @@ export const commonStyles = {
     padding: "0.25em 0.5em", // 上下 左右の余白
     // color: "#494949", // 文字色
     // background: "transparent", // 背景透明に
-    borderLeft: "solid 3px #8798ef", // 左線
+    borderLeft: "solid 3px " + theme.vars.palette.primary.main, // 左線
     marginTop: "1em", // 上の余白
     display: "inline-block", // インライン要素に
     // borderBottom: "solid 1px #7db4e6", // 下線
@@ -70,7 +72,7 @@ export const commonStyles = {
     padding: "0.25em 0.5em", // 上下 左右の余白
     // color: "#494949", // 文字色
     // background: "transparent", // 背景透明に
-    borderLeft: "solid 3px #8798ef", // 左線
+    borderLeft: "solid 3px " + theme.vars.palette.primary.main, // 左線
     // marginTop: "1em", // 上の余白
     display: "inline-block", // インライン要素に
     // borderBottom: "solid 1px #7db4e6", // 下線

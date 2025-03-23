@@ -30,6 +30,7 @@ export const lightTheme = {
     },
     secondary: {
       main: "#f50057",
+      light: "#f50057",
     },
     error: {
       main: "#f44336",
@@ -48,24 +49,25 @@ export const darkTheme = {
   // palette for dark mode
   palette: {
     primary: {
-      main: "#8798ef",
+      main: "#0e99f7",
       contrastText: "#ffffff",
     },
     secondary: {
       // main: "#f50057",
       // main: "#ff549d",
       // main: "#fb589e",
-      main: "#ff3990",
+      main: "#2cf777",
+      light: "#0e99f7",
     },
     error: {
-      main: "#f44336",
+      main: "#F70F26",
     },
     text: {
       hint: "#a2a2a2",
     },
     background: {
-      default: "#303030",
-      paper: "#424242",
+      default: "#000000",
+      paper: "#1a1a1a",
     },
   },
 };

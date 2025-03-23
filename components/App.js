@@ -159,7 +159,6 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
     <Tabs
       value={value}
       onChange={handleChange}
-      indicatorColor="secondary"
       textColor="inherit"
       variant="fullWidth"
       aria-label="tabs example"
@@ -696,6 +695,9 @@ function App() {
                       handleChange={handleChange}
                       iconPosition="start"
                       sx={{
+                        "& .MuiTabs-indicator": {
+                          backgroundColor: theme.vars.palette.secondary.light,
+                        },
                         [`@media (max-width: ${breakpoints.values.sm}px)`]: {
                           display: "none",
                         },
