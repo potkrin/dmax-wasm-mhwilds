@@ -9,20 +9,6 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 function LoginDialog({ open, onClose }) {
-  const [autoRedirect, setAutoRedirect] = useState(false);
-
-  // SSG対応: クライアントサイドでマウントされたときにフラグを true に設定
-  useEffect(() => {
-    const localStorageLoginAutoRedirect = localStorage.getItem("loginAutoRedirect");
-    if (localStorageLoginAutoRedirect === "true") setAutoRedirect(true);
-    else setAutoRedirect(false);
-  }, []);
-
-  const handleAutoRedirectChange = (event) => {
-    setAutoRedirect(event.target.checked);
-    localStorage.setItem("loginAutoRedirect", event.target.checked);
-  };
-
   const handleLogin = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/accounts/login/?next=/dmax`;
   };
@@ -32,13 +18,11 @@ function LoginDialog({ open, onClose }) {
       <DialogTitle>ログインが必要です</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <div>サーバーにデータを保存するためにはログインが必要です。</div>
-          <div>ログインする、もしくはローカルのデータ を利用してください。</div>
+          <div>武器データをサーバで管理するためにはログインが必要です。</div>
+          <div>
+            ローカル管理ではデータがブラウザによって消される可能性があるため、サーバでの管理を推奨します。
+          </div>
         </DialogContentText>
-        <FormControlLabel
-          control={<Checkbox checked={autoRedirect} onChange={handleAutoRedirectChange} />}
-          label="次回から自動遷移する"
-        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>キャンセル</Button>

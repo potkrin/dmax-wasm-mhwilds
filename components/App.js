@@ -64,8 +64,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import { ModeSwitcher, ModeSwitcherListItemButton } from "./ModeSwitcher";
-import { CharmIcon } from "./icons/CharmIcon";
-import { ArmorIcon } from "./icons/ArmorIcon";
+import { BowAndArrowIcon } from "./icons/BowAndArrow";
 
 /**
  * TODO:
@@ -181,13 +180,13 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
         sx={{ ...customSX }}
         {...a11yProps(1)}
         icon={
-          <CharmIcon
+          <BowAndArrowIcon
             sx={{
               [`@media (max-width: ${breakpoints.values.sm}px)`]: {
                 marginBottom: "8px",
               },
               [`@media (min-width: ${breakpoints.values.sm + 1}px)`]: {
-                marginRight: "0px",
+                marginRight: "8px",
               },
             }}
           />
@@ -500,11 +499,7 @@ function App() {
         if (response.status === 401) {
           setIsLoggedIn(false);
           // 未ログインなのでログインダイアログを開く
-          if (localStorage.getItem("loginAutoRedirect") === "true") {
-            window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/accounts/login/?next=/dmax`;
-          } else {
-            setIsDialogOpen(true);
-          }
+          setIsDialogOpen(true);
         } else if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return response.json();
       })
@@ -515,11 +510,7 @@ function App() {
         } else {
           setIsLoggedIn(false);
           // 未ログインなのでログインダイアログを開く
-          if (localStorage.getItem("loginAutoRedirect") === "true") {
-            window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/accounts/login/?next=/dmax`;
-          } else {
-            setIsDialogOpen(true);
-          }
+          setIsDialogOpen(true);
         }
       })
       .catch((error) => {
