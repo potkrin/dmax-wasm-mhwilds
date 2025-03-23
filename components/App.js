@@ -301,10 +301,6 @@ function App() {
   const [excludeCharm, setExcludeCharm] = useState(false);
   const [excludeQuriousArmor, setExcludeQuriousArmor] = useState(false);
 
-  useEffect(() => {
-    if (useServerData) checkLoginStatus();
-  }, [useServerData]);
-
   const handleChangeArtianValue = useCallback((event, newValue) => {
     setArtianValue(newValue);
     localStorage.setItem("artianValue", newValue);

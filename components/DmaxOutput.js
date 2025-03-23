@@ -403,10 +403,6 @@ export const DmaxOutput = React.memo(
                   最適化
                 </Typography>
               </Grid>
-
-              <Grid item xs container justifyContent="flex-end" sx={{ marginRight: 1 }}>
-                <OptimizationOptionButtons />
-              </Grid>
             </Grid>
             <Divider />
 
