@@ -150,7 +150,10 @@ export const WeaponSetting = React.memo(
       setUseServerData(newUserDataLocation === "server");
       // save to localstorage
       localStorage.setItem("useServerData", newUserDataLocation === "server");
-      checkLoginStatus();
+      // ログイン状態を確認 & ダイアログを表示
+      if (newUserDataLocation === "server") {
+        checkLoginStatus();
+      }
     };
 
     // useServerData === true の場合、サーバーからデータを取得する
