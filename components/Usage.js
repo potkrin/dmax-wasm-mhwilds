@@ -115,46 +115,54 @@ function Usage() {
           DMAX
         </CustomH1>
         <Typography variant="body1" gutterBottom>
-          DMAXは「モンスターハンターライズサンブレイク」の自動ダメージ最大化シミュレーターです。
+          DMAXは「モンスターハンターワイルズ」の自動ダメージ最大化シミュレーターです。
         </Typography>
         <Typography variant="body1" gutterBottom>
-          モンスターの肉質・武器種・必須スキル等を指定すると、指定した条件の中で最大ダメージを実現する装備構成を自動で見つけてくれます。
+          モンスターの肉質・武器・必須スキル等を指定すると、指定した条件の中で最大ダメージを実現する装備構成を自動で見つけます。
         </Typography>
-        <Card
-          sx={{
-            maxWidth: 500, // 最大幅
-            boxShadow: 0, // シャドウの強度（0から24までの値）
-            borderRadius: 1, // ボーダーの角丸み
-            backgroundColor: theme.vars.palette.background.default,
-            marginY: 2,
-          }}
-        >
-          <Table sx={{ width: "100%" }} size="small" aria-label="simple table">
-            <TableBody>
-              <TableRow>
-                <TableCell component="th" scope="row">
+
+        <div style={{ width: "100%" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <tbody>
+              <tr style={{ borderBottom: "1px solid #ccc" }}>
+                <th
+                  style={{
+                    padding: "8px",
+                    textAlign: "left",
+                    fontSize: "0.9rem",
+                    fontWeight: "normal",
+                    color: "gray",
+                    minWidth: "80px",
+                  }}
+                >
                   対応武器種
-                </TableCell>
-                <TableCell align="left">弓</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
+                </th>
+                <td style={{ padding: "8px" }}>弓</td>
+              </tr>
+
+              {/* 攻撃力 */}
+              <tr style={{ borderBottom: "1px solid #ccc" }}>
+                <th
+                  style={{
+                    padding: "8px",
+                    textAlign: "left",
+                    fontSize: "0.9rem",
+                    fontWeight: "normal",
+                    color: "gray",
+                  }}
+                >
                   動作環境
-                </TableCell>
-                <TableCell align="left">
-                  PCブラウザ
-                  <br />
-                  <Typography
-                    variant="body2"
-                    sx={{ fontSize: "0.8rem", color: theme.vars.palette.text.secondary }}
-                  >
-                    (モバイルは現在非推奨)
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </Card>
+                </th>
+                <td style={{ padding: "8px" }}>
+                  <div>ブラウザ</div>
+                  <div style={{ fontSize: "0.8rem", color: theme.vars.palette.text.secondary }}>
+                    WebAssembly に対応したブラウザであればOSやハードを問わず動作します
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
           注意点
@@ -170,7 +178,7 @@ function Usage() {
           1. 護石と傀異錬成データの保存場所
         </CustomH2>
         <Typography variant="body1" gutterBottom>
-          護石と傀異錬成にはローカルとサーバーの2種類の保存場所があります。
+          アーティア武器の保存場所にはローカルとサーバーの2種類あります。
           <br />
           <span style={{ color: theme.vars.palette.secondary.main }}>
             確実に保存したい場合はサーバーに保存
@@ -179,14 +187,14 @@ function Usage() {
         </Typography>
         <Typography variant="body1" gutterBottom>
           <span style={{ color: theme.vars.palette.secondary.main }}>
-            Safari や iOS (iPhone, iPad) ではサーバーへの保存を特に推奨します。
+            特に Safari や iOS (iPhone, iPad) ではサーバーへの保存を推奨します。
           </span>
         </Typography>
 
         <UsageImage
           srcDark={localServerPcDark}
           srcLight={localServerPcLight}
-          alt="ローカル護石とサーバー護石の画像"
+          alt="アーティア武器管理画面の画像"
           matches={matches}
           height={matches ? 124 : 218}
         />
@@ -226,8 +234,16 @@ function Usage() {
             >
               ローカルに保存する場合は簡単に利用できますが、Safari や iOS
               上の全てのブラウザではブラウザにより自動的にデータが削除される可能性があります。
-              サーバーに保存する場合はログインが必要ですが、ブラウザによってデータが削除されるリスクはありません。
             </Typography>
+            <Typography
+              variant="body1"
+              gutterBottom
+              sx={{ color: theme.vars.palette.text.secondary }}
+            >
+              サーバーに保存する場合はログインが必要ですが、ブラウザによってデータが削除されるリスクはありません。
+              さらに複数の端末やブラウザから閲覧したときに同じデータを利用できます。
+            </Typography>
+
             <Typography variant="body1" gutterBottom>
               <a
                 href="https://webkit.org/tracking-prevention/#:~:text=to%2024%20hours.-,7%2DDay%20Cap%20on%20All%20Script%2DWriteable%20Storage,-Trackers%20executing%20script"
@@ -240,7 +256,37 @@ function Usage() {
                 WebKit: 7-Day Cap on All Script-Writeable Storage
               </a>
             </Typography>
-
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          sx={{
+            boxShadow: "none", // 影を削除
+            border: "none", // 縁取りを削除
+            "&:not(:last-child)": {
+              borderBottom: 0, // 最後の要素以外の下縁を削除
+            },
+            "&:before": {
+              display: "none", // デフォルトの縁取りを削除
+            },
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{
+              flexDirection: "row-reverse", // アイコンとタイトルの順序を逆にする
+              "& .MuiAccordionSummary-expandIconWrapper": {
+                marginRight: "auto", // アイコンを左に寄せる
+              },
+              padding: 0,
+            }}
+          >
+            <Typography sx={{ color: theme.vars.palette.text.secondary }}>
+              ローカルとサーバーの実体は何か？
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
             <Typography
               variant="body1"
               gutterBottom
@@ -258,22 +304,22 @@ function Usage() {
             >
               「サーバー」では当サイトを提供しているサーバー上にデータが保存されます。
               そのため、ブラウザによりデータが自動的に削除されることはありません。
-              また、別の端末やブラウザから閲覧した際にも自動的にデータが同期されます。
+              また、別の端末やブラウザから閲覧した際にも同じデータを利用できます。
             </Typography>
           </AccordionDetails>
         </Accordion>
+
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
           2. ブラウザ版DMAXの実行速度
         </CustomH2>
         <Typography variant="body1" gutterBottom>
           <span style={{ color: theme.vars.palette.secondary.main }}>
-            モバイル端末ではCPUの性能不足により最適化に非常に時間がかかる可能性が高いです。(Android,
-            iOS等)
+            モバイル端末ではCPUの性能不足により最適化に時間がかかるかもしれません。(Android, iOS等)
           </span>
         </Typography>
         <Typography variant="body1" gutterBottom>
           Windows, macOS
-          等のデスクトップ・ラップトップ端末ではネイティブアプリ版DMAXに匹敵する速度で実行できます。
+          等のデスクトップ・ラップトップ端末ではネイティブアプリに匹敵する速度で実行できます。
         </Typography>
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
           3. ブラウザ版DMAXのメモリ制限
@@ -304,18 +350,13 @@ function Usage() {
           1. 前提条件を入力
         </CustomH2>
         <Typography variant="body1" gutterBottom>
-          最大ダメージ構成を求める上で前提条件として以下の項目を入力します。こちらは最大ダメージ構成を求める上で固定される値となります。
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          「疾替えの書」と「百竜装飾品」は複数選択することができます。
+          最大ダメージ構成を求める上で前提条件として以下の項目を入力します。これらは最大ダメージ構成を求める上で固定される値となります。
         </Typography>
         <ul>
           <li>モンスター</li>
           <li>武器</li>
           <li>ハンター</li>
           <li>食事</li>
-          <li>旋律</li>
-          <li>百竜装飾品</li>
         </ul>
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
           2. スキルの下限レベルを入力
@@ -337,15 +378,10 @@ function Usage() {
           height={matches ? 122 : 212}
         />
         <Typography variant="body1" gutterBottom sx={{ color: theme.vars.palette.text.secondary }}>
-          例えば、「火事場運用のために『伏魔響命』が最低Lv1は欲しいが、ほかのスキル構成は何でも良い」という場合、伏魔響命のみLv1を入力し、その他のスキルはすべてLv0を入力します。
-          すると最適化結果は「伏魔響命Lv1」を満たす構成のなかで最大ダメージとなる構成になります。
+          例えば、「狂竜症を発動するために『黒蝕竜の力』が最低でもLv2は欲しいが、ほかのスキル構成は何でも良い」という場合、黒蝕竜の力のみLv2を入力し、その他のスキルはすべてLv0を入力します。
+          すると最適化結果は「黒蝕竜の力Lv2」を満たす構成のなかで最大ダメージとなる構成になります。
         </Typography>
-        <Typography variant="body1" gutterBottom sx={{ color: theme.vars.palette.text.secondary }}>
-          例外として、スキル「闇討ち」と「弾・矢強化」は固定レベルしか選択できません。Lv2を指定した場合は必ずLv2となり、Lv3やLv1になることはありません。
-          こちらは、最適化処理をできるだけ軽くするために固定レベルしか選択できないようにしています。
-          (これらのスキルは "Lv3がほぼ必須" または "特殊な運用が必要"
-          のため問題になることは少ないと思います)
-        </Typography>
+
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
           3. レベルを固定したいスキルを入力
         </CustomH2>
@@ -365,11 +401,11 @@ function Usage() {
           height={matches ? 118 : 207}
         />
         <Typography variant="body1" gutterBottom sx={{ color: theme.vars.palette.text.secondary }}>
-          例えば、火事場を運用を想定して最適化した結果「狂竜症【蝕】」がLv1以上になってしまった場合、スキル効果によって回復されてしまい火事場運用ができません。
+          例えば、最適化の結果「回避距離」が発動してしまうと、張り付いて攻撃する上では回避距離は邪魔になります。
         </Typography>
         <Typography variant="body1" gutterBottom sx={{ color: theme.vars.palette.text.secondary }}>
-          このような場合は、「狂竜症【蝕】」のレベル固定チェックボックスをONにした上でLv0を選択してください。
-          すると「狂竜症【蝕】Lv0」のなかで最大ダメージとなる構成を探してくれるので、火事場運用可能な構成が出力されます。
+          このような場合は、「回避距離」のレベル固定チェックボックスをONにした上でLv0を選択してください。
+          すると「回避距離Lv0」のなかで最大ダメージとなる構成を探してくれます。
         </Typography>
 
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
@@ -378,9 +414,9 @@ function Usage() {
         <Typography variant="body1" gutterBottom>
           ダメージ計算式に寄与するスキルのうち、
           <span style={{ color: theme.vars.palette.secondary.main }}>
-            常時発動でないスキルについてはスキル発動率を設定してください。
+            発動に条件があるスキルについてはスキル発動率を設定してください。
           </span>
-          スキル発動率は、クエスト中にスキルが発動している割合を想定して入力してください。
+          スキル発動率は「攻撃時間中にスキルが発動している割合」を想定して入力してください。
         </Typography>
         <UsageImage
           srcDark={activeRatePcDark}
@@ -415,30 +451,6 @@ function Usage() {
           matches={matches}
           height={matches ? 300 : 520}
         />
-
-        {/* 
-        <Card
-          sx={{
-            // maxWidth: 345, // 最大幅
-            boxShadow: 3, // シャドウの強度（0から24までの値）
-            borderRadius: 2, // ボーダーの角丸み
-          }}
-          onClick={handleClickOpen}
-        >
-          <CardMedia
-            component="img"
-            // height="140"
-            image="/images/dmax-sample.png"
-            alt="Your Image Description"
-          />
-        </Card>
-        <Dialog open={open} onClose={handleClose}>
-          <img
-            src="/images/dmax-sample.png"
-            alt="Your Image Description"
-            style={{ width: "auto", height: "auto" }}
-          />
-        </Dialog> */}
       </Box>
     </Paper>
   );
