@@ -242,7 +242,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           >
             武器
           </Typography>
-          <Grid container rowSpacing={2} columnSpacing={2} paddingX={3}>
+          <Grid container>
             <WeaponSetting
               userInputDataWeapon={userInputData["武器"]}
               updateUserInputData={updateUserInputData}

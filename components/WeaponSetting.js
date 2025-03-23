@@ -8,11 +8,13 @@ import {
   Select,
   Autocomplete,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 
 import { NumberTextField } from "./NumberTextField";
 import { staticData } from "../data/StaticData";
 import { weaponList } from "../data/EquipData";
+import { breakpoints } from "../src/theme";
 
 import { GridItemInput } from "./DmaxMain";
 import { has, isEqual, set } from "lodash";
@@ -128,85 +130,228 @@ export const WeaponSetting = React.memo(
       updateUserInputData("武器", { ...userInputDataWeapon, "選択武器": selectedWeaponInfo });
     }, [currentWeapon, updateUserInputData, userInputDataWeapon]);
 
+    const matches = useMediaQuery("(max-width: " + breakpoints.values.md + "px)"); // 'sm' は600pxに設定されていることが多い
+
     return (
       <>
-        <Grid item xs={12} sm={8} md={4}>
-          <Autocomplete
-            options={weaponSuggestions}
-            onChange={handleWeaponSelect}
-            renderInput={(params) => <TextField {...params} label="武器名" variant="outlined" />}
-            size="small"
-            value={currentWeapon}
-            onFocus={() => {
-              // 同じスキルを選択肢した場合に追加できない問題を回避するために, 選択肢をリセットする
-              // [[Autocomplete] onChange not fired for same item consecutively #29159](https://github.com/mui/material-ui/issues/29159)
-              updateWeaponSuggestions();
-            }}
-            ListboxProps={{
-              style: { maxHeight: "600px" }, // ドロップダウンリストの高さを固定
-            }}
-          />
+        <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Grid container rowSpacing={2} columnSpacing={2} paddingLeft={3} paddingRight={1}>
+            <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Autocomplete
+                options={weaponSuggestions}
+                onChange={handleWeaponSelect}
+                renderInput={(params) => (
+                  <TextField {...params} label="武器名" variant="outlined" />
+                )}
+                size="small"
+                value={currentWeapon}
+                onFocus={() => {
+                  // 同じスキルを選択肢した場合に追加できない問題を回避するために, 選択肢をリセットする
+                  // [[Autocomplete] onChange not fired for same item consecutively #29159](https://github.com/mui/material-ui/issues/29159)
+                  updateWeaponSuggestions();
+                }}
+                ListboxProps={{
+                  style: { maxHeight: "500px" }, // ドロップダウンリストの高さを固定
+                }}
+              />
+            </Grid>
+            {Object.keys(staticData["武器"]).map((key) => {
+              if (
+                key === "属性" ||
+                key === "スロット" ||
+                key === "elementKV" ||
+                key === "elementKVEN2JP"
+              )
+                return null;
+              else {
+                return (
+                  <Grid item key={key} xs={6} sm={4} md={4} lg={4}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">{key}</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        size="small"
+                        value={userInputDataWeapon[key]}
+                        label={key}
+                        onChange={(e, v) => handleChangeUserInputData(key, e, v)}
+                        style={{ textAlign: "left" }}
+                        // // MUI の Select コンポーネントはドロップダウンボックスを開いたときにページ全体用のスクロールバーが表示になり
+                        // // 全体スクロールがロックされる。このときビューポートの横幅が変わるため、右端を起点に固定している Fab ボタンが
+                        // // 左右にズレてしまう
+
+                        // // 以下の追加処理によってドロップダウンボックスの開閉時に Fab ボタンが左右にずれる問題を解決できる
+                        // // しかし setFabRight によりボタンの開閉が遅くなるので、現状はコメントアウトし、スクロールバーの非表示で対処
+                        // // usememo などによりレンダリングを高速化出来た場合には、この処理を有効にしてみる
+                        // onOpen={() => {
+                        //   document.body.style.overflow = "hidden";
+                        //   document.body.style.paddingRight = `${scrollbarWidth}px`;
+                        //   setFabRight(fabRight + scrollbarWidth);
+                        // }}
+                        // onClose={() => {
+                        //   document.body.style.overflow = "";
+                        //   document.body.style.paddingRight = "0px";
+                        //   setFabRight(fabRight - scrollbarWidth);
+                        // }}
+                        // MenuProps={{
+                        //   disableScrollLock: true,
+                        // }}
+                      >
+                        {Object.keys(staticData["武器"][key])
+                          .sort((a, b) => {
+                            if (a === "なし" || a === "無属性") return -1; // "なし"は常に先頭に
+                            if (b === "なし" || b === "無属性") return 1; // "なし"以外は常に"なし"の後ろ
+                            return a.localeCompare(b); // それ以外はアルファベット順
+                          })
+                          .map((key) => (
+                            <MenuItem key={key} value={key}>
+                              {key}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                );
+              }
+            })}
+          </Grid>
         </Grid>
 
-        {Object.keys(staticData["武器"]).map((key) => {
-          if (
-            key === "属性" ||
-            key === "スロット" ||
-            key === "elementKV" ||
-            key === "elementKVEN2JP"
-          )
-            return null;
-          else {
-            return (
-              <GridItemInput item key={key}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">{key}</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    size="small"
-                    value={userInputDataWeapon[key]}
-                    label={key}
-                    onChange={(e, v) => handleChangeUserInputData(key, e, v)}
-                    style={{ textAlign: "left" }}
-                    // // MUI の Select コンポーネントはドロップダウンボックスを開いたときにページ全体用のスクロールバーが表示になり
-                    // // 全体スクロールがロックされる。このときビューポートの横幅が変わるため、右端を起点に固定している Fab ボタンが
-                    // // 左右にズレてしまう
+        <Grid item xs={12} sm={12} md={4}>
+          <Grid
+            container
+            columnSpacing={2}
+            paddingX={3}
+            marginTop={matches ? 2 : 0}
+            justifyContent={"flex-end"}
+          >
+            {userInputDataWeapon["選択武器"] && (
+              <Grid item xs={12} sm={6} md={12} marginBottom={2}>
+                <div style={{ width: "100%" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                    <tbody>
+                      {/* 武器名 */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          武器名
+                        </th>
+                        <td style={{ padding: "8px" }}>{userInputDataWeapon["選択武器"].name}</td>
+                      </tr>
 
-                    // // 以下の追加処理によってドロップダウンボックスの開閉時に Fab ボタンが左右にずれる問題を解決できる
-                    // // しかし setFabRight によりボタンの開閉が遅くなるので、現状はコメントアウトし、スクロールバーの非表示で対処
-                    // // usememo などによりレンダリングを高速化出来た場合には、この処理を有効にしてみる
-                    // onOpen={() => {
-                    //   document.body.style.overflow = "hidden";
-                    //   document.body.style.paddingRight = `${scrollbarWidth}px`;
-                    //   setFabRight(fabRight + scrollbarWidth);
-                    // }}
-                    // onClose={() => {
-                    //   document.body.style.overflow = "";
-                    //   document.body.style.paddingRight = "0px";
-                    //   setFabRight(fabRight - scrollbarWidth);
-                    // }}
-                    // MenuProps={{
-                    //   disableScrollLock: true,
-                    // }}
-                  >
-                    {Object.keys(staticData["武器"][key])
-                      .sort((a, b) => {
-                        if (a === "なし" || a === "無属性") return -1; // "なし"は常に先頭に
-                        if (b === "なし" || b === "無属性") return 1; // "なし"以外は常に"なし"の後ろ
-                        return a.localeCompare(b); // それ以外はアルファベット順
-                      })
-                      .map((key) => (
-                        <MenuItem key={key} value={key}>
-                          {key}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-              </GridItemInput>
-            );
-          }
-        })}
+                      {/* 攻撃力 */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          攻撃力
+                        </th>
+                        <td style={{ padding: "8px" }}>{userInputDataWeapon["選択武器"].raw}</td>
+                      </tr>
+
+                      {/* 会心率 */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          会心率
+                        </th>
+                        <td style={{ padding: "8px" }}>
+                          {userInputDataWeapon["選択武器"].affinity}%
+                        </td>
+                      </tr>
+
+                      {/* 属性 */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          属性
+                        </th>
+                        <td style={{ padding: "8px" }}>
+                          {userInputDataWeapon["選択武器"].elementType === "none"
+                            ? ""
+                            : `${
+                                staticData["武器"]["elementKVEN2JP"][
+                                  userInputDataWeapon["選択武器"].elementType
+                                ]
+                              } ${userInputDataWeapon["選択武器"].element}`}
+                        </td>
+                      </tr>
+
+                      {/* スロット */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          スロット
+                        </th>
+                        <td style={{ padding: "8px" }}>
+                          {userInputDataWeapon["選択武器"].slots.join("-")}
+                        </td>
+                      </tr>
+
+                      {/* スキル */}
+                      <tr style={{ borderBottom: "1px solid #ccc" }}>
+                        <th
+                          style={{
+                            padding: "8px",
+                            textAlign: "left",
+                            fontSize: "0.9rem",
+                            fontWeight: "normal",
+                            color: "gray",
+                          }}
+                        >
+                          スキル
+                        </th>
+                        <td style={{ padding: "8px" }}>
+                          {Object.entries(userInputDataWeapon["選択武器"].skills).map(
+                            ([skill, level]) => (
+                              <div key={skill}>
+                                {skill} Lv{level}
+                              </div>
+                            )
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Grid>
+            )}
+          </Grid>
+        </Grid>
 
         {/* <div>{JSON.stringify(userInputDataWeapon["選択武器"])}</div> */}
       </>
