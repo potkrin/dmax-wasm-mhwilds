@@ -385,6 +385,7 @@ function App() {
                 style={{
                   color: theme.vars.palette.text.primary,
                   textDecoration: "none",
+                  width: "100%",
                 }}
               >
                 ログアウト
@@ -397,6 +398,7 @@ function App() {
                 style={{
                   color: theme.vars.palette.text.primary,
                   textDecoration: "none",
+                  width: "100%",
                 }}
               >
                 ログイン
@@ -417,6 +419,7 @@ function App() {
               style={{
                 color: theme.vars.palette.text.primary,
                 textDecoration: "none",
+                width: "100%",
               }}
             >
               TA集計
