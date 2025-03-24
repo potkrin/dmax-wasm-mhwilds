@@ -6,7 +6,7 @@ import { getInitColorSchemeScript } from "@mui/material";
 
 export default function MyDocument(props) {
   const description =
-    "MHRiseの自動ダメージ最大化シミュレーターです。モンスターごとに最大ダメージを出す装備構成を自動で見つけてくれます。";
+    "MHWildsの自動ダメージ最大化シミュレーターです。モンスターごとに最大ダメージを出す装備構成を自動で見つけてくれます。";
 
   return (
     <Html lang="en">
