@@ -41,16 +41,16 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 const CustomH1 = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  paddingTop: "2.0em",
+  paddingTop: "3.0em",
   fontWeight: "bold",
   fontSize: "1.6em",
 }));
 
 const CustomH2 = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  paddingTop: "2.5em",
+  paddingTop: "0.6em",
   fontWeight: "bold",
-  fontSize: "1.3em",
+  fontSize: "1.0em",
   // 他のスタイル規則もここに追加できます
 }));
 
@@ -112,7 +112,7 @@ function Usage() {
     <Paper sx={{ paddingBottom: "10em" }}>
       <Box sx={{ maxWidth: "800px", padding: 3 }}>
         <CustomH1 variant="h1" gutterBottom sx={{ paddingTop: "0em" }} theme={theme.vars}>
-          DMAX MHWilds
+          # DMAX MHWilds
         </CustomH1>
         <Typography variant="body1" gutterBottom>
           DMAX MHWilds は「モンスターハンターワイルズ」の自動ダメージ最大化シミュレーターです。
@@ -131,7 +131,7 @@ function Usage() {
                     textAlign: "left",
                     fontSize: "0.9rem",
                     fontWeight: "normal",
-                    color: "gray",
+                    color: theme.vars.palette.text.secondary,
                     minWidth: "80px",
                   }}
                 >
@@ -148,7 +148,7 @@ function Usage() {
                     textAlign: "left",
                     fontSize: "0.9rem",
                     fontWeight: "normal",
-                    color: "gray",
+                    color: theme.vars.palette.text.secondary,
                   }}
                 >
                   動作環境
@@ -165,7 +165,7 @@ function Usage() {
         </div>
 
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
-          注意点
+          # 注意点
         </CustomH1>
         <CustomH2
           variant="h2"
@@ -310,7 +310,23 @@ function Usage() {
         </Accordion>
 
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
-          2. 実行速度
+          2. バックグラウンドでの実行時の注意
+        </CustomH2>
+        <Typography variant="body1">
+          <span style={{ color: theme.vars.palette.secondary.main }}>
+            モバイル端末 (iOS, Android) では DMAX をバックグラウンドで実行することは非推奨です。
+          </span>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          モバイル端末で DMAX を実行している画面をバックグラウンドに移動すると、OS によって DMAX
+          の最適化処理が強制終了される可能性があります。
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          デスクトップ端末ではバックグラウンドでの実行に問題はありません。
+        </Typography>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          3. 実行速度
         </CustomH2>
         <Typography variant="body1" gutterBottom>
           <span style={{ color: theme.vars.palette.secondary.main }}>
@@ -321,8 +337,9 @@ function Usage() {
           Windows, macOS
           等のデスクトップ・ラップトップ端末ではネイティブアプリに匹敵する速度で実行できます。
         </Typography>
+
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
-          3. メモリ制限
+          4. メモリ制限
         </CustomH2>
         <Typography variant="body1" gutterBottom>
           最適化実行中に
@@ -336,7 +353,7 @@ function Usage() {
         </Typography>
 
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
-          使い方
+          # 使い方
         </CustomH1>
 
         <CustomH2
@@ -361,12 +378,15 @@ function Usage() {
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
           2. スキルの下限レベルを入力
         </CustomH2>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1">
           スキルの項目では各スキルが最低限満たしてほしいレベルを入力します。
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           <span style={{ color: theme.vars.palette.secondary.main }}>
             どうしても必要なスキル以外は全てLv0を指定してください。
           </span>
         </Typography>
+
         <Typography variant="body1" gutterBottom>
           下限レベルを可能な限り低く設定することによってより広い範囲から最大ダメージ構成を求めることが出来るので、より高いダメージの構成が見つかる可能性が上がります。
         </Typography>
@@ -414,7 +434,7 @@ function Usage() {
         <Typography variant="body1" gutterBottom>
           ダメージ計算式に寄与するスキルのうち、
           <span style={{ color: theme.vars.palette.secondary.main }}>
-            発動に条件があるスキルについてはスキル発動率を設定してください。
+            発動に条件が厳しいスキルはスキル発動率を設定してください。
           </span>
           スキル発動率は「攻撃時間中にスキルが発動している割合」を想定して入力してください。
         </Typography>
