@@ -299,7 +299,14 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           >
             ダメージスキル
             <Tooltip title="ヘルプ" placement="top">
-              <IconButton aria-label="help" color="primary" onClick={() => setValue(3)}>
+              <IconButton
+                aria-label="help"
+                color="primary"
+                onClick={() => {
+                  setValue(2);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
                 <HelpIcon />
               </IconButton>
             </Tooltip>
