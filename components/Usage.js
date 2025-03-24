@@ -42,8 +42,10 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 const CustomH1 = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
   paddingTop: "3.0em",
+  marginBottom: "0.6em",
   fontWeight: "bold",
   fontSize: "1.6em",
+  borderBottom: "1px solid " + theme.palette.text.hint,
 }));
 
 const CustomH2 = styled(Typography)(({ theme }) => ({
