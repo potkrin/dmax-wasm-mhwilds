@@ -622,7 +622,7 @@ function App() {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: "none" } }}
+                        sx={{ mr: 1, display: { sm: "none" } }}
                       >
                         <MenuIcon />
                       </IconButton>
@@ -633,6 +633,18 @@ function App() {
                       >
                         DMAX MHWilds
                       </Typography>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{
+                          flexGrow: 1,
+                          display: { xs: "block", sm: "none" },
+                          fontSize: "1.2rem",
+                        }}
+                      >
+                        DMAX MHWilds
+                      </Typography>
+
                       {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <Button key={item} sx={{ color: "#fff" }}>
