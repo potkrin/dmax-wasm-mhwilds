@@ -206,6 +206,7 @@ function updateMiddleOutputInfo(setMiddleOutputInfo, dmaxOutput, middleOutputInf
     // SCIP ソルバー実行終了後の状態
     if (line.startsWith("SCIP Status")) {
       // 出力に問題がなければ complete とする
+      solverStartStatus = "complete";
       solverEndStatus = "complete";
 
       let scipStatus, statusReason;
