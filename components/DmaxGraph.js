@@ -129,6 +129,7 @@ export const DmaxGraph = React.memo(({ chartData, memoryLimit }) => {
               name="ダメージ上限"
               stroke={currentTheme.palette.primary.main}
               strokeWidth={2}
+              dot={false}
               yAxisId="left"
               animationDuration={300}
             />
@@ -138,6 +139,7 @@ export const DmaxGraph = React.memo(({ chartData, memoryLimit }) => {
               name="ダメージ下限"
               stroke={currentTheme.palette.secondary.main}
               strokeWidth={2}
+              dot={false}
               yAxisId="left"
               animationDuration={300}
             />
