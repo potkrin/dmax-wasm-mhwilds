@@ -79,9 +79,9 @@ function call_worker_wasm_main(
     }
 
     // メモリ制限を行うかどうか切り替える
-    let workerPath = "/dmax-core/worker3.js";
+    let workerPath = "dmax-core/worker3.js";
     if (limitMemory) {
-      workerPath = "/dmax-core/worker1GB.js";
+      workerPath = "dmax-core/worker1GB.js";
       setMemoryLimit("1GB");
       localStorage.setItem("wasmWorkerStatus", "memory limit 1GB");
     } else {
@@ -98,7 +98,7 @@ function call_worker_wasm_main(
           const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
           if (oneWeekAgo < oomTime) {
-            workerPath = "/dmax-core/worker1GB.js";
+            workerPath = "dmax-core/worker1GB.js";
             setMemoryLimit("1GB");
             localStorage.setItem("wasmWorkerStatus", "memory limit 1GB");
           }
