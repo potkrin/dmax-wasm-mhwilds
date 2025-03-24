@@ -24,25 +24,25 @@ export const MiddleOutput = ({ middleOutput, memoryLimit }) => {
       <Grid container alignItems={"center"} spacing={0} marginBottom={0.8}>
         <Grid item xs={0.8} sm={0.5}>
           {middleOutput.status === "running" && (
-            <CircularProgress size={10} sx={{ color: theme.vars.palette.primary.main }} />
+            <CircularProgress size={16} sx={{ color: theme.vars.palette.primary.main }} />
           )}
           {middleOutput.status === "complete" && (
-            <CheckIcon color="success" sx={{ fontSize: 16 }} />
+            <CheckIcon color="success" sx={{ fontSize: 24 }} />
           )}
-          {middleOutput.status === "error" && <ErrorIcon color="error" sx={{ fontSize: 16 }} />}
+          {middleOutput.status === "error" && <ErrorIcon color="error" sx={{ fontSize: 24 }} />}
           {middleOutput.status === "unexpected error" && (
-            <ErrorIcon color="error" sx={{ fontSize: 16 }} />
+            <ErrorIcon color="error" sx={{ fontSize: 24 }} />
           )}
           {middleOutput.status === "interrupted" && (
-            <CancelIcon color="error" sx={{ fontSize: 16 }} />
+            <CancelIcon color="error" sx={{ fontSize: 24 }} />
           )}
 
           {middleOutput.status === "waiting" && (
-            <PanoramaFishEyeIcon sx={{ fontSize: 12, color: theme.vars.palette.text.disabled }} />
+            <PanoramaFishEyeIcon sx={{ fontSize: 16, color: theme.vars.palette.text.disabled }} />
           )}
         </Grid>
         <Grid item xs={5.2} sm={5.5}>
-          <Typography variant="body1" sx={{}}>
+          <Typography variant="body1" sx={{ marginLeft: "0.5rem" }}>
             {middleOutput.title}
           </Typography>
         </Grid>
@@ -72,7 +72,7 @@ export const MiddleOutput = ({ middleOutput, memoryLimit }) => {
         </Grid>
         <Grid item xs={0.8} sm={0.5}></Grid>
         <Grid item xs={2.7} sm={3}>
-          <Divider />
+          <Divider sx={{ marginLeft: "0.5rem" }} />
         </Grid>
         <Grid item xs={8.5} sm={8.5}></Grid>
 
@@ -84,6 +84,8 @@ export const MiddleOutput = ({ middleOutput, memoryLimit }) => {
                 variant="body1"
                 sx={{
                   fontSize: "12px",
+                  marginLeft: "0.5rem",
+                  marginTop: "0.3rem",
                   color:
                     (middleOutput.status === "error") |
                     (middleOutput.status === "interrupted") |
