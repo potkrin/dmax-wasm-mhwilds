@@ -32,7 +32,11 @@ export function NumberTextField(props) {
       value={value}
       onChange={handleChange}
       type={decimalPoint ? "text" : "number"}
-      inputProps={{ ...rest.inputProps }}
+      inputProps={{
+        ...rest.inputProps,
+        inputMode: "numeric", // 数字入力キーボードを促す
+        pattern: "[0-9]*", // 数字のみの入力を許容
+      }}
       InputProps={{
         disableUnderline: matches ? false : true,
       }}
