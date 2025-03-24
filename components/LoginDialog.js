@@ -10,7 +10,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 function LoginDialog({ open, onClose }) {
   const handleLogin = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/accounts/login/?next=/dmax`;
+    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/accounts/login/?next=/dmax-mhwilds/`;
   };
 
   return (
