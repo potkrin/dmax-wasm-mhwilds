@@ -190,7 +190,9 @@ function call_worker_wasm_main(
 
     // onmessage と onerror のセットが完了したので worker でメインジョブを開始するメッセージを送信
     updateDmaxOutput("webworker launched");
-    startWasmWorker.postMessage(["file.nl", 4, 3072, problem_data]);
+
+    // temporary fix threads number to 2 for avoding uncaught RuntimeError
+    startWasmWorker.postMessage(["file.nl", 2, 3072, problem_data]);
   } else {
     console.log("Your browser doesn't support web workers.");
     updateDmaxOutput("Your browser doesn't support web workers.");
