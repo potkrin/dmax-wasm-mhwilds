@@ -363,7 +363,7 @@ function App() {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "left" }}>
       <Typography variant="h6" sx={{ my: 2, ml: 2 }}>
-        DMAX
+        DMAX MHWilds
       </Typography>
       <Divider />
       <List>
@@ -631,7 +631,7 @@ function App() {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
                       >
-                        DMAX
+                        DMAX MHWilds
                       </Typography>
                       {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (

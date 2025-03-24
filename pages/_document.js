@@ -14,25 +14,16 @@ export default function MyDocument(props) {
         {/* favicon */}
         <link
           rel="icon"
-          href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax/images/favicon.webp`}
+          href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-mhwilds/images/favicon.webp`}
         />
         {/* Open Graph Tags */}
-        <meta property="og:title" content="DMAX" />
+        <meta property="og:title" content="DMAX MHWilds" />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax`} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-mhwilds/`} />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax/images/favicon.webp`}
-        />
-        {/* Twitter Tags */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@sample" />
-        <meta name="twitter:title" content="DMAX" />
-        <meta name="twitter:description" content={description} />
-        <meta
-          name="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax/images/favicon.webp`}
+          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-mhwilds/images/ogp-speedrun-db-800x420.webp`}
         />
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.vars.palette.primary.main} />

@@ -112,10 +112,10 @@ function Usage() {
     <Paper sx={{ paddingBottom: "10em" }}>
       <Box sx={{ maxWidth: "800px", padding: 3 }}>
         <CustomH1 variant="h1" gutterBottom sx={{ paddingTop: "0em" }} theme={theme.vars}>
-          DMAX
+          DMAX MHWilds
         </CustomH1>
         <Typography variant="body1" gutterBottom>
-          DMAXは「モンスターハンターワイルズ」の自動ダメージ最大化シミュレーターです。
+          DMAX MHWilds は「モンスターハンターワイルズ」の自動ダメージ最大化シミュレーターです。
         </Typography>
         <Typography variant="body1" gutterBottom>
           モンスターの肉質・武器・必須スキル等を指定すると、指定した条件の中で最大ダメージを実現する装備構成を自動で見つけます。
@@ -310,7 +310,7 @@ function Usage() {
         </Accordion>
 
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
-          2. ブラウザ版DMAXの実行速度
+          2. 実行速度
         </CustomH2>
         <Typography variant="body1" gutterBottom>
           <span style={{ color: theme.vars.palette.secondary.main }}>
@@ -322,7 +322,7 @@ function Usage() {
           等のデスクトップ・ラップトップ端末ではネイティブアプリに匹敵する速度で実行できます。
         </Typography>
         <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
-          3. ブラウザ版DMAXのメモリ制限
+          3. メモリ制限
         </CustomH2>
         <Typography variant="body1" gutterBottom>
           最適化実行中に
