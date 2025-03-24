@@ -28,6 +28,7 @@ import Head from "next/head";
 // import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import { SwiperTab } from "@/components/SwiperTab";
+import Footer from "@/components/Footer";
 // import Date from "../components/date";
 
 // 今回は SSG に外部データを必要としないのでコメントアウト
@@ -65,6 +66,7 @@ export default function Home() {
       </Head>
       {/* <SwiperTab /> */}
       <App />
+      <Footer />
     </>
   );
 }
