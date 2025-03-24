@@ -43,3 +43,7 @@ yarn-error.log*
 next-env.d.ts
 
 .VSCodeCounter
+
+# temporary add to ignore
+multi-thread-output-sample.txt
+single-thread-output-sample.txt

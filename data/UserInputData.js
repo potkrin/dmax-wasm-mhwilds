@@ -38,7 +38,7 @@ export const userInputData = {
 
   "その他": {
     "狂竜症克服率": 100,
-    "傷あり率": 20,
+    "傷あり率": 10,
     "撃ち切るビン数": 10,
   },
   "スキル": generateSkillInputData(),
@@ -54,5 +54,27 @@ function generateSkillInputData() {
       "fixLevel": false,
     };
   }
+
+  // 発動条件が厳しいスキルは activeRate の初期値を調整
+  const activeRateSettings = {
+    "火事場力": 0,
+    "フルチャージ": 0,
+    "力の解放": 0,
+    "挑戦者": 50,
+    "攻勢": 0,
+    "逆恨み": 0,
+    "急襲": 0,
+    "渾身": 0,
+    "災禍転福": 0,
+    "属性変換": 0,
+  }
+
+  for (let skill in activeRateSettings) {
+    skillInputData[skill] = {
+      ...skillInputData[skill],
+      activeRate: activeRateSettings[skill],
+    }
+  }
+
   return skillInputData;
 }
