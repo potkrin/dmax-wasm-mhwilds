@@ -351,7 +351,7 @@ export const Skill = React.memo(
                 <Typography
                   variant="body1"
                   sx={{
-                    color: theme.vars.palette.secondary.light,
+                    color: theme.vars.palette.secondary.main,
                     textAlign: "left",
                     display: "flex",
                     alignItems: "flex-start",
