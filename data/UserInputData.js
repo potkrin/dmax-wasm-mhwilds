@@ -67,6 +67,7 @@ function generateSkillInputData() {
     "渾身": 0,
     "災禍転福": 0,
     "属性変換": 0,
+    "逆襲": 0,
   }
 
   for (let skill in activeRateSettings) {

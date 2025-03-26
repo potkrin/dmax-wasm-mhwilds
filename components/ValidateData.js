@@ -3,7 +3,7 @@ import { Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 
 import { staticSkillData } from "../data/StaticData";
-import { armors, decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
+import { armors, decoArmorList, decoWeaponList, weaponList, charmList } from "../data/EquipData";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -27,6 +27,12 @@ function validateSkillAndEquipment() {
 
   for (let armor of decoWeaponList) {
     for (let skill in armor.skills) {
+      skillNameSet.add(skill);
+    }
+  }
+
+  for (let charm of charmList) {
+    for (let skill in charm.skills) {
       skillNameSet.add(skill);
     }
   }

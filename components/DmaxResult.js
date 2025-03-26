@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid, Card, Box, Typography, Divider, useMediaQuery } from "@mui/material";
 
-import { decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
+import { decoArmorList, decoWeaponList, weaponList, charmList } from "../data/EquipData";
 import { staticSkillData } from "../data/StaticData";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 import InsightsIcon from "@mui/icons-material/Insights";
@@ -139,6 +139,10 @@ export function outputToResult(output, processingUserInputData, processingUserAr
 
     for (let deco of decoWeaponList) {
       dictEquipAll[deco.name] = deco;
+    }
+
+    for (let charm of charmList) {
+      dictEquipAll[charm.name] = charm;
     }
 
     for (let weapon of weaponList) {

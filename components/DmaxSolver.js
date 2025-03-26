@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { DmaxOutput } from "./DmaxOutput";
 import { DmaxGraph } from "./DmaxGraph";
 import { DmaxResult } from "./DmaxResult";
-import { armors, decoArmorList, decoWeaponList, weaponList } from "../data/EquipData";
+import { armors, decoArmorList, decoWeaponList, weaponList, charmList } from "../data/EquipData";
 import { staticData } from "../data/StaticData";
 import { DmaxHistory } from "./DmaxHistory";
 import { useArtianContext } from "./ArtianContext";
@@ -414,6 +414,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       armors: userArmors,
       decoArmorList: decoArmorList,
       decoWeaponList: decoWeaponList,
+      charmList: charmList,
       // weaponList: weaponList,
       staticData: staticData,
     });
@@ -432,6 +433,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         armors: userArmors,
         decoArmorList: decoArmorList,
         decoWeaponList: decoWeaponList,
+        charmList: charmList,
         // weaponList: weaponList,
         staticData: staticData,
       }),
