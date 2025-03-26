@@ -413,7 +413,7 @@ function App() {
               <OpenInNewIcon />
             </ListItemIcon>
             <a
-              href="https://www.mhrspeedrun.com/cms/quest/"
+              href="https://www.mhrspeedrun.com/mhwilds/speedrundb"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -692,7 +692,7 @@ function App() {
                           startIcon={<OpenInNewIcon />}
                         >
                           <a
-                            href="https://www.mhrspeedrun.com/cms/quest/"
+                            href="https://www.mhrspeedrun.com/mhwilds/speedrundb"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
