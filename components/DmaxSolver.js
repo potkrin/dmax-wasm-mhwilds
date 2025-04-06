@@ -384,29 +384,28 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
     // 最適化に含める防具データ定義 (オプションに応じて 護石, 傀異錬成防具を追加)
     const userArmors = JSON.parse(JSON.stringify(armors));
 
-    if (!excludeCharm) {
-      // ユーザの護石を全防具データに追加
-      // let userCharmData = null;
-      let userArtianData = null;
-      if (useServerData) {
-        // サーバー上の護石データを取得
-        // userCharmData = JSON.parse(JSON.stringify(serverCharmData));
-        userArtianData = JSON.parse(JSON.stringify(serverArtianData));
-      } else {
-        // localsotrage から護石データを取得
-        // userCharmData = JSON.parse(localStorage.getItem("userCharmData"));
-        userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
-      }
-      // if (userCharmData !== null) userArmors.push(...userCharmData);
-      // if (userArtianData !== null) userArmors.push(...userArtianData);
-    }
-
     const tempUserInputData = JSON.parse(JSON.stringify(userInputData));
 
     // CSRFトークンを取得
     const csrfToken = getCsrfToken();
 
     setApiError(false);
+
+    // アーティア武器データを追加
+    let userArtianData = null;
+    if (useServerData) {
+      // サーバー上のアーティア武器データを取得
+      userArtianData = JSON.parse(JSON.stringify(serverArtianData));
+    } else {
+      // localsotrage からアーティア武器データを取得
+      userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
+    }
+
+    let weaponListWithArtian = weaponList;
+    if (userArtianData) {
+      // アーティア武器データを追加
+      weaponListWithArtian = weaponList.concat(userArtianData);
+    }
 
     // ダメージ検証用のデータを出力
     const problemAPIBody = JSON.stringify({
@@ -415,7 +414,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       decoArmorList: decoArmorList,
       decoWeaponList: decoWeaponList,
       charmList: charmList,
-      weaponList: weaponList,
+      weaponList: weaponListWithArtian,
       staticData: staticData,
     });
 
@@ -434,7 +433,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         decoArmorList: decoArmorList,
         decoWeaponList: decoWeaponList,
         charmList: charmList,
-        weaponList: weaponList,
+        weaponList: weaponListWithArtian,
         staticData: staticData,
       }),
     })
@@ -626,6 +625,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
               allDmaxOutput={allDmaxOutput}
               processingUserInputData={processingUserInputData}
               processingUserArmorsData={processingUserArmorsData}
+              serverArtianData={serverArtianData}
             />
             <DmaxHistory allDmaxOutput={allDmaxOutput} />
           </Grid>

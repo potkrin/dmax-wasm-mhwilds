@@ -35,7 +35,12 @@ function secondsToHumanReadable(seconds) {
 // スマホ表示用にDmaxResultを消して DmaxHistory に一本化したところ、結果が処理されなくなってしまったため
 
 // 全ての中間結果を含む文字列を処理し、最終結果を出力する
-export function outputToResult(output, processingUserInputData, processingUserArmorsData) {
+export function outputToResult(
+  output,
+  processingUserInputData,
+  processingUserArmorsData,
+  serverArtianData
+) {
   let result = "";
   let timeStamp = "";
   if (output.includes("SCIP Status") && output.includes("nlobjvar")) {
@@ -149,9 +154,16 @@ export function outputToResult(output, processingUserInputData, processingUserAr
       dictEquipAll[weapon.name] = weapon;
     }
 
-    const userArtianData = JSON.parse(localStorage.getItem("userArtianData"));
-    if (userArtianData) {
-      for (let artian of userArtianData) {
+    const userArtianDataLocal = JSON.parse(localStorage.getItem("userArtianData"));
+    if (userArtianDataLocal) {
+      for (let artian of userArtianDataLocal) {
+        dictEquipAll[artian.name] = artian;
+      }
+    }
+
+    const userArtianDataServer = JSON.parse(JSON.stringify(serverArtianData));
+    if (userArtianDataServer) {
+      for (let artian of userArtianDataServer) {
         dictEquipAll[artian.name] = artian;
       }
     }
@@ -337,11 +349,12 @@ function NewlineText({ text }) {
 }
 
 export const DmaxResult = React.memo(
-  ({ allDmaxOutput, processingUserInputData, processingUserArmorsData }) => {
+  ({ allDmaxOutput, processingUserInputData, processingUserArmorsData, serverArtianData }) => {
     const dmaxResult = outputToResult(
       allDmaxOutput,
       processingUserInputData,
-      processingUserArmorsData
+      processingUserArmorsData,
+      serverArtianData
     );
 
     const [textToCopy, setTextToCopy] = React.useState("");
