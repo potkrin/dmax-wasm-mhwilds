@@ -619,7 +619,8 @@ export const Skill = React.memo(
                   display: "flex",
                   justifyContent: "end",
                   paddingX: "0.5rem",
-                  paddingBottom: "1.5rem",
+                  paddingTop: "0.1rem",
+                  paddingBottom: "0.8rem",
                 }}
               >
                 <NumberTextField
