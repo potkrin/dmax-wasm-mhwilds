@@ -415,7 +415,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       decoArmorList: decoArmorList,
       decoWeaponList: decoWeaponList,
       charmList: charmList,
-      // weaponList: weaponList,
+      weaponList: weaponList,
       staticData: staticData,
     });
 
@@ -434,7 +434,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         decoArmorList: decoArmorList,
         decoWeaponList: decoWeaponList,
         charmList: charmList,
-        // weaponList: weaponList,
+        weaponList: weaponList,
         staticData: staticData,
       }),
     })

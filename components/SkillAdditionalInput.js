@@ -34,7 +34,10 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
         key === "狂竜症" ||
         key === "狂竜症克服率" ||
         key === "傷あり率" ||
-        key === "撃ち切るビン数") &&
+        key === "撃ち切るビン数" ||
+        key === "濡れ刃紋 泡状態率" ||
+        key === "濡れ刃紋 濡れ状態率" ||
+        key === "濡れ刃紋 発動なし率") &&
       !value
     ) {
       // TextField から呼び出された場合
@@ -109,6 +112,69 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
                 size="small"
                 value={userInputDataOther["撃ち切るビン数"]}
                 onChange={(e, v) => handleChangeOther("撃ち切るビン数", e, v)}
+                min={0}
+                max={100}
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
+              <Typography variant="caption" color="textSecondary">
+                濡れ刃紋で泡状態になる割合
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+              <NumberTextField
+                label="濡れ刃紋 泡状態率"
+                size="small"
+                value={userInputDataOther["濡れ刃紋 泡状態率"]}
+                onChange={(e, v) => handleChangeOther("濡れ刃紋 泡状態率", e, v)}
+                min={0}
+                max={100}
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
+              <Typography variant="caption" color="textSecondary">
+                濡れ刃紋で水に濡れた状態になる割合
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+              <NumberTextField
+                label="濡れ刃紋 濡れ状態率"
+                size="small"
+                value={userInputDataOther["濡れ刃紋 濡れ状態率"]}
+                onChange={(e, v) => handleChangeOther("濡れ刃紋 濡れ状態率", e, v)}
+                min={0}
+                max={100}
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
+              <Typography variant="caption" color="textSecondary">
+                濡れ刃紋が発動しない割合
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+              <NumberTextField
+                label="濡れ刃紋 発動なし率"
+                size="small"
+                value={userInputDataOther["濡れ刃紋 発動なし率"]}
+                onChange={(e, v) => handleChangeOther("濡れ刃紋 発動なし率", e, v)}
                 min={0}
                 max={100}
                 fullWidth

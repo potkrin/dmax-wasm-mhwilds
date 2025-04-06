@@ -193,7 +193,7 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
         iconPosition={iconPosition}
       />
       <Tab
-        label="使い方"
+        label="使い方・更新履歴"
         sx={{ ...customSX }}
         {...a11yProps(2)}
         icon={<HelpIcon />}

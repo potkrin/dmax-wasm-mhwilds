@@ -535,7 +535,43 @@ export const armors = [
  {"type": "legs", "name": "ギルドエースブーツα", "deffence": 60, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [3, 0, 0], "skills": {"フルチャージ": 1, "攻勢": 1, "体術": 1}},
  {"type": "head", "name": "竜王の隻眼α", "deffence": 60, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0, 0, 0], "skills": {"逆襲": 3}},
  {"type": "head", "name": "ハナショウジョウα", "deffence": 36, "fire": -3, "water": 2, "ice": -2, "thunder": 2, "dragon": 2, "slots": [1, 0, 0], "skills": {"毛皮の昂揚": 1, "昆虫標本の達人": 1, "急襲": 1}},
- {"type": "head", "name": "調査隊の耳飾りα", "deffence": 40, "fire": 1, "water": 1, "ice": 1, "thunder": 1, "dragon": 1, "slots": [1, 0, 0], "skills": {"属性やられ耐性": 1, "災禍転福": 1}}
+ {"type": "head", "name": "調査隊の耳飾りα", "deffence": 40, "fire": 1, "water": 1, "ice": 1, "thunder": 1, "dragon": 1, "slots": [1, 0, 0], "skills": {"属性やられ耐性": 1, "災禍転福": 1}},
+
+ // ver2.0 2025-04-06
+ {"type": "head", "name": "ギルドクロスアクセα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [1, 0, 0], "skills": {"栄光の誉れ": 1, "耳栓": 1, "ひるみ軽減": 1, "拘束耐性": 2}},
+ {"type": "torso", "name": "ギルドクロススーツα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [2, 1, 0], "skills": {"栄光の誉れ": 1, "耳栓": 1, "耐震": 1}},
+ {"type": "arms", "name": "ギルドクロスアームα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [2, 0, 0], "skills": {"栄光の誉れ": 1, "ひるみ軽減": 2, "耐震": 1, "拘束耐性": 1}},
+ {"type": "waist", "name": "ギルドクロスコイルα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [2, 0, 0], "skills": {"栄光の誉れ": 1, "耳栓": 1, "風圧耐性": 2}},
+ {"type": "legs", "name": "ギルドクロスブーツα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [2, 2, 0], "skills": {"栄光の誉れ": 1, "耐震": 1, "風圧耐性": 1}},
+ {"type": "head", "name": "クリークバイザーα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [2, 1, 0], "skills": {"栄光の誉れ": 1, "精霊の加護": 2, "体力回復量ＵＰ": 1, "オトモへの采配": 2}},
+ {"type": "torso", "name": "クリークスーツα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [2, 1, 0], "skills": {"栄光の誉れ": 1, "精霊の加護": 1, "環境利用の知識": 2}},
+ {"type": "arms", "name": "クリークアームα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [2, 1, 0], "skills": {"栄光の誉れ": 1, "整備": 2, "環境利用の知識": 1, "オトモへの采配": 1}},
+ {"type": "waist", "name": "クリークベルトα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [1, 0, 0], "skills": {"栄光の誉れ": 1, "整備": 2, "体力回復量ＵＰ": 2}},
+ {"type": "legs", "name": "クリークシューズα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [2, 2, 0], "skills": {"栄光の誉れ": 1, "整備": 1, "オトモへの采配": 2}},
+ {"type": "head", "name": "健啖家の耳飾りα", "deffence": 36, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [1, 0, 0], "skills": {"栄光の誉れ": 1, "早食い": 2, "満足感": 2}},
+ {"type": "head", "name": "ミツネヘルムα", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [3, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の昂揚": 1, "回避距離ＵＰ": 1, "水場・油泥適応": 2}},
+ {"type": "torso", "name": "ミツネメイルα", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [1, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の昂揚": 1, "連撃": 2, "体術": 1}},
+ {"type": "arms", "name": "ミツネアームα", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [1, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の昂揚": 1, "回避距離ＵＰ": 2, "回避性能": 2}},
+ {"type": "waist", "name": "ミツネコイルα", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [2, 1, 0], "skills": {"泡狐竜の力": 1, "毛皮の昂揚": 1, "連撃": 1, "体術": 2}},
+ {"type": "legs", "name": "ミツネグリーヴα", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [1, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の昂揚": 1, "連撃": 2, "フルチャージ": 1}},
+ {"type": "head", "name": "ミツネヘルムβ", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [3, 2, 0], "skills": {"泡狐竜の力": 1, "毛皮の誘惑": 1, "水場・油泥適応": 2}},
+ {"type": "torso", "name": "ミツネメイルβ", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [2, 2, 0], "skills": {"泡狐竜の力": 1, "毛皮の誘惑": 1, "連撃": 1, "体術": 1}},
+ {"type": "arms", "name": "ミツネアームβ", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [3, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の誘惑": 1, "回避距離ＵＰ": 1, "回避性能": 2}},
+ {"type": "waist", "name": "ミツネコイルβ", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [3, 2, 1], "skills": {"泡狐竜の力": 1, "毛皮の誘惑": 1, "体術": 2}},
+ {"type": "legs", "name": "ミツネグリーヴβ", "deffence": 48, "fire": 0, "water": 2, "ice": -3, "thunder": 1, "dragon": -1, "slots": [3, 0, 0], "skills": {"泡狐竜の力": 1, "毛皮の誘惑": 1, "連撃": 2}},
+ {"type": "head", "name": "無垢ナル龍冠α", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [3, 2, 0], "skills": {"白熾龍の脈動": 1, "護竜の脈動": 1, "挑戦者": 1, "回復速度": 2}},
+ {"type": "torso", "name": "無垢ナル龍鎧α", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [1, 0, 0], "skills": {"白熾龍の脈動": 1, "護竜の脈動": 1, "挑戦者": 2, "逆襲": 1}},
+ {"type": "arms", "name": "無垢ナル龍甲α", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [2, 0, 0], "skills": {"白熾龍の脈動": 1, "護竜の脈動": 1, "属性吸収": 2, "災禍転福": 1}},
+ {"type": "waist", "name": "無垢ナル龍帯α", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [0, 0, 0], "skills": {"白熾龍の脈動": 1, "護竜の脈動": 1, "挑戦者": 2, "災禍転福": 2}},
+ {"type": "legs", "name": "無垢ナル龍靴α", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [2, 1, 0], "skills": {"白熾龍の脈動": 1, "護竜の脈動": 1, "属性吸収": 1, "逆襲": 2, "回復速度": 1}},
+ {"type": "head", "name": "無垢ナル龍冠β", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [3, 2, 1], "skills": {"白熾龍の脈動": 1, "護竜の守り": 1, "挑戦者": 1, "回復速度": 1}},
+ {"type": "torso", "name": "無垢ナル龍鎧β", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [3, 0, 0], "skills": {"白熾龍の脈動": 1, "護竜の守り": 1, "挑戦者": 2}},
+ {"type": "arms", "name": "無垢ナル龍甲β", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [3, 1, 0], "skills": {"白熾龍の脈動": 1, "護竜の守り": 1, "属性吸収": 2}},
+ {"type": "waist", "name": "無垢ナル龍帯β", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [2, 0, 0], "skills": {"白熾龍の脈動": 1, "護竜の守り": 1, "挑戦者": 2, "災禍転福": 1}},
+ {"type": "legs", "name": "無垢ナル龍靴β", "deffence": 68, "fire": -2, "water": 2, "ice": 2, "thunder": 0, "dragon": -4, "slots": [3, 2, 0], "skills": {"白熾龍の脈動": 1, "護竜の守り": 1, "属性吸収": 1, "逆襲": 1, "回復速度": 1}},
+ {"type": "head", "name": "スクエアグラスα", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [1, 1, 0], "skills": {"植生学": 4, "ハンター生活": 1}},
+ {"type": "head", "name": "知略の眼鏡α", "deffence": 48, "fire": 2, "water": 2, "ice": 2, "thunder": 2, "dragon": 2, "slots": [2, 1, 1], "skills": {"地質学": 3}},
+ {"type": "head", "name": "献身のピアスα", "deffence": 48, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [2, 0, 0], "skills": {"栄光の誉れ": 1, "広域化": 4}},
 ];
 
 export const decoArmorList = [
@@ -1159,7 +1195,13 @@ export const weaponList = [
   {"type":"weapon","name":"アンギルバイン","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,3,3],"skills":{},"element":210,"raw":190,"elementType":"none","affinity":5},
   {"type":"weapon","name":"エスペラボウ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"弾導強化":3,"見切り":1},"element":0,"raw":220,"elementType":"none","affinity":0},
   {"type":"weapon","name":"闢虐弓カリステクス","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,3,1],"skills":{"スタミナ奪取":3},"element":0,"raw":240,"elementType":"none","affinity":-5},
-  {"type":"weapon","name":"鎖刃弓トリストラム","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"集中":3},"element":200,"raw":220,"elementType":"dragon","affinity":0}
+  {"type":"weapon","name":"鎖刃弓トリストラム","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"集中":3},"element":200,"raw":220,"elementType":"dragon","affinity":0},
+
+  // ver2.0 2025-04-06
+  {"type":"weapon","name":"ゾ・サミーラⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"白熾の奔流":1},"element":100,"raw":210,"elementType":"dragon","affinity":5},
+  {"type":"weapon","name":"熾光たるサミーラ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"白熾の奔流":1},"element":140,"raw":220,"elementType":"dragon","affinity":5},
+  {"type":"weapon","name":"狐弓ツユノタマノヲⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[2,1,0],"skills":{"濡れ刃紋":2,"会心撃【属性】":1},"element":130,"raw":180,"elementType":"water","affinity":15},
+  {"type":"weapon","name":"なぐるやの遠弓の真弦","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"濡れ刃紋":3,"会心撃【属性】":1},"element":190,"raw":210,"elementType":"water","affinity":15},
 ];
 
 
@@ -1323,5 +1365,11 @@ export const charmList = [
  {"name": "抗狂の護石Ⅱ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"無我の境地": 2}},
  {"name": "抗狂の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"無我の境地": 3}},
  {"name": "希望の護石", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"研鑽": 1, "体力回復量ＵＰ": 1}},
- {"name": "希望の護石", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"研鑽": 1, "体力回復量ＵＰ": 1}}
+ {"name": "希望の護石", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"研鑽": 1, "体力回復量ＵＰ": 1}},
+
+ // ver2.0 2025-04-06
+ {"name": "体術の護石Ⅴ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"体術": 5}},
+ {"name": "耳栓の護石Ⅱ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"耳栓": 2}},
+ {"name": "回避の護石Ⅳ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"回避性能": 4}},
+ {"name": "属変の護石Ⅱ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"属性変換": 2}},
 ];

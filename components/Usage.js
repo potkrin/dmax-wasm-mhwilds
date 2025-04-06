@@ -15,6 +15,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import { useState } from "react";
 import Table from "@mui/material/Table";
@@ -473,6 +474,85 @@ function Usage() {
           matches={matches}
           height={matches ? 300 : 520}
         />
+
+        <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
+          # 更新履歴
+        </CustomH1>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
+            ver. 2.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-04-06
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.010.00 (2025-04-03) に対応</li>
+          <li>剛連射の属性補正上昇に対応</li>
+          <li>蝕攻の装衣の効果減少に対応</li>
+          <li>チャージマスターが剛射・剛連射に乗る新仕様に対応</li>
+          <li>
+            スキル追加
+            <br /> 濡れ刃紋, 白熾の奔流, 栄光の誉れ, 泡狐竜の力, 白熾龍の脈動
+          </li>
+          <li>
+            防具追加
+            <br />
+            ギルドクロスシリーズ, クリークシリーズ, 健啖家の耳飾りα, ミツネシリーズ,
+            無垢ナルシリーズ, スクエアグラスα, 知略の眼鏡α, 献身のピアスα
+          </li>
+          <li>
+            武器追加
+            <br />
+            ゾ・サミーラⅠ, 熾光たるサミーラ, 狐弓ツユノタマノヲⅠ, なぐるやの遠弓の真弦
+          </li>
+          <li>
+            護石追加
+            <br />
+            体術の護石Ⅴ, 耳栓の護石Ⅱ, 回避の護石Ⅳ, 属変の護石Ⅱ
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
+            ver. 1.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-03-26
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>DMAX MHWilds を公開</li>
+        </Typography>
       </Box>
     </Paper>
   );

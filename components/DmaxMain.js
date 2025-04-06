@@ -111,6 +111,30 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
 
   // SSG対応: クライアントサイトでマウントされた後に localstorage から読み込む
   useEffect(() => {
+    // 静的に埋め込むバージョン。ここを更新することで localStorage の UserInputData をリセットする。
+    const staticVersion = "2025-04-06";
+
+    const storedVersion = localStorage.getItem("userInputDataVersion");
+    console.log("[dbg reset] storedVersion", storedVersion);
+
+    if (!storedVersion) {
+      console.log("[dbg reset] userInputDataVersion not found. Removing userInputData.");
+      // userInputDataVersion キーが存在しない場合、userInputData を削除
+      localStorage.removeItem("userInputData");
+      // 静的バージョンを保存
+      localStorage.setItem("userInputDataVersion", staticVersion);
+    } else {
+      console.log("[dbg reset] userInputDataVersion found. Comparing versions.");
+      // userInputDataVersion キーが存在する場合、保存されている日付と静的バージョンを比較
+      if (storedVersion !== staticVersion) {
+        console.log("[dbg reset] Versions do not match. Removing userInputData.");
+        // 一致していなければ userInputData を削除し、最新バージョンに更新
+        localStorage.removeItem("userInputData");
+        localStorage.setItem("userInputDataVersion", staticVersion);
+      }
+      // 一致していれば削除不要
+    }
+
     const localStorageUserInputData = localStorage.getItem("userInputData");
     if (localStorageUserInputData !== null) {
       setUserInputData(JSON.parse(localStorageUserInputData));
@@ -322,6 +346,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                   setUserInputData={setUserInputData}
                   userInputDataSkill={userInputData["スキル"][key]}
                   userInputDataOther={
+                    key === "濡れ刃紋" ||
                     key === "黒蝕竜の力" ||
                     key === "弱点特効" ||
                     key === "フォースショット" ||

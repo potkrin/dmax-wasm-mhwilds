@@ -70,19 +70,19 @@ export const staticData = {
         "Lv3": { "モーション値": 11, "モーション補正属性": 1.2  },
       },
       "剛連射": {
-        "Lv1": { "モーション値": 12, "モーション補正属性": 1.75 },
-        "Lv2": { "モーション値": 13, "モーション補正属性": 1.57 },
-        "Lv3": { "モーション値": 14, "モーション補正属性": 1.3  },
+        "Lv1": { "モーション値": 12, "モーション補正属性": 2.2  },
+        "Lv2": { "モーション値": 13, "モーション補正属性": 1.85 },
+        "Lv3": { "モーション値": 14, "モーション補正属性": 1.5  },
       },
       "竜の一矢": {
         "Lv1": { "モーション値": 23, "モーション補正属性": 1.0 },
         "Lv2": { "モーション値": 23, "モーション補正属性": 1.0 },
-        "Lv3": { "モーション値": 23, "モーション補正属性": 1.0  },
+        "Lv3": { "モーション値": 23, "モーション補正属性": 1.0 },
       },
       "竜の一矢・刹那": {
         "Lv1": { "モーション値": 16, "モーション補正属性": 1.0 },
         "Lv2": { "モーション値": 16, "モーション補正属性": 1.0 },
-        "Lv3": { "モーション値": 16, "モーション補正属性": 1.0  },
+        "Lv3": { "モーション値": 16, "モーション補正属性": 1.0 },
       },
     },
     "ビン補正": {
@@ -210,6 +210,7 @@ export const staticSkillWeaponData = {
   "雷属性攻撃強化": {"maxLevel": 3, "name": "雷属性攻撃強化", "type": "Damage"},
   "氷属性攻撃強化": {"maxLevel": 3, "name": "氷属性攻撃強化", "type": "Damage"},
   "龍属性攻撃強化": {"maxLevel": 3, "name": "龍属性攻撃強化", "type": "Damage"},
+  "濡れ刃紋": {"maxLevel": 3, "name": "濡れ刃紋", "type": "Damage"},
   "散弾・剛射強化": {"maxLevel": 1, "name": "散弾・剛射強化", "type": "Damage"},
   "貫通弾・竜の矢強化": {"maxLevel": 1, "name": "貫通弾・竜の矢強化", "type": "Damage"},
   "通常弾・通常矢強化": {"maxLevel": 1, "name": "通常弾・通常矢強化", "type": "Damage"},
@@ -250,6 +251,7 @@ export const staticSkillWeaponData = {
   "速射強化": {"maxLevel": 1, "name": "速射強化", "type": "NonDamage"},
   "達人芸": {"maxLevel": 1, "name": "達人芸", "type": "NonDamage"},
   "飛燕": {"maxLevel": 1, "name": "飛燕", "type": "NonDamage"},
+  "白熾の奔流": {"maxLevel": 1, "name": "白熾の奔流", "type": "NonDamage"},
 };
 
 export const staticGroupSkillData = {
@@ -265,7 +267,10 @@ export const staticGroupSkillData = {
   "ヌシの憤激":{"name":"ヌシの憤激","maxLevel":"3","type":"NonDamage"},
   "護竜の脈動":{"name":"護竜の脈動","maxLevel":"3","type":"NonDamage"},
   "護竜の守り":{"name":"護竜の守り","maxLevel":"3","type":"NonDamage"},
-  "先達の導き":{"name":"先達の導き","maxLevel":"3","type":"NonDamage"}
+  "先達の導き":{"name":"先達の導き","maxLevel":"3","type":"NonDamage"},
+
+  // ver2.0 2025-04-06
+  "栄光の誉れ":{"name":"栄光の誉れ","maxLevel":"3","type":"NonDamage"},
 };
 
 export const staticSeriesSkillData = {
@@ -282,7 +287,11 @@ export const staticSeriesSkillData = {
   "凍峰竜の反逆":{"name":"凍峰竜の反逆","maxLevel":"4","type":"NonDamage"},
   "黒蝕竜の力":{"name":"黒蝕竜の力","maxLevel":"4","type":"Damage"},
   "鎖刃竜の飢餓":{"name":"鎖刃竜の飢餓","maxLevel":"4","type":"NonDamage"},
-  "護鎖刃竜の命脈":{"name":"護鎖刃竜の命脈","maxLevel":"4","type":"NonDamage"}
+  "護鎖刃竜の命脈":{"name":"護鎖刃竜の命脈","maxLevel":"4","type":"NonDamage"}, 
+
+  // ver2.0 2025-04-06
+  "泡狐竜の力":{"name":"泡狐竜の力","maxLevel":"4","type":"NonDamage"},
+  "白熾龍の脈動":{"name":"白熾龍の脈動","maxLevel":"4","type":"NonDamage"},
 };
 
 export const staticSkillData = {

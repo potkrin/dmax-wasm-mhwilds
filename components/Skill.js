@@ -62,7 +62,10 @@ export const Skill = React.memo(
           key === "狂竜症" ||
           key === "狂竜症克服率" ||
           key === "傷あり率" ||
-          key === "撃ち切るビン数") &&
+          key === "撃ち切るビン数" ||
+          key === "濡れ刃紋 泡状態率" ||
+          key === "濡れ刃紋 濡れ状態率" ||
+          key === "濡れ刃紋 発動なし率") &&
         !value
       ) {
         // TextField から呼び出された場合
@@ -548,6 +551,17 @@ export const Skill = React.memo(
                   sx={{ minWidth: "100px" }}
                   fullWidth
                 />
+              ) : staticSkillData.name === "濡れ刃紋" ? (
+                <NumberTextField
+                  label="濡れ刃紋 泡状態率"
+                  size="small"
+                  value={userInputDataOther["濡れ刃紋 泡状態率"]}
+                  onChange={(e, v) => handleChangeOther("濡れ刃紋 泡状態率", e, v)}
+                  min={0}
+                  max={100}
+                  sx={{ minWidth: "100px" }}
+                  fullWidth
+                />
               ) : staticSkillData.name === "伏魔響命" ? (
                 <FormControl sx={{ minWidth: "100px" }} fullWidth>
                   <InputLabel id="demo-simple-select-label">キュリア</InputLabel>
@@ -589,6 +603,85 @@ export const Skill = React.memo(
                 <></>
               )}
             </Grid>
+          )}
+
+          {/* 濡れ刃紋 */}
+          {!matches && staticSkillData.name === "濡れ刃紋" && (
+            <>
+              <Grid item sm={9} md={5.5}></Grid>
+
+              <Grid
+                item
+                xs={3}
+                sm={3}
+                md={2}
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  paddingX: "0.5rem",
+                  paddingBottom: "1.5rem",
+                }}
+              >
+                <NumberTextField
+                  label="濡れ刃紋 濡れ状態率"
+                  size="small"
+                  value={userInputDataOther["濡れ刃紋 濡れ状態率"]}
+                  onChange={(e, v) => handleChangeOther("濡れ刃紋 濡れ状態率", e, v)}
+                  min={0}
+                  max={100}
+                  sx={{ minWidth: "100px" }}
+                  fullWidth
+                />
+              </Grid>
+
+              <Grid item sm={9} md={5.5}></Grid>
+              <Grid
+                item
+                xs={3}
+                sm={3}
+                md={2}
+                sx={{
+                  paddingX: "0.5rem",
+                  paddingBottom: "1.5rem",
+                }}
+              >
+                <NumberTextField
+                  label="濡れ刃紋 発動なし率"
+                  size="small"
+                  value={userInputDataOther["濡れ刃紋 発動なし率"]}
+                  onChange={(e, v) => handleChangeOther("濡れ刃紋 発動なし率", e, v)}
+                  min={0}
+                  max={100}
+                  sx={{ minWidth: "100px" }}
+                  fullWidth
+                />
+                {userInputDataOther["濡れ刃紋 濡れ状態率"] +
+                  userInputDataOther["濡れ刃紋 発動なし率"] +
+                  userInputDataOther["濡れ刃紋 泡状態率"] !==
+                  100 && (
+                  <>
+                    <Typography
+                      variant="caption"
+                      color="error"
+                      sx={{ marginLeft: 1, marginTop: 1 }}
+                    >
+                      {"合計100%にしてください"}{" "}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="error"
+                      sx={{ marginLeft: 1, marginTop: 0 }}
+                    >
+                      {"(現在: " +
+                        (userInputDataOther["濡れ刃紋 濡れ状態率"] +
+                          userInputDataOther["濡れ刃紋 発動なし率"] +
+                          userInputDataOther["濡れ刃紋 泡状態率"]) +
+                        "%)"}
+                    </Typography>
+                  </>
+                )}
+              </Grid>
+            </>
           )}
         </Grid>
       </>
@@ -633,6 +726,16 @@ export const Skill = React.memo(
         base &&
         prevProps.userInputDataOther["撃ち切るビン数"] ===
           nextProps.userInputDataOther["撃ち切るビン数"]
+      );
+    } else if (skillName === "濡れ刃紋") {
+      return (
+        base &&
+        prevProps.userInputDataOther["濡れ刃紋 泡状態率"] ===
+          nextProps.userInputDataOther["濡れ刃紋 泡状態率"] &&
+        prevProps.userInputDataOther["濡れ刃紋 濡れ状態率"] ===
+          nextProps.userInputDataOther["濡れ刃紋 濡れ状態率"] &&
+        prevProps.userInputDataOther["濡れ刃紋 発動なし率"] ===
+          nextProps.userInputDataOther["濡れ刃紋 発動なし率"]
       );
     } else if (skillName === "伏魔響命") {
       return (
