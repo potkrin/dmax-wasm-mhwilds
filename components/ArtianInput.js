@@ -75,7 +75,7 @@ export function ArtianInput({ userArtianData, setUserArtianData }) {
   const [raw, setRaw] = useState(200);
   const [elementType, setElementType] = useState("無属性");
   const [element, setElement] = useState(0);
-  const [affinity, setAffinity] = useState(0);
+  const [affinity, setAffinity] = useState(5);
 
   const handleChangeRaw = (key, event, value) => {
     const raw = parseInt(event.target.value);
