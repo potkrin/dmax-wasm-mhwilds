@@ -112,7 +112,7 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
   // SSG対応: クライアントサイトでマウントされた後に localstorage から読み込む
   useEffect(() => {
     // 静的に埋め込むバージョン。ここを更新することで localStorage の UserInputData をリセットする。
-    const staticVersion = "2025-04-06";
+    const staticVersion = "2025-05-31";
 
     const storedVersion = localStorage.getItem("userInputDataVersion");
     console.log("[dbg reset] storedVersion", storedVersion);

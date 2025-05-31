@@ -271,6 +271,10 @@ export const staticGroupSkillData = {
 
   // ver2.0 2025-04-06
   "栄光の誉れ":{"name":"栄光の誉れ","maxLevel":"3","type":"NonDamage"},
+
+  // ver3.0 2025-05-31
+  "ヌシの魂":{"name":"ヌシの魂","maxLevel":"3","type":"Damage"},
+  "祝祭の巡り":{"name":"祝祭の巡り","maxLevel":"3","type":"NonDamage"},
 };
 
 export const staticSeriesSkillData = {
@@ -292,6 +296,9 @@ export const staticSeriesSkillData = {
   // ver2.0 2025-04-06
   "泡狐竜の力":{"name":"泡狐竜の力","maxLevel":"4","type":"NonDamage"},
   "白熾龍の脈動":{"name":"白熾龍の脈動","maxLevel":"4","type":"NonDamage"},
+
+  // ver3.0 2025-05-31
+  "花舞の祈り":{"name":"花舞の祈り","maxLevel":"4","type":"NonDamage"}
 };
 
 export const staticSkillData = {

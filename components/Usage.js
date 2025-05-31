@@ -478,6 +478,48 @@ function Usage() {
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
           # 更新履歴
         </CustomH1>
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
+            ver. 3.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-05-31
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.011.00 (2025-05-28) に対応</li>
+          <li>ヌシの魂Lv.3 により発動するスキル 根性【果敢】 をダメージ計算式に反映</li>
+          <li>
+            スキル追加
+            <br />
+            ヌシの魂, 祝祭の巡り, 花舞の祈り
+          </li>
+          <li>
+            防具追加
+            <br />
+            桜波シリーズ, ブロッサムシリーズ, レダゼルトγシリーズ, アワウタイズクα, 封印の龍骸布α,
+            封印の眼帯α, シャドウアイα, ラウンドアイα
+          </li>
+          <li>
+            護石追加
+            <br />
+            全開の護石Ⅲ, 防御の護石Ⅴ
+          </li>
+        </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>

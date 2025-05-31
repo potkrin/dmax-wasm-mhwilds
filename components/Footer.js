@@ -23,7 +23,7 @@ export default function Footer() {
           }}
         >
           <Typography variant="body1" color="text.secondary">
-            DMAX MHWilds ver.2.0.0
+            DMAX MHWilds ver.3.0.0
           </Typography>
           <Link href="https://x.com/blob_cozy" target="_blank" rel="noopener" sx={{ ml: 1 }}>
             @blob_cozy
