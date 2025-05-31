@@ -52,3 +52,4 @@ jobs:
             # Ensure pm2 starts on reboot
             pm2 save
             pm2 startup
+            echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S env PATH=$PATH:/home/potkrin/.nvm/versions/node/v20.10.0/bin /home/potkrin/.nvm/versions/node/v20.10.0/lib/node_modules/pm2/bin/pm2 startup systemd -u potkrin --hp /home/potkrin
