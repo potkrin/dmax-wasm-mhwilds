@@ -1253,10 +1253,10 @@ export const weaponList = [
   {"type":"weapon","name":"なぐるやの遠弓の真弦","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"濡れ刃紋":3,"会心撃【属性】":1},"element":190,"raw":210,"elementType":"water","affinity":15},
 
   // ver4.0 2025-07-01
-  {"type":"weapon","name":"ボルトアローⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"フォースショット":2,"耐性変換【雷】":1},"element":200,"raw":240,"elementType":"thunder","affinity":0},
-  {"type":"weapon","name":"ハイボルトアロー","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"フォースショット":2,"耐性変換【雷】":1},"element":250,"raw":264,"elementType":"thunder","affinity":0},
-  {"type":"weapon","name":"シャルラアルナスルⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"刃鱗増装":1},"element":0,"raw":228,"elementType":"none","affinity":25},
-  {"type":"weapon","name":"叛弓アルナスル","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"刃鱗増装":1},"element":0,"raw":252,"elementType":"none","affinity":25},
+  {"type":"weapon","name":"ボルトアローⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"フォースショット":2,"耐性変換【雷】":1},"element":200,"raw":200,"elementType":"thunder","affinity":0},
+  {"type":"weapon","name":"ハイボルトアロー","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"フォースショット":2,"耐性変換【雷】":1},"element":250,"raw":220,"elementType":"thunder","affinity":0},
+  {"type":"weapon","name":"シャルラアルナスルⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"刃鱗増装":1},"element":0,"raw":190,"elementType":"none","affinity":25},
+  {"type":"weapon","name":"叛弓アルナスル","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"刃鱗増装":1},"element":0,"raw":210,"elementType":"none","affinity":25},
   
 ];
 
