@@ -594,6 +594,33 @@ export const armors = [
  {"type": "arms", "name": "レダゼルトアームγ", "deffence": 68, "fire": 0, "water": -2, "ice": 4, "thunder": -3, "dragon": 0, "slots": [3, 3, 0], "skills": {"煌雷竜の力": 1, "ヌシの魂": 1, "回避距離ＵＰ": 2}},
  {"type": "waist", "name": "レダゼルトコイルγ", "deffence": 68, "fire": 0, "water": -2, "ice": 4, "thunder": -3, "dragon": 0, "slots": [0, 0, 0], "skills": {"煌雷竜の力": 1, "ヌシの魂": 1, "力の解放": 2, "渾身": 2}},
  {"type": "legs", "name": "レダゼルトグリーヴγ", "deffence": 68, "fire": 0, "water": -2, "ice": 4, "thunder": -3, "dragon": 0, "slots": [3, 0, 0], "skills": {"煌雷竜の力": 1, "ヌシの魂": 1, "スタミナ急速回復": 2, "気絶耐性": 3}},
+
+ // ver4.0 2025-07-01
+ {"type": "torso", "name": "旅立ちのホークハートα", "deffence": 48, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [1, 0, 0], "skills": {"体術": 4, "納刀術": 2}},
+
+ {"type": "head", "name": "ラギアヘルムα", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 1, 0], "skills": {"海竜の渦雷": 1, "渾身": 2, "力の解放": 1}},
+ {"type": "torso", "name": "ラギアメイルα", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 1, 0], "skills": {"海竜の渦雷": 1, "雷耐性": 2,  "弱点特効": 1, "スタミナ急速回復": 1}},
+ {"type": "arms", "name": "ラギアアームα", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 0, 0], "skills": {"海竜の渦雷": 1, "スタミナ急速回復": 2, "弱点特効": 1, "水場・油泥適応": 1}},
+ {"type": "waist", "name": "ラギアコイルα", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 1, 1], "skills": {"海竜の渦雷": 1, "弱点特効": 1, "渾身": 1, "水場・油泥適応": 1}},
+ {"type": "legs", "name": "ラギアグリーヴα", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [0, 0, 0], "skills": {"海竜の渦雷": 1, "弱点特効": 2, "力の解放": 1, "雷耐性": 1}},
+
+ {"type": "head", "name": "ラギアヘルムβ", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [3, 2, 1], "skills": {"海竜の渦雷": 1, "渾身": 2}},
+ {"type": "torso", "name": "ラギアメイルβ", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 2, 1], "skills": {"海竜の渦雷": 1, "弱点特効": 1, "スタミナ急速回復": 1}},
+ {"type": "arms", "name": "ラギアアームβ", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [3, 0, 0], "skills": {"海竜の渦雷": 1, "スタミナ急速回復": 2, "弱点特効": 1}},
+ {"type": "waist", "name": "ラギアコイルβ", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [2, 2, 1], "skills": {"海竜の渦雷": 1, "弱点特効": 1, "渾身": 1}},
+ {"type": "legs", "name": "ラギアグリーヴβ", "deffence": 64, "fire": -3, "water": 2, "ice": -1, "thunder": 4, "dragon": -2, "slots": [1, 0, 0], "skills": {"海竜の渦雷": 1, "弱点特効": 2, "力の解放": 1}},
+
+ {"type": "head", "name": "レギオスヘルムα", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [3, 0, 0], "skills": {"千刃竜の闘志": 1, "巧撃": 1, "逆襲": 1, "裂傷耐性": 1}},
+ {"type": "torso", "name": "レギオスメイルα", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [1, 0, 0], "skills": {"千刃竜の闘志": 1, "回避性能": 2, "挑戦者": 1, "逆襲": 1}},
+ {"type": "arms", "name": "レギオスアームα", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [2, 0, 0], "skills": {"千刃竜の闘志": 1, "巧撃": 2, "回避距離ＵＰ": 1}},
+ {"type": "waist", "name": "レギオスコイルα", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [2, 0, 0], "skills": {"千刃竜の闘志": 1, "回避性能": 2, "挑戦者": 1, "裂傷耐性": 1}},
+ {"type": "legs", "name": "レギオスグリーヴα", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [0, 0, 0], "skills": {"千刃竜の闘志": 1, "巧撃": 2, "挑戦者": 1, "裂傷耐性": 1}},
+
+ {"type": "head", "name": "レギオスヘルムβ", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [3, 1, 1], "skills": {"千刃竜の闘志": 1, "巧撃": 1, "裂傷耐性": 1}},
+ {"type": "torso", "name": "レギオスメイルβ", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [2, 1, 0], "skills": {"千刃竜の闘志": 1, "回避性能": 2, "挑戦者": 1}},
+ {"type": "arms", "name": "レギオスアームβ", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [3, 1, 0], "skills": {"千刃竜の闘志": 1, "巧撃": 2}},
+ {"type": "waist", "name": "レギオスコイルβ", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [3, 1, 1], "skills": {"千刃竜の闘志": 1, "挑戦者": 1, "回避性能": 1}},
+ {"type": "legs", "name": "レギオスグリーヴβ", "deffence": 64, "fire": 4, "water": 0, "ice": -2, "thunder": -3, "dragon": 0, "slots": [1, 0, 0], "skills": {"千刃竜の闘志": 1, "巧撃": 2, "挑戦者": 1}},
 ];
 
 export const decoArmorList = [
@@ -1398,4 +1425,11 @@ export const charmList = [
  // ver3.0 2025-05-31
  {"name": "全開の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"力の解放": 3}},
  {"name": "防御の護石Ⅴ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"防御": 5}},
+
+ // ver4.0 2025-07-01
+ {"name": "渾身の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"渾身": 3}},
+ {"name": "反攻の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"巧撃": 3}},
+ {"name": "底力の護石Ⅳ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"火事場力": 4}},
+ {"name": "属吸の護石Ⅱ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"属性吸収": 2}},
+ {"name": "友愛の護石Ⅴ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"広域化": 5}},
 ];
