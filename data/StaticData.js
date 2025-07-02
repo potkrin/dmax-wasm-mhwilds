@@ -252,6 +252,10 @@ export const staticSkillWeaponData = {
   "達人芸": {"maxLevel": 1, "name": "達人芸", "type": "NonDamage"},
   "飛燕": {"maxLevel": 1, "name": "飛燕", "type": "NonDamage"},
   "白熾の奔流": {"maxLevel": 1, "name": "白熾の奔流", "type": "NonDamage"},
+
+  // ver4.0 2025-07-02
+  "刃鱗増装": {"maxLevel": 1, "name": "刃鱗増装", "type": "Damage"},
+  "耐性変換【雷】": {"maxLevel": 1, "name": "耐性変換【雷】", "type": "Damage"},
 };
 
 export const staticGroupSkillData = {
@@ -298,8 +302,12 @@ export const staticSeriesSkillData = {
   "白熾龍の脈動":{"name":"白熾龍の脈動","maxLevel":"4","type":"NonDamage"},
 
   // ver3.0 2025-05-31
-  "花舞の祈り":{"name":"花舞の祈り","maxLevel":"4","type":"NonDamage"}
-};
+  "花舞の祈り":{"name":"花舞の祈り","maxLevel":"4","type":"NonDamage"},
+
+  // ver4.0 2025-07-02
+  "海竜の渦雷":{"name":"海竜の渦雷","maxLevel":"4","type":"Damage"},
+  "千刃竜の闘志": {"name":"千刃竜の闘志","maxLevel":"4","type": "Damage"},
+ };
 
 export const staticSkillData = {
   ...staticSkillArmorData,
