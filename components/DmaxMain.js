@@ -353,7 +353,8 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                     key === "龍気変換" ||
                     key === "狂竜症【蝕】" ||
                     key === "伏魔響命" ||
-                    key === "血氣覚醒"
+                    key === "血氣覚醒" ||
+                    key === "耐性変換【雷】"
                       ? userInputData["その他"]
                       : null
                   }

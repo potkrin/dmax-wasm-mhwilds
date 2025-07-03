@@ -37,7 +37,8 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
         key === "撃ち切るビン数" ||
         key === "濡れ刃紋 泡状態率" ||
         key === "濡れ刃紋 濡れ状態率" ||
-        key === "濡れ刃紋 発動なし率") &&
+        key === "濡れ刃紋 発動なし率" ||
+        key === "雷耐性") &&
       !value
     ) {
       // TextField から呼び出された場合
@@ -177,6 +178,27 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
                 onChange={(e, v) => handleChangeOther("濡れ刃紋 発動なし率", e, v)}
                 min={0}
                 max={100}
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
+              <Typography variant="caption" color="textSecondary">
+                耐性変換【雷】で使用する最終的な雷耐性値
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+              <NumberTextField
+                label="雷耐性"
+                size="small"
+                value={userInputDataOther["雷耐性"]}
+                onChange={(e, v) => handleChangeOther("雷耐性", e, v)}
+                min={0}
+                max={50}
                 fullWidth
               />
             </Grid>

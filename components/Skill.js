@@ -65,7 +65,8 @@ export const Skill = React.memo(
           key === "撃ち切るビン数" ||
           key === "濡れ刃紋 泡状態率" ||
           key === "濡れ刃紋 濡れ状態率" ||
-          key === "濡れ刃紋 発動なし率") &&
+          key === "濡れ刃紋 発動なし率" ||
+          key === "雷耐性") &&
         !value
       ) {
         // TextField から呼び出された場合
@@ -551,6 +552,17 @@ export const Skill = React.memo(
                   sx={{ minWidth: "100px" }}
                   fullWidth
                 />
+              ) : staticSkillData.name === "耐性変換【雷】" ? (
+                <NumberTextField
+                  label="雷耐性"
+                  size="small"
+                  value={userInputDataOther["雷耐性"]}
+                  onChange={(e, v) => handleChangeOther("雷耐性", e, v)}
+                  min={0}
+                  max={50}
+                  sx={{ minWidth: "100px" }}
+                  fullWidth
+                />
               ) : staticSkillData.name === "濡れ刃紋" ? (
                 <NumberTextField
                   label="濡れ刃紋 泡状態率"
@@ -727,6 +739,10 @@ export const Skill = React.memo(
         base &&
         prevProps.userInputDataOther["撃ち切るビン数"] ===
           nextProps.userInputDataOther["撃ち切るビン数"]
+      );
+    } else if (skillName === "耐性変換【雷】") {
+      return (
+        base && prevProps.userInputDataOther["雷耐性"] === nextProps.userInputDataOther["雷耐性"]
       );
     } else if (skillName === "濡れ刃紋") {
       return (
