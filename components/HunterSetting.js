@@ -49,10 +49,12 @@ export const HunterSetting = React.memo(
                   label={<Typography sx={commonStyles.inputCheckbox}>{key}</Typography>}
                   sx={{
                     margin: 0,
-                    padding: "4px 8px",
+                    padding: "0px 0px",
                     borderRadius: 1,
                     cursor: "pointer",
                     userSelect: "none",
+                    border: "1px solid",
+                    borderColor: theme.vars.palette.divider,
                     "&:hover": {
                       backgroundColor: theme.vars.palette.action.hover,
                     },

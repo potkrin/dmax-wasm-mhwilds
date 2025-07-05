@@ -62,9 +62,11 @@ export const FoodSkillSetting = React.memo(
                   label={<Typography sx={commonStyles.inputCheckbox}>{key}</Typography>}
                   sx={{
                     margin: 0,
-                    padding: "4px 8px",
+                    padding: "0px 0px",
                     borderRadius: 1,
                     cursor: "pointer",
+                    border: "1px solid",
+                    borderColor: theme.vars.palette.divider,
                     userSelect: "none",
                     "&:hover": {
                       backgroundColor: theme.vars.palette.action.hover,
