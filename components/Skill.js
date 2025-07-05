@@ -649,8 +649,10 @@ export const Skill = React.memo(
                       </Typography>
                     }
                     sx={{
-                      margin: 0,
+                      margin: "0px 0px 8px 0px",
                       padding: "4px 8px 4px 0px",
+                      border: "1px solid",
+                      borderColor: theme.vars.palette.divider,
                       borderRadius: 1,
                       cursor: "pointer",
                       userSelect: "none",
