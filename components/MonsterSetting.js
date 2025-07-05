@@ -74,6 +74,15 @@ export const MonsterSetting = React.memo(
               fontSize: "0.8rem",
             }}
           >
+            <span>竜の一矢は斬肉質を参照 (弾肉質ではないのでご注意ください)</span>
+          </Box>
+          <Box
+            color="text.secondary"
+            sx={{
+              fontSize: "0.8rem",
+              marginTop: "0.2rem",
+            }}
+          >
             <span>肉質の確認は外部サイトを参考にしてください</span>
           </Box>
           <Box
