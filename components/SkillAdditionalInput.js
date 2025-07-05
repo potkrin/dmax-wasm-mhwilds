@@ -6,6 +6,8 @@ import {
   Slider,
   TextField,
   Checkbox,
+  FormControlLabel,
+  FormGroup,
   FormControl,
   InputLabel,
   Select,
@@ -26,6 +28,7 @@ import AddIcon from "@mui/icons-material/Add";
 import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useTheme } from "@mui/material/styles";
+import { theme, breakpoints } from "../src/theme";
 
 export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) => {
   const handleChangeOther = (key, event, value) => {
@@ -107,7 +110,7 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
           <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
               <Typography variant="caption" color="textSecondary">
-                フォースショットで何本目まで撃つか
+                フォースショットにおいて1回のリロードで平均して何本目のビンまで撃つか
               </Typography>
             </Grid>
             <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
@@ -212,15 +215,42 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
           <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
               <Typography variant="caption" color="textSecondary">
-                無我の境地で黒蝕一体なしの狂竜症発動
+                ゴアマガラや狂竜化モンスターの攻撃を受けることで狂竜症を発動できる場合はON
               </Typography>
             </Grid>
             <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
-              <Checkbox
-                checked={userInputDataOther["黒蝕一体なしの狂竜症発動"]}
-                onChange={(e) => handleChangeOther("黒蝕一体なしの狂竜症発動", e)}
-                size="small"
-              />
+              <FormGroup sx={{ width: "100%" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={userInputDataOther["黒蝕一体なしの狂竜症発動"]}
+                      onChange={(e) => handleChangeOther("黒蝕一体なしの狂竜症発動", e)}
+                      size="small"
+                    />
+                  }
+                  label={
+                    <Typography variant="caption" sx={{ fontSize: "0.75rem" }}>
+                      黒蝕一体なしで狂竜症発動
+                    </Typography>
+                  }
+                  sx={{
+                    margin: 0,
+                    padding: "4px 8px 4px 4px",
+                    borderRadius: 1,
+                    cursor: "pointer",
+                    userSelect: "none",
+                    width: "100%",
+                    border: "1px solid",
+                    borderColor: theme.vars.palette.divider,
+                    "&:hover": {
+                      backgroundColor: theme.vars.palette.action.hover,
+                    },
+                    "& .MuiFormControlLabel-label": {
+                      userSelect: "none",
+                    },
+                  }}
+                />
+              </FormGroup>
             </Grid>
           </Grid>
         </Grid>

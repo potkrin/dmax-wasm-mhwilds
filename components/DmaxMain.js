@@ -461,6 +461,184 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
               </Grid>
             )}
 
+            {/* モバイル用のスキル説明テキスト */}
+            {matches && (
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    mt: 0.5,
+                    mb: 1,
+                    ml: 1,
+                    mr: 1,
+                    paddingX: 0.5,
+                    paddingY: 0.5,
+                    borderRadius: 1,
+                    border: "1px solid",
+                    borderColor: theme.vars.palette.divider,
+                    width: "100%",
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    color="textSecondary"
+                    sx={{
+                      fontSize: "0.80rem",
+                      fontWeight: "bold",
+                      marginBottom: 0.2,
+                      marginLeft: 1,
+                      display: "block",
+                    }}
+                  >
+                    各スキルの設定項目
+                  </Typography>
+                  <Box component="table" sx={{ width: "100%", fontSize: "0.65rem" }}>
+                    <Box component="tbody">
+                      <Box component="tr" sx={{ display: "table-row" }}>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            fontWeight: "bold",
+                            width: "25%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ fontSize: "0.65rem", fontWeight: "bold" }}
+                          >
+                            Lv固定
+                          </Typography>
+                        </Box>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            width: "75%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            color="textSecondary"
+                            sx={{ fontSize: "0.65rem" }}
+                          >
+                            スキルレベルを固定する場合にチェック
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box component="tr" sx={{ display: "table-row" }}>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            fontWeight: "bold",
+                            width: "25%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ fontSize: "0.65rem", fontWeight: "bold" }}
+                          >
+                            スキル発動率
+                          </Typography>
+                        </Box>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            width: "75%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            color="textSecondary"
+                            sx={{ fontSize: "0.65rem" }}
+                          >
+                            スキルが発動する確率を%で指定
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box component="tr" sx={{ display: "table-row" }}>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            fontWeight: "bold",
+                            width: "25%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ fontSize: "0.65rem", fontWeight: "bold" }}
+                          >
+                            － / ＋
+                          </Typography>
+                        </Box>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            borderBottom: "1px solid",
+                            borderBottomColor: theme.vars.palette.divider,
+                            width: "75%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            color="textSecondary"
+                            sx={{ fontSize: "0.65rem" }}
+                          >
+                            下限スキルLvの増減 (必要な場合以外は0を指定)
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box component="tr" sx={{ display: "table-row" }}>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            fontWeight: "bold",
+                            width: "25%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ fontSize: "0.65rem", fontWeight: "bold" }}
+                          >
+                            追加設定
+                          </Typography>
+                        </Box>
+                        <Box
+                          component="td"
+                          sx={{
+                            padding: "4px 8px",
+                            width: "75%",
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            color="textSecondary"
+                            sx={{ fontSize: "0.65rem" }}
+                          >
+                            スキル固有の詳細設定
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
+            )}
+
             {Object.keys(staticSkillData)
               .filter((key) => staticSkillData[key].type === "Damage")
               .map((key) => (
@@ -488,10 +666,22 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           </Grid>
 
           {matches && (
-            <SkillAdditionalInput
-              setUserInputData={setUserInputData}
-              userInputDataOther={userInputData["その他"]}
-            />
+            <>
+              <Typography
+                variant="subtitle2"
+                gutterBottom
+                align="left"
+                marginTop={4}
+                marginBottom={1}
+                marginLeft={2}
+              >
+                スキルの追加設定
+              </Typography>
+              <SkillAdditionalInput
+                setUserInputData={setUserInputData}
+                userInputDataOther={userInputData["その他"]}
+              />
+            </>
           )}
 
           <Grid container paddingTop={3}>
