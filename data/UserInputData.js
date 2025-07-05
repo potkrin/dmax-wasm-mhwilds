@@ -73,6 +73,7 @@ function generateSkillInputData() {
     "災禍転福": 0,
     "属性変換": 0,
     "逆襲": 0,
+    "海竜の渦雷": 40,
   }
 
   for (let skill in activeRateSettings) {
