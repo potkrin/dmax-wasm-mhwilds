@@ -499,14 +499,14 @@ function Usage() {
         </Typography>
         <Typography component="ul" variant="body1" gutterBottom>
           <li>
-            <strong>黒蝕一体なしの狂竜症発動=ON</strong> の場合
+            黒蝕一体なしの狂竜症発動=ON の場合
             <ul>
               <li>無我の境地は常に発動します</li>
               <li>狂竜症克服による会心率15%UPも発動します</li>
             </ul>
           </li>
           <li>
-            <strong>黒蝕一体なしの狂竜症発動=OFF</strong> の場合
+            黒蝕一体なしの狂竜症発動=OFF の場合
             <ul>
               <li>
                 黒蝕竜の力Lv2以上の場合
@@ -597,6 +597,11 @@ function Usage() {
             武器追加
             <br />
             ボルトアローⅠ, ハイボルトアロー, シャルラアルナスルⅠ, 叛弓アルナスル
+          </li>
+          <li>
+            防具追加
+            <br />
+            ラギアα/βシリーズ, レギオスα/βシリーズ, 旅立ちのホークハートα
           </li>
           <li>
             護石追加
