@@ -7,6 +7,8 @@ import {
   TextField,
   Checkbox,
   FormControl,
+  FormControlLabel,
+  FormGroup,
   InputLabel,
   Select,
   MenuItem,
@@ -71,6 +73,9 @@ export const Skill = React.memo(
       ) {
         // TextField から呼び出された場合
         value = parseInt(event.target.value);
+      } else if (key === "黒蝕一体なしの狂竜症発動") {
+        // Checkbox から呼び出された場合
+        value = event.target.checked;
       } else {
         value = event.target.value;
       }
@@ -102,6 +107,8 @@ export const Skill = React.memo(
         "濡れ刃紋": "泡・濡れ・発動なしの状態割合",
         "伏魔響命": "キュリアの匹数による効果",
         "血氣覚醒": "段階による効果の変化",
+        "無我の境地":
+          "ゴアマガラや狂竜化モンスターの攻撃を受けることで狂竜症を発動させられる場合はONにしてください",
       };
       return supplementaryInfo[skillName] || null;
     };
@@ -627,6 +634,36 @@ export const Skill = React.memo(
                     ))}
                   </Select>
                 </FormControl>
+              ) : staticSkillData.name === "無我の境地" ? (
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={userInputDataOther["黒蝕一体なしの狂竜症発動"]}
+                        onChange={(e) => handleChangeOther("黒蝕一体なしの狂竜症発動", e)}
+                        size="small"
+                      />
+                    }
+                    label={
+                      <Typography variant="caption" sx={{ fontSize: "0.75rem" }}>
+                        黒蝕一体なしで狂竜症発動
+                      </Typography>
+                    }
+                    sx={{
+                      margin: 0,
+                      padding: "4px 8px",
+                      borderRadius: 1,
+                      cursor: "pointer",
+                      userSelect: "none",
+                      "&:hover": {
+                        backgroundColor: theme.vars.palette.action.hover,
+                      },
+                      "& .MuiFormControlLabel-label": {
+                        userSelect: "none",
+                      },
+                    }}
+                  />
+                </FormGroup>
               ) : (
                 <></>
               )}
@@ -807,6 +844,12 @@ export const Skill = React.memo(
       return (
         base &&
         prevProps.userInputDataOther["血氣覚醒"] === nextProps.userInputDataOther["血氣覚醒"]
+      );
+    } else if (skillName === "無我の境地") {
+      return (
+        base &&
+        prevProps.userInputDataOther["黒蝕一体なしの狂竜症発動"] ===
+          nextProps.userInputDataOther["黒蝕一体なしの狂竜症発動"]
       );
     } else {
       // other がないスキルの場合 staticSkillData と userInputDataSkill のみをチェック

@@ -43,6 +43,9 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
     ) {
       // TextField から呼び出された場合
       value = parseInt(event.target.value);
+    } else if (key === "黒蝕一体なしの狂竜症発動") {
+      // Checkbox から呼び出された場合
+      value = event.target.checked;
     } else {
       value = event.target.value;
     }
@@ -200,6 +203,23 @@ export const SkillAdditionalInput = ({ setUserInputData, userInputDataOther }) =
                 min={0}
                 max={50}
                 fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "start" }}>
+              <Typography variant="caption" color="textSecondary">
+                無我の境地で黒蝕一体なしの狂竜症発動
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
+              <Checkbox
+                checked={userInputDataOther["黒蝕一体なしの狂竜症発動"]}
+                onChange={(e) => handleChangeOther("黒蝕一体なしの狂竜症発動", e)}
+                size="small"
               />
             </Grid>
           </Grid>

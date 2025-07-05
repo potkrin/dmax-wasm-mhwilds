@@ -13,6 +13,7 @@ import {
 import { NumberTextField } from "./NumberTextField";
 import { staticData } from "../data/StaticData";
 import { GridItemInput, commonStyles } from "./DmaxMain";
+import { theme } from "../src/theme";
 import { isEqual } from "lodash";
 
 export const HunterSetting = React.memo(
@@ -46,6 +47,19 @@ export const HunterSetting = React.memo(
                     />
                   }
                   label={<Typography sx={commonStyles.inputCheckbox}>{key}</Typography>}
+                  sx={{
+                    margin: 0,
+                    padding: "4px 8px",
+                    borderRadius: 1,
+                    cursor: "pointer",
+                    userSelect: "none",
+                    "&:hover": {
+                      backgroundColor: theme.vars.palette.action.hover,
+                    },
+                    "& .MuiFormControlLabel-label": {
+                      userSelect: "none",
+                    },
+                  }}
                 />
               </FormGroup>
             </GridItemInput>

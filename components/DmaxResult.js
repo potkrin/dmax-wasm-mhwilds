@@ -218,6 +218,10 @@ export function outputToResult(
     result += "溜め: " + processingUserInputData["武器"]["溜め段階"] + " ";
     result += "モーション: " + processingUserInputData["武器"]["モーション"] + " ";
     result += "ビン: " + processingUserInputData["武器"]["ビン補正"] + "\n";
+    result +=
+      "黒蝕一体なしの狂竜症発動: " +
+      (processingUserInputData["その他"]["黒蝕一体なしの狂竜症発動"] ? "ON" : "OFF") +
+      "\n";
 
     // 部位の出力
     result += "\n[装備構成]\n";

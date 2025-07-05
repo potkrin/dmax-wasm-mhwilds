@@ -44,6 +44,7 @@ export const userInputData = {
     "濡れ刃紋 濡れ状態率": 10,
     "濡れ刃紋 発動なし率": 0,
     "雷耐性": 0,
+    "黒蝕一体なしの狂竜症発動": false,
   },
   "スキル": generateSkillInputData(),
 };
