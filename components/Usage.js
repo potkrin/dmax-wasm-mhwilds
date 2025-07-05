@@ -476,6 +476,92 @@ function Usage() {
         />
 
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
+          # 仕様など
+        </CustomH1>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          狂竜症と無我の境地について
+        </CustomH2>
+        <Typography variant="body1" gutterBottom>
+          ver3.0.0 までは黒蝕竜の力のレベルによらず無我の境地が発動してしまっていました。 ver4.0.0
+          では以下のように変更しました。
+          <br />
+          <span
+            style={{
+              color: theme.vars.palette.text.secondary,
+              fontSize: "0.9rem",
+              marginTop: "0.5em",
+            }}
+          >
+            ※黒蝕一体なしの狂竜症発動:
+            ゴア・マガラや狂竜化モンスターの攻撃を受けることで狂竜症を発動させること
+          </span>
+        </Typography>
+        <Typography component="ul" variant="body1" gutterBottom>
+          <li>
+            <strong>黒蝕一体なしの狂竜症発動=ON</strong> の場合
+            <ul>
+              <li>無我の境地は常に発動します</li>
+              <li>狂竜症克服による会心率15%UPも発動します</li>
+            </ul>
+          </li>
+          <li>
+            <strong>黒蝕一体なしの狂竜症発動=OFF</strong> の場合
+            <ul>
+              <li>
+                黒蝕竜の力Lv2以上の場合
+                <ul>
+                  <li>無我の境地が発動します</li>
+                  <li>狂竜症克服による会心率15%UPも発動します</li>
+                </ul>
+              </li>
+              <li>
+                黒蝕竜の力Lv1以下の場合
+                <ul>
+                  <li>無我の境地は発動しません</li>
+                  <li>狂竜症克服による会心率15%UPも発動しません</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </Typography>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          刃鱗増装
+        </CustomH2>
+        <Typography component="ul" variant="body1" gutterBottom>
+          <li>刃鱗増装で増えたビンには既存のビン乗算の部分に更に 1.25 倍の倍率がかかります</li>
+          <li>刃鱗増装で増えたビンにはフォースショットの効果は乗りません (攻撃力, 会心率ともに)</li>
+        </Typography>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          海竜の渦雷 (蒼雷一閃)
+        </CustomH2>
+        <Typography component="ul" variant="body1" gutterBottom>
+          <li>
+            攻撃を蓄積すると一定時間会心率が15%UPします (蒼雷一閃Ⅰは20秒間, 蒼雷一閃Ⅱは30秒間)
+          </li>
+          <li>クールタイムが30秒あるため発動率50%以上で運用するのは難しいと思います</li>
+          <li>貫通ビンでは発動に必要な蓄積ができません</li>
+        </Typography>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          耐性変換【雷】
+        </CustomH2>
+        <Typography component="ul" variant="body1" gutterBottom>
+          <li>雷耐性1につき武器の雷属性が+4されます</li>
+          <li>食事効果なども含めた最終的な雷耐性を想定して入力してください</li>
+        </Typography>
+
+        <CustomH2 variant="h2" gutterBottom theme={theme.vars}>
+          千刃竜の闘志 (千刃の身躱し)
+        </CustomH2>
+        <Typography component="ul" variant="body1" gutterBottom>
+          <li>千刃の身躱しⅠは巧撃の効果時間を15秒延長します</li>
+          <li>千刃の身躱しⅡはさらに巧撃による攻撃力UP効果が+10されます</li>
+        </Typography>
+
+        <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
           # 更新履歴
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
