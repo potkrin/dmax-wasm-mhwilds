@@ -90,6 +90,22 @@ export const Skill = React.memo(
 
     const matches = useMediaQuery("(max-width: " + breakpoints.values.sm + "px)"); // 'sm' は600pxに設定されていることが多い
 
+    // 補足情報を取得する関数
+    const getSkillSupplementaryInfo = (skillName) => {
+      const supplementaryInfo = {
+        "龍気変換": "全属性耐性の合計値で攻撃力が上昇",
+        "狂竜症【蝕】": "狂竜症に感染している時間の割合",
+        "黒蝕竜の力": "狂竜症を克服している時間の割合",
+        "弱点特効": "傷ありの弱点を攻撃する割合",
+        "フォースショット": "連続で撃つビンの本数",
+        "耐性変換【雷】": "雷耐性の値で攻撃力が上昇",
+        "濡れ刃紋": "泡・濡れ・発動なしの状態割合",
+        "伏魔響命": "キュリアの匹数による効果",
+        "血氣覚醒": "段階による効果の変化",
+      };
+      return supplementaryInfo[skillName] || null;
+    };
+
     return (
       <>
         <Grid container mt={0.5} paddingX={!matches ? 1 : 0.5}>
@@ -614,6 +630,34 @@ export const Skill = React.memo(
               ) : (
                 <></>
               )}
+            </Grid>
+          )}
+
+          {/* 補足情報表示 (追加項目が必要なスキルのみ) */}
+          {!matches && getSkillSupplementaryInfo(staticSkillData.name) && (
+            <Grid
+              item
+              xs={3}
+              sm={3}
+              md={2}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0 0.5rem",
+              }}
+            >
+              <Typography
+                variant="caption"
+                color="textSecondary"
+                sx={{
+                  textAlign: "center",
+                  fontSize: "0.75rem",
+                  lineHeight: 1.2,
+                }}
+              >
+                {getSkillSupplementaryInfo(staticSkillData.name)}
+              </Typography>
             </Grid>
           )}
 
