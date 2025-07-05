@@ -312,17 +312,18 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
           </Grid>
 
           {/* スライダーありのスキル */}
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            align="left"
-            marginTop={4}
-            marginBottom={1}
-            marginLeft={1}
-            sx={commonStyles.customHeader}
+          <Box
+            sx={{ display: "flex", alignItems: "baseline", gap: 1, marginTop: 4, marginBottom: 1 }}
           >
-            ダメージスキル
-            <Tooltip title="ヘルプ" placement="top">
+            <Typography
+              variant="subtitle2"
+              align="left"
+              marginLeft={1}
+              sx={commonStyles.customHeader}
+            >
+              ダメージスキル
+            </Typography>
+            <Tooltip title="スキル設定の詳細説明を見る" placement="top">
               <IconButton
                 aria-label="help"
                 color="primary"
@@ -330,13 +331,136 @@ export const DmaxMain = React.memo(({ fabRight, setFabRight, setValue }) => {
                   setValue(2);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
+                sx={{ padding: 0.5 }}
               >
-                <HelpIcon />
+                <HelpIcon fontSize="small" />
               </IconButton>
+              <Typography
+                variant="caption"
+                color="primary"
+                sx={{
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  "&:hover": {
+                    color: theme.vars.palette.primary.dark,
+                  },
+                }}
+                onClick={() => {
+                  setValue(2);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                スキルの各パラメータの設定方法
+              </Typography>
             </Tooltip>
-          </Typography>
+          </Box>
 
           <Grid container marginBottom={2}>
+            {/* スキル一覧のカラムヘッダー */}
+            {!matches && (
+              <Grid
+                container
+                mt={0.5}
+                paddingX={1}
+                marginBottom={1}
+                sx={{
+                  borderBottom: "1px solid",
+                  borderBottomColor: theme.vars.palette.divider,
+                  paddingBottom: 0.5,
+                }}
+              >
+                <Grid
+                  item
+                  xs={1}
+                  md={0.5}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRight: "1px solid",
+                    borderRightColor: theme.vars.palette.divider,
+                    paddingY: 0.5,
+                  }}
+                >
+                  <Typography variant="caption" color="textSecondary" sx={{ fontSize: "0.7rem" }}>
+                    Lv固定
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={3.5}
+                  md={3.5}
+                  lg={3}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderRight: "1px solid",
+                    borderRightColor: theme.vars.palette.divider,
+                    paddingY: 0.5,
+                    paddingX: 1,
+                  }}
+                >
+                  <Typography variant="caption" color="textSecondary" sx={{ fontSize: "0.7rem" }}>
+                    下限スキルLv (必要な場合以外は0を指定)
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={2}
+                  sm={2}
+                  md={2}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRight: "1px solid",
+                    borderRightColor: theme.vars.palette.divider,
+                    paddingY: 0.5,
+                  }}
+                >
+                  <Typography variant="caption" color="textSecondary" sx={{ fontSize: "0.7rem" }}>
+                    スキル発動率 (%)
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={3}
+                  sm={2.5}
+                  md={2}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "left",
+                    borderRight: "1px solid",
+                    borderRightColor: theme.vars.palette.divider,
+                    paddingY: 0.5,
+                    paddingLeft: 1,
+                  }}
+                >
+                  <Typography variant="caption" color="textSecondary" sx={{ fontSize: "0.7rem" }}>
+                    追加設定
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={3}
+                  sm={3}
+                  md={3}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "left",
+                    paddingY: 0.5,
+                    paddingLeft: 1,
+                  }}
+                >
+                  <Typography variant="caption" color="textSecondary" sx={{ fontSize: "0.7rem" }}>
+                    説明
+                  </Typography>
+                </Grid>
+              </Grid>
+            )}
+
             {Object.keys(staticSkillData)
               .filter((key) => staticSkillData[key].type === "Damage")
               .map((key) => (
