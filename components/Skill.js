@@ -98,17 +98,16 @@ export const Skill = React.memo(
     // 補足情報を取得する関数
     const getSkillSupplementaryInfo = (skillName) => {
       const supplementaryInfo = {
-        "龍気変換": "全属性耐性の合計値で攻撃力が上昇",
-        "狂竜症【蝕】": "狂竜症に感染している時間の割合",
         "黒蝕竜の力": "狂竜症を克服している時間の割合",
-        "弱点特効": "傷ありの弱点を攻撃する割合",
-        "フォースショット": "連続で撃つビンの本数",
-        "耐性変換【雷】": "雷耐性の値で攻撃力が上昇",
+        "弱点特効": "傷あり状態の弱点を攻撃する割合",
+        "フォースショット": "1回のリロードで平均して何本目のビンまで撃つか指定してください",
+        "耐性変換【雷】": "食事効果も含めた最終的な雷耐性の値を指定してください",
         "濡れ刃紋": "泡・濡れ・発動なしの状態割合",
-        "伏魔響命": "キュリアの匹数による効果",
-        "血氣覚醒": "段階による効果の変化",
         "無我の境地":
           "ゴアマガラや狂竜化モンスターの攻撃を受けることで狂竜症を発動させられる場合はONにしてください",
+        "海竜の渦雷":
+          "貫通ビンの射撃では発動できません。発動率50%以上の運用は難しいと思います。(効果時間が20秒～30秒なのに対してクールタイムが30秒あるため)",
+        "刃鱗増装": "刃鱗増装で増えたビンにはフォースショットの効果は乗りません",
       };
       return supplementaryInfo[skillName] || null;
     };
@@ -144,7 +143,7 @@ export const Skill = React.memo(
             )}
           </Grid>
           {/* スキル名, スキルレベル, スライダー(md以上の画面のみ)*/}
-          <Grid item xs={5} md={3.5} lg={3}>
+          <Grid item xs={3.5} md={3.5} lg={3}>
             <Box display="flex" alignItems="center">
               <Typography
                 variant="body1"
@@ -437,8 +436,8 @@ export const Skill = React.memo(
               <>
                 <Grid
                   item
-                  xs={4}
-                  sm={3}
+                  xs={2}
+                  sm={2}
                   md={2}
                   sx={{ display: "flex", alignItems: "flex-start", justifyContent: "center" }}
                 >
@@ -515,7 +514,7 @@ export const Skill = React.memo(
             <Grid
               item
               xs={3}
-              sm={3}
+              sm={2.5}
               md={2}
               sx={{ display: "flex", justifyContent: "center", padding: "0 0.5rem" }}
             >
@@ -651,7 +650,7 @@ export const Skill = React.memo(
                     }
                     sx={{
                       margin: 0,
-                      padding: "4px 8px",
+                      padding: "4px 8px 4px 0px",
                       borderRadius: 1,
                       cursor: "pointer",
                       userSelect: "none",
@@ -676,19 +675,19 @@ export const Skill = React.memo(
               item
               xs={3}
               sm={3}
-              md={2}
+              md={3}
               sx={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "left",
                 alignItems: "center",
-                padding: "0 0.5rem",
+                padding: "0.2rem 0.5rem",
               }}
             >
               <Typography
                 variant="caption"
                 color="textSecondary"
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   fontSize: "0.75rem",
                   lineHeight: 1.2,
                 }}
@@ -701,12 +700,12 @@ export const Skill = React.memo(
           {/* 濡れ刃紋 */}
           {!matches && staticSkillData.name === "濡れ刃紋" && (
             <>
-              <Grid item sm={9} md={5.5}></Grid>
+              <Grid item sm={6.5} md={6} lg={5.5}></Grid>
 
               <Grid
                 item
                 xs={3}
-                sm={3}
+                sm={2.5}
                 md={2}
                 sx={{
                   display: "flex",
@@ -728,11 +727,11 @@ export const Skill = React.memo(
                 />
               </Grid>
 
-              <Grid item sm={9} md={5.5}></Grid>
+              <Grid item sm={6.5} md={6} lg={5.5}></Grid>
               <Grid
                 item
                 xs={3}
-                sm={3}
+                sm={2.5}
                 md={2}
                 sx={{
                   paddingX: "0.5rem",
