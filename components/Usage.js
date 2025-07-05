@@ -480,6 +480,47 @@ function Usage() {
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 4.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-07-05
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>黒蝕一体なしの狂竜症発動に対応</li>
+          <li>
+            スキル追加
+            <br />
+            耐性変換【雷】, 刃鱗増装, 海竜の渦雷, 千刃竜の闘志
+          </li>
+          <li>
+            武器追加
+            <br />
+            ボルトアローⅠ, ハイボルトアロー, シャルラアルナスルⅠ, 叛弓アルナスル
+          </li>
+          <li>
+            護石追加
+            <br />
+            渾身の護石Ⅲ, 反攻の護石Ⅲ, 底力の護石Ⅳ, 属吸の護石Ⅱ, 友愛の護石Ⅴ
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 3.0.0
           </Typography>
           <Typography
