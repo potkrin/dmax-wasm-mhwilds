@@ -566,6 +566,46 @@ function Usage() {
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 4.1.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-07-23
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>
+            スキル追加
+            <br />
+            踊火の祈り
+          </li>
+          <li>
+            防具追加
+            <br />
+            トゥナムルγシリーズ, ダイバーα​シリーズ, アーフィαシリーズ
+          </li>
+          <li>
+            護石追加
+            <br />
+            無傷の護石Ⅲ, 整備の護石Ⅳ
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 4.0.0
           </Typography>
           <Typography

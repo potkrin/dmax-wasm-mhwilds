@@ -306,7 +306,10 @@ export const staticSeriesSkillData = {
 
   // ver4.0 2025-07-02
   "海竜の渦雷":{"name":"海竜の渦雷","maxLevel":"4","type":"Damage"},
-  "千刃竜の闘志": {"name":"千刃竜の闘志","maxLevel":"4","type": "Damage"},
+  "千刃竜の闘志":{"name":"千刃竜の闘志","maxLevel":"4","type": "Damage"},
+
+  // ver4.1.0 2025-07-23
+  "踊火の祈り":{"name":"踊火の祈り","maxLevel":"4","type":"NonDamage"}
  };
 
 export const staticSkillData = {
