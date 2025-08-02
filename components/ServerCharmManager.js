@@ -66,7 +66,7 @@ export function ServerCharmManager() {
           setIsLoggedIn(true);
           // ログイン中なので charmdata を取得する
           fetchWithRetry(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=charm`,
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=charm`,
             {
               method: "GET",
               credentials: "include", // クッキーベースの認証に必要
@@ -252,7 +252,7 @@ export function ServerCharmManager() {
     }
     console.log("nextUserCharmData has been changed. call POST API");
     fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=charm`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=charm`,
       {
         method: "POST",
         credentials: "include", // クッキーベースの認証に必要
@@ -583,6 +583,14 @@ export function ServerCharmManager() {
       setOpen,
       handleClose,
       setServerCharmData,
+      userCharmData,
+      nextUserCharmData,
+      csvData,
+      openConfirmDialog,
+      dialogMode,
+      deleteIndexes,
+      textToCopy,
+      userCharmMetaData,
     ]
   );
 }

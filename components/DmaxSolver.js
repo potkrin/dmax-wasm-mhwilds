@@ -348,6 +348,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
   const [resetMiddleOutputInfo, setResetMiddleOutputInfo] = useState(false);
 
   const { serverArtianData } = useArtianContext();
+  const { serverCharmData } = useCharmAndQuriousArmorContext();
 
   // DmaxSolverコンポーネントへの参照を作成 (自動スクロールに利用)
   const dmaxSolverRef = useRef(null);
@@ -407,13 +408,29 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       weaponListWithArtian = weaponList.concat(userArtianData);
     }
 
+    // チャームデータを追加
+    let userCharmData = null;
+    if (useServerData) {
+      // サーバー上のチャームデータを取得
+      userCharmData = JSON.parse(JSON.stringify(serverCharmData));
+    } else {
+      // localStorage からチャームデータを取得
+      userCharmData = JSON.parse(localStorage.getItem("userCharmData"));
+    }
+
+    let charmListWithUserData = charmList;
+    if (userCharmData) {
+      // ユーザーチャームデータを追加
+      charmListWithUserData = charmList.concat(userCharmData);
+    }
+
     // ダメージ検証用のデータを出力
     const problemAPIBody = JSON.stringify({
       userInputData: tempUserInputData,
       armors: userArmors,
       decoArmorList: decoArmorList,
       decoWeaponList: decoWeaponList,
-      charmList: charmList,
+      charmList: charmListWithUserData,
       weaponList: weaponListWithArtian,
       staticData: staticData,
     });
@@ -432,7 +449,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
         armors: userArmors,
         decoArmorList: decoArmorList,
         decoWeaponList: decoWeaponList,
-        charmList: charmList,
+        charmList: charmListWithUserData,
         weaponList: weaponListWithArtian,
         staticData: staticData,
       }),
@@ -626,6 +643,8 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
               processingUserInputData={processingUserInputData}
               processingUserArmorsData={processingUserArmorsData}
               serverArtianData={serverArtianData}
+              serverCharmData={serverCharmData}
+              useServerData={useServerData}
             />
             <DmaxHistory allDmaxOutput={allDmaxOutput} />
           </Grid>
@@ -732,6 +751,7 @@ export const DmaxSolver = React.memo(({ userInputData, fabRight }) => {
       allDmaxOutput,
       userInputData,
       fabRight,
+      serverCharmData,
     ]
   );
 });

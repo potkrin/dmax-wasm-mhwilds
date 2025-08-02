@@ -18,7 +18,7 @@ function LoginDialog({ open, onClose }) {
       <DialogTitle>ログインが必要です</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <div>武器データをサーバで管理するためにはログインが必要です。</div>
+          <div>武器・護石データをサーバで管理するためにはログインが必要です。</div>
           <div>
             ローカル管理ではデータがブラウザによって消される可能性があるため、サーバでの管理を推奨します。
           </div>

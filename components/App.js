@@ -50,6 +50,7 @@ import { SnackbarContext } from "./SnackbarContext";
 import Usage from "./Usage";
 import ServerArtianManager from "./ServerArtianManager";
 import ArtianTab from "./ArtianTab";
+import CharmTab from "./CharmTab";
 import { CharmAndQuriousArmorContext } from "./CharmAndQuriousArmorContext";
 import { ArtianContext } from "./ArtianContext";
 import { HideOnScrollContext } from "./HideOnScrollContext";
@@ -65,6 +66,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ModeSwitcher, ModeSwitcherListItemButton } from "./ModeSwitcher";
 import { BowAndArrowIcon } from "./icons/BowAndArrow";
+import { CharmIcon } from "./icons/CharmIcon";
 
 /**
  * TODO:
@@ -193,9 +195,27 @@ const MainTabs = ({ sx, value, handleChange, iconPosition }) => {
         iconPosition={iconPosition}
       />
       <Tab
-        label="使い方・更新履歴"
+        label="護石"
         sx={{ ...customSX }}
         {...a11yProps(2)}
+        icon={
+          <CharmIcon
+            sx={{
+              [`@media (max-width: ${breakpoints.values.sm}px)`]: {
+                marginBottom: "8px",
+              },
+              [`@media (min-width: ${breakpoints.values.sm + 1}px)`]: {
+                marginRight: "8px",
+              },
+            }}
+          />
+        }
+        iconPosition={iconPosition}
+      />
+      <Tab
+        label="使い方・更新履歴"
+        sx={{ ...customSX }}
+        {...a11yProps(3)}
         icon={<HelpIcon />}
         iconPosition={iconPosition}
       />
@@ -782,6 +802,9 @@ function App() {
                     <ArtianTab />
                   </TabPanel>
                   <TabPanel value={value} index={2} dir={theme.direction} allowUnmount={false}>
+                    <CharmTab />
+                  </TabPanel>
+                  <TabPanel value={value} index={3} dir={theme.direction} allowUnmount={false}>
                     <Usage />
                   </TabPanel>
                 </Container>
