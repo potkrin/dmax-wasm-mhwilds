@@ -1,7 +1,7 @@
 
 # TODO
 - [x] 差分データを追加
-- [x] ヌシの魂 スキル選択の対応 
+- [x] ヌシの魂 スキル選択の対応
 - [x] ド根性【果敢】 計算式対応 簡易的にダメージ計算結果も検証済み
 
 # TODO ver2.0.0
@@ -59,7 +59,7 @@
 - [x] その他スキル
   - [x] 削除ボタン対応
   - [x] 動作確認
-    - [x] fixed と下限が機能するか？ 
+    - [x] fixed と下限が機能するか？
     - [x] 削除したら問題設定から消えるか？
 - [x] 不要な項目の削除 (スキルのその他設定など)
 
@@ -111,7 +111,7 @@
 - [ ] アーティアデータのAPIのGET処理は list ではなく get 返すべきだと思う (1件だけなので)
 
  1 0.00 0.00
- 2 0.00 0.00 
+ 2 0.00 0.00
  3 0.00 0.00
  4 0.25 0.25
  5 0.20 0.40
@@ -127,7 +127,7 @@
 - 黒蝕竜の力を使わずに狂竜症を発動できるケースに対応していない
   - 黒蝕竜の力を使わないと狂竜症の効果が得られない設定になっている
   - ゴアや狂竜症モンスターからの攻撃被弾を前提に狂竜症を運用する場合、黒蝕竜の力による黒蝕一体1は不要になる
-  
+
 
 
 [2][0][0]
@@ -143,9 +143,9 @@
       - バイナリ作成: /home/hoge/work/wasm-memory-test/wasm-memory-test.worker.js
       - worker作成: /mnt/d/work/sslServer/workerWasmMemoryTest.js
       - とりあえず配置: /home/hoge/work/react-tutorial/dmax-wasm/public/wasm-memory-test/wasm-memory-test.wasm
-      - worker 呼び出し関数でエラー処理&リトライ処理 
+      - worker 呼び出し関数でエラー処理&リトライ処理
         - 4GBworker呼び出し→失敗→1GBworker呼び出し
-        - 成功→localstorageに書き込み  
+        - 成功→localstorageに書き込み
     - [x] ローカルストレージに実行可能メモリ上限を保存 (有効期限付き)
   - [x] スマホ版の使い方画像が見切れている問題
   - [x] ステージング環境の nginx 設定、バックエンド設定
@@ -169,7 +169,7 @@
     - パッと解決できないので後回し
     - [MUI SSR ちらつき issue](https://github.com/mui/material-ui/issues/15588#issuecomment-1280626188)
     - [MUI ダークモードSSRちらつきを防ぐ](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/)
-    - [MUI + SSR: CSS変数](https://blog.arlenx.io/posts/use-mui-css-theme-variables-to-prevent-dark-mode-ssr-flickering-in-nextjs-app) 
+    - [MUI + SSR: CSS変数](https://blog.arlenx.io/posts/use-mui-css-theme-variables-to-prevent-dark-mode-ssr-flickering-in-nextjs-app)
     - [MUI + Nextjs 公式ガイド](https://mui.com/material-ui/guides/nextjs/#pages-router)
     - [MUI + Nextjs example github](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router)
     - [MUI Theming](https://mui.com/material-ui/customization/theming/)
@@ -223,7 +223,7 @@
     - \<meta> タグの og: や twitter: などで指定できる
   - [x] fabicon 作成&設定
   - [x] 最適化オプション
-    - [x] 護石傀異錬成の選択肢の分離 
+    - [x] 護石傀異錬成の選択肢の分離
     - [x] メインタブのアイコン変更
     - [x] ログインの確認
     - [x] ツールチップ
@@ -292,7 +292,7 @@
   - [x] 読みやすい段落幅 https://www.gizmodo.jp/2023/12/google-gemini.html
   - [x] 並列ソルバ起動 の欄 で1スレッドだけ表示されない
   - [x] 警告表示
-    - [x] スマホの最適化処理の動作速度 
+    - [x] スマホの最適化処理の動作速度
     - [x] localstorage だけだとiOSなどで消える可能性が高い問題
   - [x] ログインしないと API 通信で403になり最適化が実行できない (ログインすればローカル/サーバーどちらもいける)
   - [x] 「ログイン状態の確認に失敗しました」のメッセージがおかしい(未ログイン状態なのにでる)
@@ -384,7 +384,7 @@
   - [ ] ローカルストレージを利用する場合に警告 (選択肢を記憶できるように)
   - [ ] 英語対応
   - [ ] 最適化中の中間出力の頻度を上げられないか？(変化してなくてもいいので)
-  - [ ] fab をもっとでかい丸いアイコンにしたい 参考: Twitter 
+  - [ ] fab をもっとでかい丸いアイコンにしたい 参考: Twitter
   - [ ] 履歴が見れても最適化の条件がわからない
   - [ ] 結果・履歴の表示を見やすくする
   - [ ] [CPUスロットル6xを設定しても全く白が見えない謎技術](https://mui.com/)
@@ -464,14 +464,14 @@
 しかし、非ログイン状態での更新や別ブラウザによる更新を考慮するとlocalstorage側とDB側のどちらのデータをユーザーが望んでいるのかを判断するのが難しく、それによって同期制御も複雑になりそうだったのでやめました。
 複雑になる原因はデータの保存箇所が2箇所あることなので、単一責任の原則に則りlocalstorageに保存するデータとDBに保存するデータを完全に分離して管理する方針ですすめます。
 
-- データ保存場所: サーバーDB上のレコード 
+- データ保存場所: サーバーDB上のレコード
 - ServerCharmData: ブラウザ上の護石データ（サーバーDB上のレコードのGET結果）
 - データの流れ
   - 追加/上書き/削除:
-    1. POST (ServerCharmData + 護石データ差分) 
+    1. POST (ServerCharmData + 護石データ差分)
     2. GET -> ServerCharmData に保存
   - 取得:
-    1. GET (ServerCharmData - 削除護石) 
+    1. GET (ServerCharmData - 削除護石)
 
 ## モード管理
 モード
@@ -480,7 +480,7 @@
 
 状態管理変数 ServerCarmDataMode : True/False
 - True:
-  - userCharmData = ServerCharmData 
+  - userCharmData = ServerCharmData
   - ServerCharmManager
 - False:
   - userCharmData = localstorage.getItem(userCharmData)
@@ -758,9 +758,9 @@ ChatGPT 4
 > コード内でstyledコンポーネント（AppDiv）を使用するとタブ切替時にアンマウントが発生する理由は、AppDivコンポーネントがApp関数コンポーネント内で定義されているためです。この配置により、Appコンポーネントの状態（この場合はタブの状態）が変更されるたびに、Appコンポーネントが再レンダリングされます。そして、AppDivも再作成され、新しいインスタンスとして扱われます。
 >
 > Reactでは、コンポーネントのインスタンスが変わると、そのコンポーネント内の子要素も新しいものとして扱われます。これにより、子要素はアンマウントされ、新しいインスタンスがマウントされます。そのため、TabChildコンポーネントもアンマウントされ、新しいインスタンスがマウントされます。
-> 
+>
 > 一方、\<div>要素の場合、これはプリミティブなHTML要素であり、再レンダリング時に新しいインスタンスが生成されることはありません。従って、\<div>を使用する場合、子要素は不要にアンマウントされることはありません。
-> 
+>
 > この問題を解決するためには、AppDivコンポーネントをAppコンポーネントの外に移動させることが効果的です。これにより、AppDivはアプリケーションのライフサイクルにわたって一貫したインスタンスを保持し、その子要素の不必要なアンマウントを防ぐことができます。
 
 
@@ -895,7 +895,7 @@ cp brachistochrone1GB.* ~/work/react-tutorial/dmax-wasm/public/dmax-core/
     </g>
   </svg>
 </SvgIcon>
-                   
+
 ```
 
 ## アイコン
@@ -1024,7 +1024,7 @@ framework-10fac88913917d91.js:9 TypeError: Cannot read properties of undefined (
 1. Conoha のダッシュボード > ドメイン > ドメイン名選択 > ネームサーバー設定 > カスタムを選択 (Conoha(標準)ではない)
 2. Cloudflare ダッシュボードで提示された自分用のネームサーバーをコピペ
    - 今回は virginia.ns.cloudflare.com, kyrie.ns.cloudflare.com だった
-3. Cloudflare 側で再チェック要求のボタン押下 
+3. Cloudflare 側で再チェック要求のボタン押下
 
 DNSわからん..
 なぜ .com に複数のレジストラから登録できるのか？

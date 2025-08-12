@@ -254,9 +254,14 @@ export function outputToResult(
     };
     for (const eqtype in eqtypeDict) {
       for (const req in dictResultEquipment) {
-        const slot_str = dictResultEquipment[req].eqDict.slots?.join("-");
         if (eqtype === dictResultEquipment[req].eqDict.type) {
-          result += eqtypeDict[eqtype] + ": " + req + " (" + slot_str + ")" + "\n";
+          if (eqtype === "charm") {
+            // charmの場合はslot_strを出力しない
+            result += eqtypeDict[eqtype] + ": " + req + "\n";
+          } else {
+            const slot_str = dictResultEquipment[req].eqDict.slots?.join("-");
+            result += eqtypeDict[eqtype] + ": " + req + " (" + slot_str + ")" + "\n";
+          }
         }
       }
     }

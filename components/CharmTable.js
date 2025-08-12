@@ -40,9 +40,19 @@ export function CharmTable({
         size: 150,
       },
       {
-        accessorKey: "slots",
-        header: "スロット",
-        size: 200,
+        accessorKey: "thirdSkill",
+        header: "第三スキル",
+        size: 150,
+      },
+      {
+        accessorKey: "weaponDecoSlots",
+        header: "武器装飾品スロット",
+        size: 150,
+      },
+      {
+        accessorKey: "armorDecoSlots",
+        header: "防具装飾品スロット",
+        size: 150,
       },
     ],
     []
@@ -55,12 +65,21 @@ export function CharmTable({
   useEffect(() => {
     const newTableData = [];
     for (const charm of userCharmData) {
-      const tempRow = {
-        "slots": charm.slots.join("-"),
-      };
+      const tempRow = {};
       const skillList = Object.entries(charm.skills);
       tempRow["firstSkill"] = skillList[0] ? skillList[0][0] + "Lv" + skillList[0][1] : "";
       tempRow["secondSkill"] = skillList[1] ? skillList[1][0] + "Lv" + skillList[1][1] : "";
+      tempRow["thirdSkill"] = skillList[2] ? skillList[2][0] + "Lv" + skillList[2][1] : "";
+
+      // 新形式と旧形式に対応
+      if (charm.armorDecoSlots && charm.weaponDecoSlots) {
+        tempRow["armorDecoSlots"] = charm.armorDecoSlots.join("-");
+        tempRow["weaponDecoSlots"] = charm.weaponDecoSlots.join("-");
+      } else {
+        tempRow["armorDecoSlots"] = "0-0-0";
+        tempRow["weaponDecoSlots"] = "0-0-0";
+      }
+
       newTableData.unshift(tempRow);
     }
     setTableData(newTableData);

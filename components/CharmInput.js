@@ -28,7 +28,7 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
     setCurrentSkill(newValue);
     if (newValue === null) return;
 
-    if (selectedSkills.length < 2 && !selectedSkills.some((skill) => skill.name === newValue)) {
+    if (selectedSkills.length < 3 && !selectedSkills.some((skill) => skill.name === newValue)) {
       setSelectedSkills((prev) => [...prev, { name: newValue, level: 1 }]);
     }
   };
@@ -37,26 +37,18 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
     setSelectedSkills((prev) => prev.filter((_, index) => index !== indexToRemove));
   };
 
-  const [slots, setSlots] = useState([0, 0, 0]);
-  useEffect(() => {
-    console.log(slots);
-  }, [slots]);
-
-  const handleSlotSelect = (index, newLevel) => {
-    setSlots((prev) => {
-      const newSlots = [...prev];
-      newSlots[index] = parseInt(newLevel);
-      return newSlots;
-    });
-  };
+  const [armorDecoSlots, setArmorDecoSlots] = useState([0, 0, 0]);
+  const [weaponDecoSlots, setWeaponDecoSlots] = useState([0, 0, 0]);
 
   // 登録ボタンを追加
   const registerCharm = () => {
     // 空の護石を登録しない
-    let hasSlot = false;
-    for (const slot of slots) if (slot !== 0) hasSlot = true;
+    let hasArmorDecoSlot = false;
+    let hasWeaponDecoSlot = false;
+    for (const slot of armorDecoSlots) if (slot !== 0) hasArmorDecoSlot = true;
+    for (const slot of weaponDecoSlots) if (slot !== 0) hasWeaponDecoSlot = true;
 
-    if (selectedSkills.length === 0 && !hasSlot) return;
+    if (selectedSkills.length === 0 && !hasArmorDecoSlot && !hasWeaponDecoSlot) return;
 
     const tempCharm = {
       "rare": 0,
@@ -68,8 +60,9 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
       "thunder": "0",
       "dragon": "0",
       "skills": {},
-      "slots": [...slots.sort().reverse()],
-      // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
+      "armorDecoSlots": [...armorDecoSlots.sort().reverse()],
+      "weaponDecoSlots": [...weaponDecoSlots.sort().reverse()],
+      // 護石【攻撃2, 連撃2】4-1-1_0-0-0 形式で名前を作成
     };
     for (const skill of selectedSkills) {
       tempCharm.skills[skill.name] = skill.level;
@@ -79,7 +72,7 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
       if (index !== 0) name += ", ";
       name += skill.name + skill.level;
     }
-    name += "】" + slots.join("-");
+    name += "】武器" + weaponDecoSlots.join("-") + " 防具" + armorDecoSlots.join("-");
     tempCharm.name = name;
     console.log(tempCharm);
     setUserCharmData((prev) => [...prev, tempCharm]);
@@ -88,13 +81,24 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
   // Autoselect のテキストボックスに入力されている値 (onFocus でリセットするために定義)
   const [currentSkill, setCurrentSkill] = useState(null);
 
-  const [firstSlotLevel, setFirstSlotLevel] = useState(0);
-  const [secondSlotLevel, setSecondSlotLevel] = useState(0);
-  const [thirdSlotLevel, setThirdSlotLevel] = useState(0);
+  const [firstArmorDecoSlotLevel, setFirstArmorDecoSlotLevel] = useState(0);
+  const [secondArmorDecoSlotLevel, setSecondArmorDecoSlotLevel] = useState(0);
+  const [thirdArmorDecoSlotLevel, setThirdArmorDecoSlotLevel] = useState(0);
+  const [firstWeaponDecoSlotLevel, setFirstWeaponDecoSlotLevel] = useState(0);
+  const [secondWeaponDecoSlotLevel, setSecondWeaponDecoSlotLevel] = useState(0);
+  const [thirdWeaponDecoSlotLevel, setThirdWeaponDecoSlotLevel] = useState(0);
 
   useEffect(() => {
-    setSlots([firstSlotLevel, secondSlotLevel, thirdSlotLevel]);
-  }, [firstSlotLevel, secondSlotLevel, thirdSlotLevel]);
+    setArmorDecoSlots([firstArmorDecoSlotLevel, secondArmorDecoSlotLevel, thirdArmorDecoSlotLevel]);
+  }, [firstArmorDecoSlotLevel, secondArmorDecoSlotLevel, thirdArmorDecoSlotLevel]);
+
+  useEffect(() => {
+    setWeaponDecoSlots([
+      firstWeaponDecoSlotLevel,
+      secondWeaponDecoSlotLevel,
+      thirdWeaponDecoSlotLevel,
+    ]);
+  }, [firstWeaponDecoSlotLevel, secondWeaponDecoSlotLevel, thirdWeaponDecoSlotLevel]);
 
   // 画面上に表示されているかどうかを判定し、表示されている場合は高さを計算する
   const [isVisible, setIsVisible] = useState(false);
@@ -187,15 +191,56 @@ export function CharmInput({ userCharmData, setUserCharmData }) {
           </div>
           <Grid container sx={{ marginTop: 4 }}>
             <Grid item xs={9}>
+              <Typography variant="subtitle2" gutterBottom sx={{ mb: 1 }}>
+                武器装飾品スロット
+              </Typography>
+              <Grid container spacing={1} sx={{ mb: 2 }}>
+                <Grid item xs={12}>
+                  <SlotLevels
+                    slotLevel={firstWeaponDecoSlotLevel}
+                    setSlotLevel={setFirstWeaponDecoSlotLevel}
+                    maxLevel={3}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <SlotLevels
+                    slotLevel={secondWeaponDecoSlotLevel}
+                    setSlotLevel={setSecondWeaponDecoSlotLevel}
+                    maxLevel={3}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <SlotLevels
+                    slotLevel={thirdWeaponDecoSlotLevel}
+                    setSlotLevel={setThirdWeaponDecoSlotLevel}
+                    maxLevel={3}
+                  />
+                </Grid>
+              </Grid>
+              <Typography variant="subtitle2" gutterBottom sx={{ mb: 1 }}>
+                防具装飾品スロット
+              </Typography>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <SlotLevels slotLevel={firstSlotLevel} setSlotLevel={setFirstSlotLevel} />
+                  <SlotLevels
+                    slotLevel={firstArmorDecoSlotLevel}
+                    setSlotLevel={setFirstArmorDecoSlotLevel}
+                    maxLevel={3}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <SlotLevels slotLevel={secondSlotLevel} setSlotLevel={setSecondSlotLevel} />
+                  <SlotLevels
+                    slotLevel={secondArmorDecoSlotLevel}
+                    setSlotLevel={setSecondArmorDecoSlotLevel}
+                    maxLevel={3}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <SlotLevels slotLevel={thirdSlotLevel} setSlotLevel={setThirdSlotLevel} />
+                  <SlotLevels
+                    slotLevel={thirdArmorDecoSlotLevel}
+                    setSlotLevel={setThirdArmorDecoSlotLevel}
+                    maxLevel={3}
+                  />
                 </Grid>
               </Grid>
             </Grid>
