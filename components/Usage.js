@@ -589,6 +589,7 @@ function Usage() {
         <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
           <li>ゲームの Ver.1.021.00 (2025-08-13) に対応</li>
           <li>鑑定護石に対応</li>
+          <li>ヌシの魂を4部位以上装備した際に効果が発動していなかった不具合を修正</li>
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
