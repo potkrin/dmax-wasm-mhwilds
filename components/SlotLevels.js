@@ -4,8 +4,8 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import { useTheme } from "@mui/material/styles";
 import theme from "../src/theme";
 
-export function SlotLevels({ slotLevel, setSlotLevel }) {
-  const slotLevels = [0, 1, 2, 3, 4];
+export function SlotLevels({ slotLevel, setSlotLevel, maxLevel = 4 }) {
+  const slotLevels = Array.from({ length: maxLevel + 1 }, (_, i) => i);
 
   return (
     <>

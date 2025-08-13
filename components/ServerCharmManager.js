@@ -66,7 +66,7 @@ export function ServerCharmManager() {
           setIsLoggedIn(true);
           // ログイン中なので charmdata を取得する
           fetchWithRetry(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=charm`,
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=charm`,
             {
               method: "GET",
               credentials: "include", // クッキーベースの認証に必要
@@ -124,75 +124,23 @@ export function ServerCharmManager() {
     return () => clearInterval(intervalId);
   }, []);
 
-  // ユーザが入力した csv データ
-  const [csvData, setCsvData] = useState("");
-  const handleCsvDataChange = (event) => {
-    setCsvData(event.target.value);
+  // ユーザが入力した JSON データ
+  const [jsonData, setJsonData] = useState("");
+  const handleJsonDataChange = (event) => {
+    setJsonData(event.target.value);
   };
 
-  // csv データを処理して, ユーザの護石データを localstorage に登録する関数
-  const readFromCsvData = (mode) => {
-    const csvRows = csvData.split("\n").filter((row) => row.trim().replace(/　/g, "") !== "");
-    const csvArray = csvRows.map((row) => row.split(","));
-
-    const charmData = [];
+  // JSON データをパースして、護石データを更新する関数
+  const readFromJsonData = (mode) => {
     try {
-      // csv データの列数が 7 でない列を集めておく
-      const errorRows = [];
-      for (const [index, row] of csvArray.entries()) {
-        if (row.length !== 7) {
-          errorRows.push({ lineNumber: index + 1, row: row });
-          continue;
-        }
-
-        const tempCharm = {
-          "rare": 0,
-          "type": "charm",
-          "deffence": 0,
-          "fire": "0",
-          "water": "0",
-          "ice": "0",
-          "thunder": "0",
-          "dragon": "0",
-          "skills": {},
-          "slots": [parseInt(row[4]), parseInt(row[5]), parseInt(row[6])],
-          // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-          "name":
-            "護石【" +
-            row[0] +
-            row[1] +
-            "，" +
-            row[2] +
-            row[3] +
-            "】" +
-            row[4] +
-            "-" +
-            row[5] +
-            "-" +
-            row[6],
-        };
-
-        if (row[0] !== "") tempCharm.skills[row[0]] = parseInt(row[1]);
-        if (row[2] !== "") tempCharm.skills[row[2]] = parseInt(row[3]);
-        charmData.push(tempCharm);
+      const parsedData = JSON.parse(jsonData);
+      if (!Array.isArray(parsedData)) {
+        throw new Error("入力された JSON は配列ではありません。");
       }
-
-      // csv データの列数が 7 でない列があった場合はエラーを出力
-      if (errorRows.length > 0) {
-        let errorMessage = "CSV データの列数が不正です。\n";
-        for (const errorRow of errorRows) {
-          errorMessage += `${errorRow["lineNumber"]}: ${errorRow["row"]}\n`;
-        }
-        throw new Error(errorMessage);
-      }
-
-      // エラーがなければ更新
       if (mode === "overwrite") {
-        // 上書きモード
-        setNextUserCharmData(charmData);
+        setNextUserCharmData(parsedData);
       } else {
-        // 追加モード
-        setNextUserCharmData([...userCharmData, ...charmData]);
+        setNextUserCharmData([...userCharmData, ...parsedData]);
       }
     } catch (err) {
       setError(err.message);
@@ -206,32 +154,14 @@ export function ServerCharmManager() {
   };
 
   const handleConfirmOverwrite = () => {
-    readFromCsvData("overwrite");
+    readFromJsonData("overwrite");
     setOpenConfirmDialog(false);
   };
 
-  const writeToCsvData = () => {
-    let csv = "";
-    for (const charm of userCharmData) {
-      // 護石【攻撃2, 連撃2】4-1-1 形式で名前を作成
-      const skillList = Object.entries(charm.skills);
-      let firstSkillName = "";
-      let firstSkillLevel = "0";
-      let secondSkillName = "";
-      let secondSkillLevel = "0";
-      if (skillList.length > 0) {
-        firstSkillName = skillList[0][0];
-        firstSkillLevel = skillList[0][1];
-      }
-
-      if (skillList.length > 1) {
-        secondSkillName = skillList[1][0];
-        secondSkillLevel = skillList[1][1];
-      }
-      const slots = charm.slots;
-      csv += `${firstSkillName},${firstSkillLevel},${secondSkillName},${secondSkillLevel},${slots[0]},${slots[1]},${slots[2]}\n`;
-    }
-    setCsvData(csv);
+  // 現在の護石データを JSON 文字列に変換して出力する関数
+  const writeToJsonData = () => {
+    const json = JSON.stringify(userCharmData, null, 0);
+    setJsonData(json);
   };
 
   // // テーブルで複数選択された護石を userCharmData から削除 (引数は削除対象インデックス)
@@ -252,7 +182,7 @@ export function ServerCharmManager() {
     }
     console.log("nextUserCharmData has been changed. call POST API");
     fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data/?equip_type=charm`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/dmax-api/v1/user-equip-data-mhwilds/?equip_type=charm`,
       {
         method: "POST",
         credentials: "include", // クッキーベースの認証に必要
@@ -372,11 +302,11 @@ export function ServerCharmManager() {
     };
   }, []);
 
-  // CSVテキストボックスのコピーボタン用
+  // JSONテキストボックスのコピーボタン用
   const [textToCopy, setTextToCopy] = useState("");
   useEffect(() => {
-    setTextToCopy(csvData);
-  }, [csvData]);
+    setTextToCopy(jsonData);
+  }, [jsonData]);
 
   // 削除時に確認ダイアログを表示する
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
@@ -480,7 +410,7 @@ export function ServerCharmManager() {
                       marginBottom={2}
                       sx={commonStyles.customHeaderNoMargin}
                     >
-                      CSV 入出力
+                      JSON 入出力
                     </Typography>
                   </Grid>
                   <Grid item xs={1}>
@@ -499,13 +429,13 @@ export function ServerCharmManager() {
               </Typography> */}
                 <Box sx={{ height: "100%" }}>
                   <TextField
-                    label="CSV"
+                    label="JSON"
                     multiline
                     variant="outlined"
                     minRows={8}
                     maxRows={8}
-                    value={csvData}
-                    onChange={handleCsvDataChange}
+                    value={jsonData}
+                    onChange={handleJsonDataChange}
                     InputProps={{
                       onClick: (event) => {
                         event.target.select();
@@ -522,7 +452,7 @@ export function ServerCharmManager() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={writeToCsvData}
+                      onClick={writeToJsonData}
                       disabled={userCharmData.length === 0}
                       startIcon={<KeyboardDoubleArrowUpIcon />}
                     >
@@ -533,7 +463,7 @@ export function ServerCharmManager() {
                         <Button
                           variant="contained"
                           color="primary"
-                          disabled={csvData === ""}
+                          disabled={jsonData === ""}
                           onClick={handleOpenOverwriteConfirmDialog}
                           sx={{ mr: 1 }}
                           startIcon={<KeyboardDoubleArrowDownIcon />}
@@ -543,8 +473,8 @@ export function ServerCharmManager() {
                         <Button
                           variant="contained"
                           color="primary"
-                          disabled={csvData === ""}
-                          onClick={() => readFromCsvData("append")}
+                          disabled={jsonData === ""}
+                          onClick={() => readFromJsonData("append")}
                           startIcon={<AddIcon />}
                         >
                           追加
@@ -583,6 +513,14 @@ export function ServerCharmManager() {
       setOpen,
       handleClose,
       setServerCharmData,
+      userCharmData,
+      nextUserCharmData,
+      jsonData,
+      openConfirmDialog,
+      dialogMode,
+      deleteIndexes,
+      textToCopy,
+      userCharmMetaData,
     ]
   );
 }

@@ -566,6 +566,34 @@ function Usage() {
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 5.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-08-13
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.021.00 (2025-08-13) に対応</li>
+          <li>鑑定護石に対応</li>
+          <li>ヌシの魂を4部位以上装備した際に効果が発動していなかった不具合を修正</li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 4.1.0
           </Typography>
           <Typography

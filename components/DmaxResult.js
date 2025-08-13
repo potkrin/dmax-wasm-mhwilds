@@ -39,7 +39,9 @@ export function outputToResult(
   output,
   processingUserInputData,
   processingUserArmorsData,
-  serverArtianData
+  serverArtianData,
+  serverCharmData,
+  useServerData
 ) {
   let result = "";
   let timeStamp = "";
@@ -150,6 +152,22 @@ export function outputToResult(
       dictEquipAll[charm.name] = charm;
     }
 
+    // ユーザーチャームデータを追加
+    let userCharmData = null;
+    if (useServerData) {
+      // サーバー上のチャームデータを取得
+      userCharmData = JSON.parse(JSON.stringify(serverCharmData));
+    } else {
+      // localStorage からチャームデータを取得
+      userCharmData = JSON.parse(localStorage.getItem("userCharmData"));
+    }
+
+    if (userCharmData) {
+      for (let charm of userCharmData) {
+        dictEquipAll[charm.name] = charm;
+      }
+    }
+
     for (let weapon of weaponList) {
       dictEquipAll[weapon.name] = weapon;
     }
@@ -188,7 +206,7 @@ export function outputToResult(
       let qEquipInfo = {};
       if (!(qEquipName in dictEquipAll)) {
         if (qEquipName !== "WeaponSlot")
-          console.log(`!! armor name ${qEquipName} NOT found. skip !!`);
+          console.error(`!! armor name ${qEquipName} NOT found. skip !!`);
         continue;
       } else {
         qEquipInfo = dictEquipAll[qEquipName];
@@ -236,9 +254,14 @@ export function outputToResult(
     };
     for (const eqtype in eqtypeDict) {
       for (const req in dictResultEquipment) {
-        const slot_str = dictResultEquipment[req].eqDict.slots?.join("-");
         if (eqtype === dictResultEquipment[req].eqDict.type) {
-          result += eqtypeDict[eqtype] + ": " + req + " (" + slot_str + ")" + "\n";
+          if (eqtype === "charm") {
+            // charmの場合はslot_strを出力しない
+            result += eqtypeDict[eqtype] + ": " + req + "\n";
+          } else {
+            const slot_str = dictResultEquipment[req].eqDict.slots?.join("-");
+            result += eqtypeDict[eqtype] + ": " + req + " (" + slot_str + ")" + "\n";
+          }
         }
       }
     }
@@ -353,12 +376,21 @@ function NewlineText({ text }) {
 }
 
 export const DmaxResult = React.memo(
-  ({ allDmaxOutput, processingUserInputData, processingUserArmorsData, serverArtianData }) => {
+  ({
+    allDmaxOutput,
+    processingUserInputData,
+    processingUserArmorsData,
+    serverArtianData,
+    serverCharmData,
+    useServerData,
+  }) => {
     const dmaxResult = outputToResult(
       allDmaxOutput,
       processingUserInputData,
       processingUserArmorsData,
-      serverArtianData
+      serverArtianData,
+      serverCharmData,
+      useServerData
     );
 
     const [textToCopy, setTextToCopy] = React.useState("");
