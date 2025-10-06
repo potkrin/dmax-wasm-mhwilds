@@ -640,6 +640,19 @@ export const armors = [
  {"type": "arms", "name": "アーフィアームα", "deffence": 36, "fire": 2, "water": -3, "ice": 2, "thunder": 2, "dragon": 2, "slots": [1, 0, 0], "skills": {"踊火の祈り": 1, "祝祭の巡り": 1, "連撃": 2}},
  {"type": "waist", "name": "アーフィウエストα", "deffence": 36, "fire": 2, "water": -3, "ice": 2, "thunder": 2, "dragon": 2, "slots": [0, 0, 0], "skills": {"踊火の祈り": 1, "祝祭の巡り": 1, "連撃": 1, "爆破やられ耐性": 2, "火耐性": 1}},
  {"type": "legs", "name": "アーフィフットα", "deffence": 36, "fire": 2, "water": -3, "ice": 2, "thunder": 2, "dragon": 2, "slots": [1, 1, 0], "skills": {"踊火の祈り": 1, "祝祭の巡り": 1, "連撃": 1, "ボマー": 1, "爆破やられ耐性": 1}},
+
+ // ver6.0.0 2025-10-06
+ {'type': 'head', 'name': 'ベイルバーゴネットα', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': -2, 'thunder': 0, 'dragon': 3, 'slots': [1, 1, 0], 'skills': {'暗黒騎士の証': 1, '逆恨み': 2, '渾身': 2}},
+ {'type': 'torso', 'name': 'ベイルキュイラスα', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': -2, 'thunder': 0, 'dragon': 3, 'slots': [2, 0, 0], 'skills': {'暗黒騎士の証': 1, '納刀術': 2, '力の解放': 2}},
+ {'type': 'arms', 'name': 'ベイルガントレットα', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': -2, 'thunder': 0, 'dragon': 3, 'slots': [3, 0, 0], 'skills': {'暗黒騎士の証': 1, '力の解放': 1, '渾身': 1, '逆恨み': 1}},
+ {'type': 'waist', 'name': 'ベイルフランチャードα', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': -2, 'thunder': 0, 'dragon': 3, 'slots': [3, 2, 1], 'skills': {'暗黒騎士の証': 1, '逆恨み': 1, '体術': 2}},
+ {'type': 'legs', 'name': 'ベイルソルレットα', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': -2, 'thunder': 0, 'dragon': 3, 'slots': [2, 0, 0], 'skills': {'暗黒騎士の証': 1, '逆恨み': 1, '力の解放': 2}},
+
+ {'type': 'head', 'name': 'オメガイヤーカフα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '弱点特効': 1, '精霊の加護': 1}},
+ {'type': 'torso', 'name': 'オメガスーツα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '破壊王': 2}},
+ {'type': 'arms', 'name': 'オメガアームα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '挑戦者': 1, '精霊の加護': 1}},
+ {'type': 'waist', 'name': 'オメガアクセサリーα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '連撃': 1, '精霊の加護': 1}},
+ {'type': 'legs', 'name': 'オメガレッグα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '回避性能': 2}},
 ];
 
 export const decoArmorList = [
@@ -1276,7 +1289,7 @@ export const weaponList = [
   {"type":"weapon","name":"ハイボルトアロー","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"フォースショット":2,"耐性変換【雷】":1},"element":250,"raw":220,"elementType":"thunder","affinity":0},
   {"type":"weapon","name":"シャルラアルナスルⅠ","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,0],"skills":{"刃鱗増装":1},"element":0,"raw":190,"elementType":"none","affinity":25},
   {"type":"weapon","name":"叛弓アルナスル","deffence":0,"fire":0,"water":0,"ice":0,"thunder":0,"dragon":0,"slots":[3,2,1],"skills":{"刃鱗増装":1},"element":0,"raw":210,"elementType":"none","affinity":25},
-  
+
 ];
 
 
@@ -1462,4 +1475,8 @@ export const charmList = [
  // ver5.0 2025-07-23
  {"name": "無傷の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"フルチャージ": 3}},
  {"name": "整備の護石Ⅳ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [], "skills": {"整備": 4}},
+
+ // ver6.0.0 2025-10-06
+ {'name': '攻勢の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'攻勢': 3}},
+ {'name': '連撃の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'連撃': 3}},
 ];

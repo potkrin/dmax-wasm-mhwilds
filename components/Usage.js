@@ -566,6 +566,47 @@ function Usage() {
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 6.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-10-06
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.030.01 (2025-10-01) に対応</li>
+          <li>
+            防具追加
+            <br />
+            ベイルアーマーα, オメガコスチュームα
+          </li>
+          <li>
+            護石追加
+            <br />
+            攻勢の護石Ⅲ, 連撃の護石Ⅲ
+          </li>
+          <li>
+            スキル追加（以下のスキルはダメージ計算式にまだ反映されていませんのでご注意下さい）
+            <br />
+            暗黒騎士の証, オメガレゾナンス
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 5.0.0
           </Typography>
           <Typography
