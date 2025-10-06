@@ -24,11 +24,11 @@ export const staticData = {
 
     "elementKVEN2JP": {
       "none": "無属性",
-      "fire": "火", 
-      "water": "水", 
-      "thunder": "雷", 
-      "ice": "氷", 
-      "dragon": "龍", 
+      "fire": "火",
+      "water": "水",
+      "thunder": "雷",
+      "ice": "氷",
+      "dragon": "龍",
     },
 
     "スロット": {
@@ -295,7 +295,7 @@ export const staticSeriesSkillData = {
   "凍峰竜の反逆":{"name":"凍峰竜の反逆","maxLevel":"4","type":"NonDamage"},
   "黒蝕竜の力":{"name":"黒蝕竜の力","maxLevel":"4","type":"Damage"},
   "鎖刃竜の飢餓":{"name":"鎖刃竜の飢餓","maxLevel":"4","type":"NonDamage"},
-  "護鎖刃竜の命脈":{"name":"護鎖刃竜の命脈","maxLevel":"4","type":"NonDamage"}, 
+  "護鎖刃竜の命脈":{"name":"護鎖刃竜の命脈","maxLevel":"4","type":"NonDamage"},
 
   // ver2.0 2025-04-06
   "泡狐竜の力":{"name":"泡狐竜の力","maxLevel":"4","type":"NonDamage"},
@@ -309,7 +309,11 @@ export const staticSeriesSkillData = {
   "千刃竜の闘志":{"name":"千刃竜の闘志","maxLevel":"4","type": "Damage"},
 
   // ver4.1.0 2025-07-23
-  "踊火の祈り":{"name":"踊火の祈り","maxLevel":"4","type":"NonDamage"}
+  "踊火の祈り":{"name":"踊火の祈り","maxLevel":"4","type":"NonDamage"},
+
+  // ver6.0.0 2025-10-06
+  "暗黒騎士の証":{"name":"暗黒騎士の証","maxLevel":"4","type":"NonDamage"},
+  "オメガレゾナンス":{"name":"オメガレゾナンス","maxLevel":"4","type":"NonDamage"},
  };
 
 export const staticSkillData = {
