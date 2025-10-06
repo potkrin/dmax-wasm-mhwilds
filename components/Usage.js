@@ -587,6 +587,7 @@ function Usage() {
         </Box>
 
         <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.030.01 (2025-10-01) に対応</li>
           <li>
             防具追加
             <br />
@@ -598,7 +599,7 @@ function Usage() {
             攻勢の護石Ⅲ, 連撃の護石Ⅲ
           </li>
           <li>
-            スキル追加（以下のスキルはダメージ計算式にまだ反映されていませんのでご注意下さい
+            スキル追加（以下のスキルはダメージ計算式にまだ反映されていませんのでご注意下さい）
             <br />
             暗黒騎士の証, オメガレゾナンス
           </li>
