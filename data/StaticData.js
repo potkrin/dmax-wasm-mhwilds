@@ -314,6 +314,9 @@ export const staticSeriesSkillData = {
   // ver6.0.0 2025-10-06
   "暗黒騎士の証":{"name":"暗黒騎士の証","maxLevel":"4","type":"NonDamage"},
   "オメガレゾナンス":{"name":"オメガレゾナンス","maxLevel":"4","type":"NonDamage"},
+
+  // ver7.0.0 2025-10-26
+  "夢灯の祈り":{"name":"夢灯の祈り","maxLevel":"4","type":"NonDamage"},
  };
 
 export const staticSkillData = {

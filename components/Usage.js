@@ -566,6 +566,48 @@ function Usage() {
         </CustomH1>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 7.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-10-26
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.030.02 (2025-10-23) に対応</li>
+          <li>
+            防具追加
+            <br />
+            エグゾルスγシリーズ, ゴストゥラαシリーズ, ハーベストフロールαシリーズ,
+            ゼレドロフェイクαシリーズ, キトゥンアイα, ティアドロップグラスα, スカルフェイスα
+          </li>
+          <li>
+            護石追加
+            <br />
+            逆襲の護石Ⅲ, 急襲の護石Ⅲ
+          </li>
+          <li>
+            スキル追加
+            <br />
+            夢灯の祈り
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 6.0.0
           </Typography>
           <Typography

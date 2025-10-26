@@ -653,6 +653,33 @@ export const armors = [
  {'type': 'arms', 'name': 'オメガアームα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '挑戦者': 1, '精霊の加護': 1}},
  {'type': 'waist', 'name': 'オメガアクセサリーα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '連撃': 1, '精霊の加護': 1}},
  {'type': 'legs', 'name': 'オメガレッグα', 'deffence': 68, 'fire': 3, 'water': 0, 'ice': -3, 'thunder': 2, 'dragon': -2, 'slots': [3, 2, 0], 'skills': {'オメガレゾナンス': 1, '回避性能': 2}},
+
+ // ver7.0.0 2025-10-26
+ {'type': 'head', 'name': 'エグゾルスヘルムγ', 'deffence': 68, 'fire': 5, 'water': -4, 'ice': 0, 'thunder': 1, 'dragon': 0, 'slots': [1, 1, 1], 'skills': {'獄焔蛸の反逆': 1, 'ヌシの魂': 1, '連撃': 3}},
+ {'type': 'torso', 'name': 'エグゾルスメイルγ', 'deffence': 68, 'fire': 5, 'water': -4, 'ice': 0, 'thunder': 1, 'dragon': 0, 'slots': [3, 3, 0], 'skills': {'獄焔蛸の反逆': 1, 'ヌシの魂': 1, '逆襲': 2}},
+ {'type': 'arms', 'name': 'エグゾルスアームγ', 'deffence': 68, 'fire': 5, 'water': -4, 'ice': 0, 'thunder': 1, 'dragon': 0, 'slots': [3, 1, 1], 'skills': {'獄焔蛸の反逆': 1, 'ヌシの魂': 1, '逆恨み': 3}},
+ {'type': 'waist', 'name': 'エグゾルスコイルγ', 'deffence': 68, 'fire': 5, 'water': -4, 'ice': 0, 'thunder': 1, 'dragon': 0, 'slots': [2, 0, 0], 'skills': {'獄焔蛸の反逆': 1, 'ヌシの魂': 1, '連撃': 2, '急襲': 1}},
+ {'type': 'legs', 'name': 'エグゾルスグリーヴγ', 'deffence': 68, 'fire': 5, 'water': -4, 'ice': 0, 'thunder': 1, 'dragon': 0, 'slots': [2, 0, 0], 'skills': {'獄焔蛸の反逆': 1, 'ヌシの魂': 1, '逆恨み': 2, '逆襲': 1, '早食い': 3}},
+
+ {'type': 'head', 'name': 'ゴストゥラヘルムα', 'deffence': 36, 'fire': -3, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [0, 0, 0], 'skills': {'夢灯の祈り': 1, '祝祭の巡り': 1, '鎖刃刺撃': 1, '急襲': 1, '広域化': 2}},
+ {'type': 'torso', 'name': 'ゴストゥラメイルα', 'deffence': 36, 'fire': -3, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'夢灯の祈り': 1, '祝祭の巡り': 1, '鎖刃刺撃': 1, '広域化': 1, '睡眠耐性': 1}},
+ {'type': 'arms', 'name': 'ゴストゥラアームα', 'deffence': 36, 'fire': -3, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [2, 1, 0], 'skills': {'夢灯の祈り': 1, '祝祭の巡り': 1, '鎖刃刺撃': 1, '睡眠耐性': 1}},
+ {'type': 'waist', 'name': 'ゴストゥラコイルα', 'deffence': 36, 'fire': -3, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [0, 0, 0], 'skills': {'夢灯の祈り': 1, '祝祭の巡り': 1, '鎖刃刺撃': 1, '急襲': 2}},
+ {'type': 'legs', 'name': 'ゴストゥラグリーヴα', 'deffence': 36, 'fire': -3, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [1, 1, 0], 'skills': {'夢灯の祈り': 1, '祝祭の巡り': 1, '鎖刃刺撃': 1, '広域化': 2}},
+
+ {'type': 'head', 'name': 'ハーベストフロールα', 'deffence': 36, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 1, 'slots': [1, 1, 0], 'skills': {'祝祭の巡り': 1, '逆恨み': 1, '植生学': 1}},
+ {'type': 'torso', 'name': 'ハーベストトロンコα', 'deffence': 36, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 1, 'slots': [0, 0, 0], 'skills': {'祝祭の巡り': 1, '逆恨み': 1, 'キノコ大好き': 2}},
+ {'type': 'arms', 'name': 'ハーベストラーマα', 'deffence': 36, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 1, 'slots': [0, 0, 0], 'skills': {'祝祭の巡り': 1, '体術': 2, 'キノコ大好き': 1, '満足感': 2}},
+ {'type': 'waist', 'name': 'ハーベストオッハα', 'deffence': 36, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 1, 'slots': [1, 1, 0], 'skills': {'祝祭の巡り': 1, '体術': 1, '満足感': 1, '植生学': 1}},
+ {'type': 'legs', 'name': 'ハーベストライースα', 'deffence': 36, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 1, 'slots': [2, 0, 0], 'skills': {'祝祭の巡り': 1, '体術': 2, '植生学': 2}},
+
+ {'type': 'head', 'name': 'ゼレドロフェイクα', 'deffence': 66, 'fire': 4, 'water': 2, 'ice': -4, 'thunder': -2, 'dragon': 0, 'slots': [3, 1, 1], 'skills': {'革細工の柔性': 1, '早食い': 2, '腹減り耐性': 1, '満足感': 1}},
+ {'type': 'torso', 'name': 'ゼレドロリュックα', 'deffence': 66, 'fire': 4, 'water': 2, 'ice': -4, 'thunder': -2, 'dragon': 0, 'slots': [3, 1, 0], 'skills': {'革細工の柔性': 1, '早食い': 1, '腹減り耐性': 2, '満足感': 2}},
+
+ {'type': 'head', 'name': 'キトゥンアイα', 'deffence': 66, 'fire': 2, 'water': 0, 'ice': 4, 'thunder': 0, 'dragon': 4, 'slots': [0, 0, 0], 'skills': {'急襲': 3, '回避距離ＵＰ': 2, 'ジャンプ鉄人': 1}},
+ {'type': 'head', 'name': 'ティアドロップグラスα', 'deffence': 66, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [1, 1, 1], 'skills': {'風圧耐性': 3, '整備': 2}},
+ {'type': 'head', 'name': 'スカルフェイスα', 'deffence': 66, 'fire': -3, 'water': -1, 'ice': -1, 'thunder': -1, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'威嚇': 3, '耳栓': 3}}
+
 ];
 
 export const decoArmorList = [
@@ -1479,4 +1506,9 @@ export const charmList = [
  // ver6.0.0 2025-10-06
  {'name': '攻勢の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'攻勢': 3}},
  {'name': '連撃の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'連撃': 3}},
+
+ // ver7.0.0 2025-10-26
+ {'name': '逆襲の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'逆襲': 3}},
+ {'name': '急襲の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'急襲': 3}},
+
 ];
