@@ -317,6 +317,10 @@ export const staticSeriesSkillData = {
 
   // ver7.0.0 2025-10-26
   "夢灯の祈り":{"name":"夢灯の祈り","maxLevel":"4","type":"NonDamage"},
+
+  // ver8.0.0 2025-12-27
+  "祝謡の祈り": { "name": "祝謡の祈り", "maxLevel": "4", "type": "NonDamage" },
+  "巨戟龍の黙示録": { "name": "巨戟龍の黙示録", "maxLevel": "4", "type": "NonDamage" },
  };
 
 export const staticSkillData = {
