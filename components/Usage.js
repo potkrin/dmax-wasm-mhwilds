@@ -564,6 +564,58 @@ function Usage() {
         <CustomH1 variant="h1" gutterBottom theme={theme.vars}>
           # 更新履歴
         </CustomH1>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
+            ver. 8.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2025-12-31
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.040.02 (2025-12-19) に対応</li>
+          <li>
+            ゲームのダメージ計算式の修正を反映
+            <ul>
+              <li>射撃・剛射・剛連射のモーション値と属性補正値を修正</li>
+              <li>竜の一矢・竜の一矢刹那のモーション値を修正</li>
+              <li>強撃ビンの補正値を修正</li>
+              <li>貫通ビンの選択肢を一時的に削除 (ゲームの計算式と合わなくなってしまったため)</li>
+            </ul>
+          </li>
+          <li>
+            防具追加
+            <br />
+            ゴグα/βシリーズ, ダハディラγシリーズ, セレモニアルαシリーズ, オリオンαシリーズ,
+            祝福の腰飾りα, アナライズアイα, ミラーバイザーα
+          </li>
+          <li>
+            護石追加
+            <br />
+            耐属の護石Ⅲ, 重撃の護石Ⅲ, 挑戦の護石Ⅲ, 転福の護石Ⅲ
+          </li>
+          <li>
+            スキル追加
+            <br />
+            巨戟龍の黙示録, 祝謡の祈り
+          </li>
+        </Typography>
+
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
             ver. 7.0.0

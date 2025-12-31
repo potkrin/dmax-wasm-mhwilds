@@ -678,7 +678,42 @@ export const armors = [
 
  {'type': 'head', 'name': 'キトゥンアイα', 'deffence': 66, 'fire': 2, 'water': 0, 'ice': 4, 'thunder': 0, 'dragon': 4, 'slots': [0, 0, 0], 'skills': {'急襲': 3, '回避距離ＵＰ': 2, 'ジャンプ鉄人': 1}},
  {'type': 'head', 'name': 'ティアドロップグラスα', 'deffence': 66, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [1, 1, 1], 'skills': {'風圧耐性': 3, '整備': 2}},
- {'type': 'head', 'name': 'スカルフェイスα', 'deffence': 66, 'fire': -3, 'water': -1, 'ice': -1, 'thunder': -1, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'威嚇': 3, '耳栓': 3}}
+ {'type': 'head', 'name': 'スカルフェイスα', 'deffence': 66, 'fire': -3, 'water': -1, 'ice': -1, 'thunder': -1, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'威嚇': 3, '耳栓': 3}},
+
+ // ver8.0.0 2025-12-27
+ {'type': 'head', 'name': 'ゴグヘルムα', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 1, 0], 'skills': {'巨戟龍の黙示録': 1, '白熾龍の脈動': 1, 'フルチャージ': 2, '属性吸収': 2}},
+ {'type': 'torso', 'name': 'ゴグメイルα', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 2, 0], 'skills': {'巨戟龍の黙示録': 1, '暗器蛸の力': 1, '巧撃': 2, '早食い': 2, '水場・油泥適応': 1}},
+ {'type': 'arms', 'name': 'ゴグアームα', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [2, 1, 0], 'skills': {'巨戟龍の黙示録': 1, '雷顎竜の闘志': 1, '渾身': 2, '挑戦者': 1}},
+ {'type': 'waist', 'name': 'ゴグコイルα', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [2, 1, 1], 'skills': {'巨戟龍の黙示録': 1, '兇爪竜の力': 1, '連撃': 2, 'フルチャージ': 1}},
+ {'type': 'legs', 'name': 'ゴググリーヴα', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 2, 1], 'skills': {'巨戟龍の黙示録': 1, '闢獣の力': 1, 'フルチャージ': 2, '挑戦者': 1}},
+
+ {'type': 'head', 'name': 'ゴグヘルムβ', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 1, 0], 'skills': {'巨戟龍の黙示録': 1, '護鎖刃竜の命脈': 1, 'フルチャージ': 2, '属性吸収': 2}},
+ {'type': 'torso', 'name': 'ゴグメイルβ', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 2, 0], 'skills': {'巨戟龍の黙示録': 1, '火竜の力': 1, '巧撃': 2, '早食い': 2, '水場・油泥適応': 1}},
+ {'type': 'arms', 'name': 'ゴグアームβ', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [2, 1, 0], 'skills': {'巨戟龍の黙示録': 1, '雪獅子の闘志': 1, '渾身': 2, '挑戦者': 1}},
+ {'type': 'waist', 'name': 'ゴグコイルβ', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [2, 1, 1], 'skills': {'巨戟龍の黙示録': 1, '泡狐竜の力': 1, '連撃': 2, 'フルチャージ': 1}},
+ {'type': 'legs', 'name': 'ゴググリーヴβ', 'deffence': 68, 'fire': -4, 'water': 3, 'ice': 0, 'thunder': 3, 'dragon': -5, 'slots': [3, 2, 1], 'skills': {'巨戟龍の黙示録': 1, '鎧竜の守護': 1, 'フルチャージ': 2, '挑戦者': 1}},
+
+ {'type': 'head', 'name': 'ダハディラヘルムγ', 'deffence': 68, 'fire': -3, 'water': 2, 'ice': -1, 'thunder': 2, 'dragon': -1, 'slots': [3, 3, 0], 'skills': {'凍峰竜の反逆': 1, 'ヌシの魂': 1, '攻勢': 2}},
+ {'type': 'torso', 'name': 'ダハディラメイルγ', 'deffence': 68, 'fire': -3, 'water': 2, 'ice': -1, 'thunder': 2, 'dragon': -1, 'slots': [2, 2, 0], 'skills': {'凍峰竜の反逆': 1, 'ヌシの魂': 1, '挑戦者': 2}},
+ {'type': 'arms', 'name': 'ダハディラアームγ', 'deffence': 68, 'fire': -3, 'water': 2, 'ice': -1, 'thunder': 2, 'dragon': -1, 'slots': [2, 0, 0], 'skills': {'凍峰竜の反逆': 1, 'ヌシの魂': 1, '災禍転福': 3, '弱点特効': 1}},
+ {'type': 'waist', 'name': 'ダハディラコイルγ', 'deffence': 68, 'fire': -3, 'water': 2, 'ice': -1, 'thunder': 2, 'dragon': -1, 'slots': [1, 0, 0], 'skills': {'凍峰竜の反逆': 1, 'ヌシの魂': 1, '挑戦者': 3, '拘束耐性': 2}},
+ {'type': 'legs', 'name': 'ダハディラグリーヴγ', 'deffence': 68, 'fire': -3, 'water': 2, 'ice': -1, 'thunder': 2, 'dragon': -1, 'slots': [2, 0, 0], 'skills': {'凍峰竜の反逆': 1, 'ヌシの魂': 1, '弱点特効': 2, '攻勢': 1}},
+
+ {'type': 'head', 'name': 'セレモニアルヘルムα', 'deffence': 36, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': -3, 'dragon': 2, 'slots': [2, 1, 0], 'skills': {'祝謡の祈り': 1, '祝祭の巡り': 1, '力の解放': 1, '精霊の加護': 1}},
+ {'type': 'torso', 'name': 'セレモニアルメイルα', 'deffence': 36, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': -3, 'dragon': 2, 'slots': [1, 0, 0], 'skills': {'祝謡の祈り': 1, '祝祭の巡り': 1, '挑戦者': 1, '属性変換': 1, '龍耐性': 1}},
+ {'type': 'arms', 'name': 'セレモニアルアームα', 'deffence': 36, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': -3, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'祝謡の祈り': 1, '祝祭の巡り': 1, '力の解放': 1, '整備': 1}},
+ {'type': 'waist', 'name': 'セレモニアルコイルα', 'deffence': 36, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': -3, 'dragon': 2, 'slots': [1, 1, 0], 'skills': {'祝謡の祈り': 1, '祝祭の巡り': 1, '属性変換': 1, '精霊の加護': 1, '龍耐性': 1}},
+ {'type': 'legs', 'name': 'セレモニアルグリーヴα', 'deffence': 36, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': -3, 'dragon': 2, 'slots': [2, 0, 0], 'skills': {'祝謡の祈り': 1, '祝祭の巡り': 1, '挑戦者': 1, '整備': 1}},
+
+ {'type': 'head', 'name': 'オリオンヘッドα', 'deffence': 66, 'fire': 1, 'water': 1, 'ice': 1, 'thunder': 4, 'dragon': 1, 'slots': [3, 3, 1], 'skills': {'祝祭の巡り': 1, 'ひるみ軽減': 2}},
+ {'type': 'torso', 'name': 'オリオンベストα', 'deffence': 66, 'fire': 1, 'water': 1, 'ice': 1, 'thunder': 4, 'dragon': 1, 'slots': [2, 2, 2], 'skills': {'祝祭の巡り': 1, '風圧耐性': 2, '体力回復量ＵＰ': 1}},
+ {'type': 'arms', 'name': 'オリオンアームα', 'deffence': 66, 'fire': 1, 'water': 1, 'ice': 1, 'thunder': 4, 'dragon': 1, 'slots': [3, 2, 1], 'skills': {'祝祭の巡り': 1, '体力回復量ＵＰ': 2, '風圧耐性': 1}},
+ {'type': 'waist', 'name': 'オリオンコートα', 'deffence': 66, 'fire': 1, 'water': 1, 'ice': 1, 'thunder': 4, 'dragon': 1, 'slots': [2, 2, 2], 'skills': {'祝祭の巡り': 1, '耳栓': 1, 'クライマー': 1}},
+ {'type': 'legs', 'name': 'オリオンブーツα', 'deffence': 66, 'fire': 1, 'water': 1, 'ice': 1, 'thunder': 4, 'dragon': 1, 'slots': [2, 1, 1], 'skills': {'祝祭の巡り': 1, '耳栓': 2, 'ひるみ軽減': 1}},
+
+ {'type': 'waist', 'name': '祝福の腰飾りα', 'deffence': 66, 'fire': 2, 'water': 2, 'ice': 0, 'thunder': -2, 'dragon': 3, 'slots': [3, 0, 0], 'skills': {'体術': 4, '精霊の加護': 3}},
+ {'type': 'head', 'name': 'アナライズアイα', 'deffence': 66, 'fire': 4, 'water': 2, 'ice': 4, 'thunder': 0, 'dragon': 0, 'slots': [2, 2, 0], 'skills': {'弱点特効': 2}},
+ {'type': 'head', 'name': 'ミラーバイザーα', 'deffence': 66, 'fire': 0, 'water': 0, 'ice': 2, 'thunder': 4, 'dragon': 4, 'slots': [3, 0, 0], 'skills': {'回避性能': 4}},
 
 ];
 
@@ -1511,4 +1546,9 @@ export const charmList = [
  {'name': '逆襲の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'逆襲': 3}},
  {'name': '急襲の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'急襲': 3}},
 
+ // ver8.0.0 2025-12-27
+ {'name': '耐属の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'属性やられ耐性': 3}},
+ {'name': '重撃の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'破壊王': 3}},
+ {'name': '挑戦の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'挑戦者': 3}},
+ {'name': '転福の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'災禍転福': 3}},
 ];
