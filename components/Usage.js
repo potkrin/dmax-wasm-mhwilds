@@ -567,6 +567,42 @@ function Usage() {
 
         <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
           <Typography variant="body1" marginLeft={1.5}>
+            ver. 9.0.0
+          </Typography>
+          <Typography
+            variant="body1"
+            marginLeft={2.0}
+            color="text.secondary"
+            fontSize={"0.8rem"}
+            sx={{ display: "flex", alignItems: "start" }}
+          >
+            <CalendarMonthIcon
+              sx={{
+                fontSize: "1.0rem",
+                marginRight: 0.3,
+                color: theme.vars.palette.text.secondary,
+              }}
+            />
+            2026-02-20
+          </Typography>
+        </Box>
+
+        <Typography component="ul" color="text.secondary" fontSize={"0.9rem"}>
+          <li>ゲームの Ver.1.041.00 (2026-02-18) に対応</li>
+          <li>
+            防具追加
+            <br />
+            シュバルカγシリーズ, クイーンαシリーズ
+          </li>
+          <li>
+            護石追加
+            <br />
+            痛撃の護石Ⅲ, 鎖刃の護石Ⅲ
+          </li>
+        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+          <Typography variant="body1" marginLeft={1.5}>
             ver. 8.0.0
           </Typography>
           <Typography
