@@ -715,6 +715,18 @@ export const armors = [
  {'type': 'head', 'name': 'アナライズアイα', 'deffence': 66, 'fire': 4, 'water': 2, 'ice': 4, 'thunder': 0, 'dragon': 0, 'slots': [2, 2, 0], 'skills': {'弱点特効': 2}},
  {'type': 'head', 'name': 'ミラーバイザーα', 'deffence': 66, 'fire': 0, 'water': 0, 'ice': 2, 'thunder': 4, 'dragon': 4, 'slots': [3, 0, 0], 'skills': {'回避性能': 4}},
 
+ // ver9.0.0 2026-02-20
+ {'type': 'head', 'name': 'シュバルカヘルムγ', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': 0, 'thunder': -1, 'dragon': -3, 'slots': [2, 1, 0], 'skills': {'鎖刃竜の飢餓': 1, 'ヌシの魂': 1, '弱点特効': 3}},
+ {'type': 'torso', 'name': 'シュバルカメイルγ', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': 0, 'thunder': -1, 'dragon': -3, 'slots': [3, 2, 0], 'skills': {'鎖刃竜の飢餓': 1, 'ヌシの魂': 1, '属性変換': 3, '属性やられ耐性': 1}},
+ {'type': 'arms', 'name': 'シュバルカアームγ', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': 0, 'thunder': -1, 'dragon': -3, 'slots': [1, 1, 0], 'skills': {'鎖刃竜の飢餓': 1, 'ヌシの魂': 1, '鎖刃刺撃': 2, '弱点特効': 2}},
+ {'type': 'waist', 'name': 'シュバルカコイルγ', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': 0, 'thunder': -1, 'dragon': -3, 'slots': [2, 2, 1], 'skills': {'鎖刃竜の飢餓': 1, 'ヌシの魂': 1, '属性吸収': 3, '鎖刃刺撃': 1}},
+ {'type': 'legs', 'name': 'シュバルカグリーヴγ', 'deffence': 68, 'fire': 2, 'water': 0, 'ice': 0, 'thunder': -1, 'dragon': -3, 'slots': [3, 3, 0], 'skills': {'鎖刃竜の飢餓': 1, 'ヌシの魂': 1, '鎖刃刺撃': 2, '属性やられ耐性': 2}},
+
+ {'type': 'head', 'name': 'クイーンピアスα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [3, 1, 1], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 1}},
+ {'type': 'torso', 'name': 'クイーンコートα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [0, 0, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 1, 'スタミナ急速回復': 2, '破壊王': 1}},
+ {'type': 'arms', 'name': 'クイーンアームα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [2, 0, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 1, '回避距離ＵＰ': 1, '破壊王': 1}},
+ {'type': 'waist', 'name': 'クイーンコイルα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [0, 0, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 2, '回避距離ＵＰ': 2}},
+ {'type': 'legs', 'name': 'クイーンブーツα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [3, 2, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, 'スタミナ急速回復': 1, '破壊王': 1}},
 ];
 
 export const decoArmorList = [
@@ -1551,4 +1563,8 @@ export const charmList = [
  {'name': '重撃の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'破壊王': 3}},
  {'name': '挑戦の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'挑戦者': 3}},
  {'name': '転福の護石Ⅲ', 'type': 'charm', 'deffence': 0, 'fire': 0, 'water': 0, 'ice': 0, 'thunder': 0, 'dragon': 0, 'slots': [], 'skills': {'災禍転福': 3}},
+
+ // ver9.0.0 2026-02-28
+ {"name": "痛撃の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"弱点特効": 3}},
+ {"name": "鎖刃の護石Ⅲ", "type": "charm", "deffence": 0, "fire": 0, "water": 0, "ice": 0, "thunder": 0, "dragon": 0, "slots": [0,0,0], "skills": {"鎖刃刺撃": 3}},
 ];
