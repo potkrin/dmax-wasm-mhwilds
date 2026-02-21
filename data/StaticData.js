@@ -288,7 +288,7 @@ export const staticSeriesSkillData = {
   "暗器蛸の力":{"name":"暗器蛸の力","maxLevel":"4","type":"NonDamage"},
   "鎧竜の守護":{"name":"鎧竜の守護","maxLevel":"4","type":"NonDamage"},
   "雪獅子の闘志":{"name":"雪獅子の闘志","maxLevel":"4","type":"NonDamage"},
-  "兇爪竜の力":{"name":"兇爪竜の力","maxLevel":"4","type":"NonDamage"},
+  "兇爪竜の力":{"name":"兇爪竜の力","maxLevel":"4","type":"Damage"},
   "雷顎竜の闘志":{"name":"雷顎竜の闘志","maxLevel":"4","type":"NonDamage"},
   "波衣竜の守護":{"name":"波衣竜の守護","maxLevel":"4","type":"NonDamage"},
   "煌雷竜の力":{"name":"煌雷竜の力","maxLevel":"4","type":"NonDamage"},
