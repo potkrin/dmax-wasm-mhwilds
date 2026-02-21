@@ -727,6 +727,8 @@ export const armors = [
  {'type': 'arms', 'name': 'クイーンアームα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [2, 0, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 1, '回避距離ＵＰ': 1, '破壊王': 1}},
  {'type': 'waist', 'name': 'クイーンコイルα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [0, 0, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, '連撃': 2, '回避距離ＵＰ': 2}},
  {'type': 'legs', 'name': 'クイーンブーツα', 'deffence': 66, 'fire': 4, 'water': 1, 'ice': 1, 'thunder': 1, 'dragon': 3, 'slots': [3, 2, 0], 'skills': {'黒蝕竜の力': 1, '栄光の誉れ': 1, 'スタミナ急速回復': 1, '破壊王': 1}},
+
+ {'type': 'head', 'name': 'はりきりモリバーα', 'deffence': 66, 'fire': 2, 'water': 2, 'ice': 2, 'thunder': 2, 'dragon': 2, 'slots': [0, 0, 0], 'skills': {'毛皮の昂揚': 1, 'キノコ大好き': 3, '耳栓': 2, '環境利用の知識': 2}},
 ];
 
 export const decoArmorList = [
